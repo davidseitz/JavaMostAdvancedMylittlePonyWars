@@ -1,5 +1,4 @@
-package com.example;
-
+package javaMostAdvancedMyLittlePonyWars;
 import java.io.IOException;
 import javafx.fxml.FXML;
 

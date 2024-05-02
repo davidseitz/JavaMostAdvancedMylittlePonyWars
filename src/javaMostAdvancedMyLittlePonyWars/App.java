@@ -1,4 +1,4 @@
-package com.example;
+package javaMostAdvancedMyLittlePonyWars;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
