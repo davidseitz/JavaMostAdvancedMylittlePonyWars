@@ -21,7 +21,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+    /**
+     * 
+     * @param fxml- the fxml file to be loaded
+     * @throws IOException - if the file is not found
+     */
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
     }
