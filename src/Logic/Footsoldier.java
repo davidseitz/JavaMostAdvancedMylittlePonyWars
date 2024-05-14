@@ -11,10 +11,11 @@ public class Footsoldier extends Groundfigures {
      * @return boolean true if the move is successful, false otherwise
      */
      public boolean moveFootsoldier(int x, int y, int new_x, int new_y) {
-    	 // TODO add additional rules for the footsoldier
-		return move(x, y, new_x, new_y);
+    	/* TODO add additional rules for the footsoldier*/
+    	if (this.x == x && this.y == y) {
+    		return move(x, y, new_x, new_y);
+    	}
 		return false;
 	}
-	}
-
 }
+

@@ -1,13 +1,21 @@
 package Logic;
 
 public class Groundfigures extends Figure {
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
+	protected Figuretype type;
 	public Groundfigures(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-	
+
+	public Figuretype getType() {
+		return type;
+	}
+
+	public void setType(Figuretype type) {
+		this.type = type;
+	}
 	@Override
 	/**
 	 * This method is used to move the ground figures
