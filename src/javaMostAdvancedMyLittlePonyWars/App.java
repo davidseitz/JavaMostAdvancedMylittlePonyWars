@@ -23,7 +23,6 @@ public class App extends Application {
         primaryStage.setFullScreen(true);
         primaryStage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }
