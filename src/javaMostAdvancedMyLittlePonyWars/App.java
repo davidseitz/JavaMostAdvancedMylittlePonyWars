@@ -13,28 +13,16 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private static Scene scene;
-
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage primaryStage) throws IOException {
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/mainMenu.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Advance Wars");
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.setFullScreen(true);
+        primaryStage.show();
     }
-    /**
-     * 
-     * @param fxml- the fxml file to be loaded
-     * @throws IOException - if the file is not found
-     */
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }
-
     public static void main(String[] args) {
         launch();
     }
