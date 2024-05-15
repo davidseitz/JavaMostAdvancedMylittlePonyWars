@@ -42,7 +42,6 @@ public class MainMenuController implements Initializable {
 	
 	
 	public void startGame() {
-		//startButton.setVisible(false);
 		quitButton.setVisible(false);
 		startButton.setVisible(false);
 		levelOne.setImage(new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
@@ -64,6 +63,8 @@ public class MainMenuController implements Initializable {
 			if(level == levelOne) {
 				Parent root;
 				model.setLevel(1);
+				model.setHight(10);
+				model.setWidth(19);
 				try {
 					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
 					Scene newScene = new Scene(root);
@@ -80,6 +81,8 @@ public class MainMenuController implements Initializable {
 				Parent root;
 				model.setLevel(2);
 				try {
+					model.setHight(17);
+					model.setWidth(19);
 					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
 					Scene newScene = new Scene(root);
 					Scene currentScene = levelOne.getScene();
@@ -94,6 +97,8 @@ public class MainMenuController implements Initializable {
 			else if(level == levelThree) {
 				Parent root;
 				model.setLevel(3);
+				model.setHight(14);
+				model.setWidth(26);
 				try {
 					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
 					Scene newScene = new Scene(root);

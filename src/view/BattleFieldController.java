@@ -26,7 +26,7 @@ public class BattleFieldController implements Initializable {
 			battlefield.setPadding(new Insets(5.0,25.0,25.0,300.0));
 		}
 		else if(model.getLevel()==3) {
-			battlefield.setPadding(new Insets(100.0,25.0,25.0,100.0));
+			battlefield.setPadding(new Insets(100.0,25.0,25.0,50.0));
 		}
 		
 		for (Tile lines[] : battlefield.getTiles()) {
