@@ -1,9 +1,10 @@
-package javaMostAdvancedMyLittlePonyWars;
+package view;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Logic.Model;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -43,11 +44,10 @@ public class MainMenuController implements Initializable {
 	public void startGame() {
 		//startButton.setVisible(false);
 		quitButton.setVisible(false);
-		ImageView imageView = new ImageView(getClass().getResource("rook_white.png").toExternalForm());
-		startButton.setGraphic(imageView);
-		levelOne.setImage(new Image(getClass().getResource("rook_white.png").toExternalForm()));
-		levelTwo.setImage(new Image(getClass().getResource("rook_white.png").toExternalForm()));
-		levelThree.setImage(new Image(getClass().getResource("rook_white.png").toExternalForm()));
+		startButton.setVisible(false);
+		levelOne.setImage(new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
+		levelTwo.setImage(new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
+		levelThree.setImage(new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
 	}
 	
 	public void quitGame() {
@@ -70,6 +70,7 @@ public class MainMenuController implements Initializable {
 					Scene currentScene = levelOne.getScene();
 					Stage levelOneStage = (Stage) currentScene.getWindow();
 					levelOneStage.setScene(newScene);
+					levelOneStage.setFullScreen(true);
 					levelOneStage.show();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -84,6 +85,7 @@ public class MainMenuController implements Initializable {
 					Scene currentScene = levelOne.getScene();
 					Stage levelTwoStage = (Stage) currentScene.getWindow();
 					levelTwoStage.setScene(newScene);
+					levelTwoStage.setFullScreen(true);
 					levelTwoStage.show();
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -98,6 +100,7 @@ public class MainMenuController implements Initializable {
 					Scene currentScene = levelOne.getScene();
 					Stage levelThreeStage = (Stage) currentScene.getWindow();
 					levelThreeStage.setScene(newScene);
+					levelThreeStage.setFullScreen(true);
 					levelThreeStage.show();
 				} catch (IOException e) {
 					e.printStackTrace();

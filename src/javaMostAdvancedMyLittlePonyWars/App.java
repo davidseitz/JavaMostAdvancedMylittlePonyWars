@@ -15,11 +15,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-    	Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/mainMenu.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setTitle("Advance Wars");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 

@@ -1,9 +1,9 @@
-package javaMostAdvancedMyLittlePonyWars;
+package view;
 
+import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-import javaMostAdvancedMyLittlePonyWars.Model;
 
 public class BattleField extends GridPane{
 	private final Tile[][] tiles;

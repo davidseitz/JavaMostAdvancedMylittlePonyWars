@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javaMostAdvancedMyLittlePonyWars.BattleField?>
+<?import view.BattleField?>
 
 <BattleField fx:id="battlefield" prefHeight="530.0"
 	prefWidth="530.0" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="javaMostAdvancedMyLittlePonyWars.BattleFieldController">
+	fx:controller="view.BattleFieldController">
 </BattleField>

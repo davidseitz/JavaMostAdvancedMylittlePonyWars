@@ -1,4 +1,4 @@
-package javaMostAdvancedMyLittlePonyWars;
+package Logic;
 
 
 public class Model {

@@ -1,4 +1,4 @@
-package javaMostAdvancedMyLittlePonyWars;
+package view;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,11 +15,7 @@ public class Tile extends StackPane{
 	public Tile(int row, char column, Color color) {
 		this.row = row;
 	    this.column = column;
-	    
-	    ImageView iv = new ImageView();
-	    iv.setImage(new Image(getClass().getResourceAsStream("rook_white.png")));
-	    
-	    
+
 	    Rectangle backgroundLayer = new Rectangle(50, 50);
 	    backgroundLayer.setFill(color);
 	    getChildren().add(backgroundLayer);

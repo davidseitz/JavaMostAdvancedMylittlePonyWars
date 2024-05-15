@@ -1,8 +1,9 @@
-package javaMostAdvancedMyLittlePonyWars;
+package view;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Logic.Model;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
