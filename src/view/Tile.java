@@ -21,6 +21,11 @@ public class Tile extends StackPane{
 	    getChildren().add(backgroundLayer);
 	}
 	
+	/**
+	 * Sets background image for tile
+	 * 
+	 * @param tile
+	 */
 	public void setTileImage(TileImage tile) {
 		if (tile == null) {
 		      getChildren().remove(1);
