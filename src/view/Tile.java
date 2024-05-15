@@ -22,10 +22,6 @@ public class Tile extends StackPane{
 	    ImageView vt = new ImageView(image);//new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
 	    
 	    getChildren().add(vt);
-	    
-//	    Rectangle backgroundLayer = new Rectangle(50, 50);
-//	    backgroundLayer.setFill(color);
-//	    getChildren().add(backgroundLayer);
 	}
 	
 	/**
