@@ -11,12 +11,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainMenuController implements Initializable {
@@ -62,62 +64,38 @@ public class MainMenuController implements Initializable {
 			Object level = event.getSource();
 			
 			BattleFieldLoader mapLoader = new BattleFieldLoader();
-			//try {
-				//mapLoader.loadField();
-			//} catch (FileNotFoundException e) {
-				//e.printStackTrace();
-			//}
+			try {
+				mapLoader.loadField();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 			
 			if(level == levelOne) {
-				Parent root;
 				model.setLevel(1);
-				model.setHeight(10);
-				model.setWidth(19);
-				try {
-					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
-					Scene newScene = new Scene(root);
-					Scene currentScene = levelOne.getScene();
-					Stage levelOneStage = (Stage) currentScene.getWindow();
-					levelOneStage.setScene(newScene);
-					levelOneStage.setFullScreen(true);
-					levelOneStage.show();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				
 			}
 			else if(level == levelTwo) {
-				Parent root;
 				model.setLevel(2);
-				model.setHeight(17);
-				model.setWidth(19);
-				try {
-					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
-					Scene newScene = new Scene(root);
-					Scene currentScene = levelOne.getScene();
-					Stage levelTwoStage = (Stage) currentScene.getWindow();
-					levelTwoStage.setScene(newScene);
-					levelTwoStage.setFullScreen(true);
-					levelTwoStage.show();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
 			}
 			else if(level == levelThree) {
-				Parent root;
 				model.setLevel(3);
-				model.setHeight(14);
-				model.setWidth(26);
-				try {
-					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
-					Scene newScene = new Scene(root);
-					Scene currentScene = levelOne.getScene();
-					Stage levelThreeStage = (Stage) currentScene.getWindow();
-					levelThreeStage.setScene(newScene);
-					levelThreeStage.setFullScreen(true);
-					levelThreeStage.show();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+			}
+			
+			Parent root;
+			try {
+				root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
+				Scene newScene = new Scene(root);
+				Scene currentScene = levelOne.getScene();
+				Stage levelStage = (Stage) currentScene.getWindow();
+				levelStage.setScene(newScene);
+				levelStage.setFullScreen(true);
+				levelStage.show();
+				
+				Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+				System.out.println(screenBounds.getHeight());
+				System.out.println(screenBounds.getWidth());
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 			
 		}

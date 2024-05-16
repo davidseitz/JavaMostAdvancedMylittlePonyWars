@@ -2,6 +2,8 @@ package Logic;
 
 import java.util.ArrayList;
 
+import view.Tile;
+
 public class Model {
 	
 	private int level;
@@ -42,9 +44,9 @@ public class Model {
 		this.height = height;
 	}
 
-	public void printPossibleMoves(int x, int y)
+	public void printPossibleMoves(int x, int y, Tile tile)
 	{
-		System.out.println("Tile at position: (" + x + " " + y + ") clicked ");
+		System.out.println("Tile with Type: "+ tile.getType() + " at position: (" + x + " " + y + ") clicked ");
 		System.out.println("Possible Moves: ");
 	}
 

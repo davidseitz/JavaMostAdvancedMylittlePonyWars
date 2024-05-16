@@ -18,7 +18,7 @@ public class App extends Application {
         Scene scene = new Scene(root);
         primaryStage.setTitle("Advance Wars");
         primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
+        //primaryStage.setResizable(false);
         primaryStage.setFullScreen(true);
         primaryStage.show();
     }

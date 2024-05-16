@@ -28,8 +28,8 @@ public class BattleFieldLoader {
 			if(line.indexOf(':') != -1) {
 				line = line.replaceFirst(";", "");
 				String[] mapSize = line.split(":");
-				model.setHeight(Integer.parseInt(mapSize[0]));
-				model.setWidth(Integer.parseInt(mapSize[1]));
+				model.setWidth(Integer.parseInt(mapSize[0]));
+				model.setHeight(Integer.parseInt(mapSize[1]));
 			}else {
 				String[] tmpMap = line.split(";");
 				for (int i=0;i<tmpMap.length;i++) {
@@ -39,10 +39,5 @@ public class BattleFieldLoader {
 			
 		}
 		model.setMap(map);
-		for (int i = 0; i < map.size();i++) {
-			for(int j = 0; j<map.get(i).length;j++) {
-				System.out.println(map.get(i)[j]);
-			}
-		}
 	}
 }

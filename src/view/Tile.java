@@ -38,6 +38,10 @@ public class Tile extends StackPane{
 		      getChildren().add(unit);
 		    }
 	}
+	
+	public String getType() {
+		return type;
+	}
 
 	public int getRow() {
 		return row;
