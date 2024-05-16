@@ -1,7 +1,9 @@
 package view;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import Logic.Model;
 import javafx.event.EventHandler;
@@ -19,6 +21,8 @@ public class BattleFieldController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.model = Model.getInstance();
+		
+		
 		if(model.getLevel()==1) {
 			battlefield.setPadding(new Insets(200.0,25.0,25.0,300.0));
 		}
@@ -42,12 +46,9 @@ public class BattleFieldController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			//System.out.println(tile.getRow());
-			//System.out.println(tile.getColumn());
-			System.out.println("Tile klicked");
+
 			model.printPossibleMoves(tile.getRow(), tile.getColumn(), tile.getUnit());
 		}
-		
 	}
 
 }
