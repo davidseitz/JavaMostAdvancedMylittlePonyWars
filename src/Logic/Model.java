@@ -31,11 +31,12 @@ public class Model {
 		this.width = width;
 	}
 
-	public int getheight() {
+
+	public int getHeight() {
 		return height;
 	}
 
-	public void setheight(int height) {
+	public void setHeight(int height) {
 		this.height = height;
 	}
 

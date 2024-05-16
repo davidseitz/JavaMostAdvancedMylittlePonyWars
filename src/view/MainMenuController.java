@@ -1,5 +1,6 @@
 package view;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -60,10 +61,17 @@ public class MainMenuController implements Initializable {
 		public void handle(MouseEvent event) {
 			Object level = event.getSource();
 			
+			BattleFieldLoader mapLoader = new BattleFieldLoader();
+			try {
+				mapLoader.loadField();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			
 			if(level == levelOne) {
 				Parent root;
 				model.setLevel(1);
-				model.setheight(10);
+				model.setHeight(10);
 				model.setWidth(19);
 				try {
 					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
@@ -80,9 +88,9 @@ public class MainMenuController implements Initializable {
 			else if(level == levelTwo) {
 				Parent root;
 				model.setLevel(2);
+				model.setHeight(17);
+				model.setWidth(19);
 				try {
-					model.setheight(17);
-					model.setWidth(19);
 					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
 					Scene newScene = new Scene(root);
 					Scene currentScene = levelOne.getScene();
@@ -97,7 +105,7 @@ public class MainMenuController implements Initializable {
 			else if(level == levelThree) {
 				Parent root;
 				model.setLevel(3);
-				model.setheight(14);
+				model.setHeight(14);
 				model.setWidth(26);
 				try {
 					root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
