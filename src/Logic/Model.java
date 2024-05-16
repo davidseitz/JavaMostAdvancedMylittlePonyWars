@@ -31,11 +31,18 @@ public class Model {
 		this.width = width;
 	}
 
+
 	public int getHeight() {
 		return height;
 	}
 
 	public void setHeight(int height) {
 		this.height = height;
+
+
+	public void printPossibleMoves(int x, int y)
+	{
+		System.out.println("Tile at position: (" + x + " " + y + ") clicked ");
+		System.out.println("Possible Moves: ");
 	}
 }

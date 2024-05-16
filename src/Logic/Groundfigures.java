@@ -3,10 +3,19 @@ package Logic;
 public class Groundfigures extends Figure {
 	protected int x;
 	protected int y;
+	protected int lifepoints;
+	public int getLifepoints() {
+		return lifepoints;
+	}
+
+	public void setLifepoints(int lifepoints) {
+		this.lifepoints = lifepoints;
+	}
 	protected Figuretype type;
 	public Groundfigures(int x, int y) {
 		this.x = x;
 		this.y = y;
+		this.lifepoints = 100;
 	}
 
 	public Figuretype getType() {

@@ -1,14 +1,14 @@
 package Logic;
 
 public class Figuretype {
-	private int type;
+	private String type;
 
-	Figuretype(int type) {
+	Figuretype(String type) {
 		
 		this.type = type;
 	}
 	
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 

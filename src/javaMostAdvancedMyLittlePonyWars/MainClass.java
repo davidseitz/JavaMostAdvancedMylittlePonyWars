@@ -1,6 +1,5 @@
 package javaMostAdvancedMyLittlePonyWars;
 
-import javaMostAdvancedMyLittlePonyWars.App;
 import javafx.application.Application;
 
 public class MainClass {
