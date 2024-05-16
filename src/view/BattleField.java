@@ -18,13 +18,14 @@ public class BattleField extends GridPane{
 		 * @TODO Place Units while Map generation and dynamic map generation
 		 * 
 		 */
-		int higth = model.getHight();
-		int width = model.getWidth();
+		final int height = model.getHeight();
+		final int width = model.getWidth();
 		
-		tiles = new Tile[width][higth];
+		
+		tiles = new Tile[width][height];
 		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < higth; j++) {
-				Tile s = new Tile(j + 1, (char) (i + 65), "Grass", new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm(), 55, 55, false, false));
+			for (int j = 0; j < height; j++) {
+				Tile s = new Tile(j, i, "Grass", new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm(), 50, 50, false, false));
 		        add(s, i, j);
 		        tiles[i][j] = s;
 			}

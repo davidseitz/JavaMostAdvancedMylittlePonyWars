@@ -5,7 +5,7 @@ public class Model {
 	
 	private int level;
 	private int width;
-	private int hight;
+	private int height;
 	private static Model instance;
 	
 	public static Model getInstance() {
@@ -31,11 +31,11 @@ public class Model {
 		this.width = width;
 	}
 
-	public int getHight() {
-		return hight;
+	public int getHeight() {
+		return height;
 	}
 
-	public void setHight(int hight) {
-		this.hight = hight;
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }
