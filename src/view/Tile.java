@@ -10,11 +10,11 @@ import javafx.scene.shape.Rectangle;
 public class Tile extends StackPane{
 	
 	private final int row;
-	private final char column;
+	private final int column;
 	private final String type;
 	private boolean isSelected;
 
-	public Tile(int row, char column, String type,Image image) {
+	public Tile(int row, int column, String type,Image image) {
 		this.row = row;
 	    this.column = column;
 	    this.type = type;
@@ -22,10 +22,6 @@ public class Tile extends StackPane{
 	    ImageView vt = new ImageView(image);//new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
 	    
 	    getChildren().add(vt);
-	    
-//	    Rectangle backgroundLayer = new Rectangle(50, 50);
-//	    backgroundLayer.setFill(color);
-//	    getChildren().add(backgroundLayer);
 	}
 	
 	/**
@@ -47,7 +43,9 @@ public class Tile extends StackPane{
 		return row;
 	}
 
-	public char getColumn() {
+	public int getColumn() {
 		return column;
 	}
+	
+	
 }
