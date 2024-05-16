@@ -2,6 +2,7 @@ package view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Logic.Model;
@@ -20,18 +21,27 @@ public class BattleFieldLoader {
 		
 		File file = new File("resources/maps/test.map");
 		Scanner s = new Scanner(file);
-		
+		ArrayList<String[]> map = new ArrayList<>();
 		
 		while(s.hasNextLine()) {
 			String line = s.nextLine();
-			System.out.println(line.indexOf(':'));
 			if(line.indexOf(':') != -1) {
 				line = line.replaceFirst(";", "");
 				String[] mapSize = line.split(":");
-				System.out.println("Loop");
 				model.setHeight(Integer.parseInt(mapSize[0]));
 				model.setWidth(Integer.parseInt(mapSize[1]));
-				System.out.println(model.getHeight() + " " + model.getWidth() + " ");
+			}else {
+				String[] tmpMap = line.split(";");
+				for (int i=0;i<tmpMap.length;i++) {
+					map.add(tmpMap[i].split(","));
+				}
+			}
+			
+		}
+		model.setMap(map);
+		for (int i = 0; i < map.size();i++) {
+			for(int j = 0; j<map.get(i).length;j++) {
+				System.out.println(map.get(i)[j]);
 			}
 		}
 	}

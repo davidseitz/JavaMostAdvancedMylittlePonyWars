@@ -1,11 +1,13 @@
 package Logic;
 
+import java.util.ArrayList;
 
 public class Model {
 	
 	private int level;
 	private int width;
 	private int height;
+	private ArrayList<String[]> map;
 	private static Model instance;
 	
 	public static Model getInstance() {
@@ -44,5 +46,13 @@ public class Model {
 	{
 		System.out.println("Tile at position: (" + x + " " + y + ") clicked ");
 		System.out.println("Possible Moves: ");
+	}
+
+	public ArrayList<String[]> getMap() {
+		return map;
+	}
+
+	public void setMap(ArrayList<String[]> map) {
+		this.map = map;
 	}
 }

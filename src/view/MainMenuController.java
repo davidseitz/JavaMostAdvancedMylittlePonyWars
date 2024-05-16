@@ -45,9 +45,9 @@ public class MainMenuController implements Initializable {
 	public void startGame() {
 		quitButton.setVisible(false);
 		startButton.setVisible(false);
-		levelOne.setImage(new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
-		levelTwo.setImage(new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
-		levelThree.setImage(new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
+		levelOne.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm()));
+		levelTwo.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WaterTile.png").toExternalForm()));
+		levelThree.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WoodsTile.png").toExternalForm()));
 	}
 	
 	public void quitGame() {
@@ -62,11 +62,11 @@ public class MainMenuController implements Initializable {
 			Object level = event.getSource();
 			
 			BattleFieldLoader mapLoader = new BattleFieldLoader();
-			try {
-				mapLoader.loadField();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
+			//try {
+				//mapLoader.loadField();
+			//} catch (FileNotFoundException e) {
+				//e.printStackTrace();
+			//}
 			
 			if(level == levelOne) {
 				Parent root;
