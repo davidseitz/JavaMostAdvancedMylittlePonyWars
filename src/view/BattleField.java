@@ -1,11 +1,8 @@
 package view;
 
 import Logic.Model;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 
 public class BattleField extends GridPane{
 	private final Tile[][] tiles;
@@ -18,7 +15,7 @@ public class BattleField extends GridPane{
 		 * @TODO Place Units while Map generation and dynamic map generation
 		 * 
 		 */
-
+		
 		final int height = model.getHeight();
 		final int width = model.getWidth();
 		

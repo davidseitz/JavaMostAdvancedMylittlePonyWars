@@ -1,5 +1,6 @@
 package view;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -59,6 +60,13 @@ public class MainMenuController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Object level = event.getSource();
+			
+			BattleFieldLoader mapLoader = new BattleFieldLoader();
+			try {
+				mapLoader.loadField();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 			
 			if(level == levelOne) {
 				Parent root;
