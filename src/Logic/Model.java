@@ -5,7 +5,7 @@ public class Model {
 	
 	private int level;
 	private int width;
-	private int hight;
+	private int height;
 	private static Model instance;
 	
 	public static Model getInstance() {
@@ -31,11 +31,17 @@ public class Model {
 		this.width = width;
 	}
 
-	public int getHight() {
-		return hight;
+	public int getheight() {
+		return height;
 	}
 
-	public void setHight(int hight) {
-		this.hight = hight;
+	public void setheight(int height) {
+		this.height = height;
+	}
+
+	public void printPossibleMoves(int x, int y)
+	{
+		System.out.println("Tile at position: (" + x + " " + y + ") clicked ");
+		System.out.println("Possible Moves: ");
 	}
 }
