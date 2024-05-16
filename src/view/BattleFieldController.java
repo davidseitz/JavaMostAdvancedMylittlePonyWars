@@ -32,6 +32,7 @@ public class BattleFieldController implements Initializable {
 		else if(model.getLevel()==3) {
 			battlefield.setPadding(new Insets(100.0,25.0,25.0,50.0));
 		}
+
 		for (Tile lines[] : battlefield.getTiles()) {
 		      for (Tile field : lines) {
 		        field.setOnMouseClicked(new FieldClickedEventHandler());
@@ -45,9 +46,8 @@ public class BattleFieldController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			System.out.println(tile.getRow());
-			System.out.println(tile.getColumn());
-			System.out.println("Tile klicked");
+			model.printPossibleMoves(tile.getRow(), tile.getColumn());
+
 		}
 	}
 
