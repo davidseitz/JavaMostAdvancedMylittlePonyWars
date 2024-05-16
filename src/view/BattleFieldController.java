@@ -42,10 +42,10 @@ public class BattleFieldController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			System.out.println(tile.getRow());
-			System.out.println(tile.getColumn());
+			//System.out.println(tile.getRow());
+			//System.out.println(tile.getColumn());
 			System.out.println("Tile klicked");
-			model.printPossibleMoves(tile.getRow(), tile.getColumn());
+			model.printPossibleMoves(tile.getRow(), tile.getColumn(), tile.getUnit());
 		}
 		
 	}

@@ -40,9 +40,11 @@ public class Model {
 		this.height = height;
 	}
 
-	public void printPossibleMoves(int x, int y)
+	public void printPossibleMoves(int x, int y, Groundfigures unit)
 	{
-		System.out.println("Tile at position: (" + x + " " + y + ") clicked ");
-		System.out.println("Possible Moves: ");
+		System.out.println("Tile at position: (" + x + " | " + y + ") clicked ");
+		if(unit != null) {
+			System.out.println("Possible Moves: ");
+		}
 	}
 }
