@@ -38,7 +38,7 @@ public class Model {
 
 	public void setHeight(int height) {
 		this.height = height;
-
+	}
 
 	public void printPossibleMoves(int x, int y)
 	{
