@@ -14,4 +14,15 @@ UD			StreetUpDown
 Format:
 
 HEIGHT:WIDTH;
-X,Y,TAG,UNIT;X,Y,TAG,UNIT;
+TAG,UNIT;TAG,UNIT;
+
+Comment: UNIT has not yet been implemented. Use "NU" for No Unit instead.
+
+Example:
+
+2:2;
+PL,NU;MO,NU;
+WO,NU;WT,NU;
+
+
+Use test.map to test maploading

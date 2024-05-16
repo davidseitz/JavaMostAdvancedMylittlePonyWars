@@ -33,30 +33,30 @@ public class BattleField extends GridPane{
 				ArrayList<String[]> map = model.getMap();
 				String[] tileValue = map.get(j+offset);
 				
-				if (tileValue[2].equals("PL")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm(), scale, scale, false, false));
+				if (tileValue[0].equals("PL")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm(), scale, scale, false, false));
 				}
-				else if(tileValue[2].equals("MO")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/MountainTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("WO")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/WoodsTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("WT")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/WaterTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("LD")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftDownTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("LR")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftRightTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("LU")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftUpTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("RD")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetRightDownTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("RU")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetRightUpTile.png").toExternalForm(), scale, scale, false, false));
-				}else if(tileValue[2].equals("UD")) {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetUpDownTile.png").toExternalForm(), scale, scale, false, false));
+				else if(tileValue[0].equals("MO")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/MountainTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("WO")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/WoodsTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("WT")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/WaterTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("LD")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftDownTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("LR")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftRightTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("LU")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftUpTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("RD")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/StreetRightDownTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("RU")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/StreetRightUpTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[0].equals("UD")) {
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/StreetUpDownTile.png").toExternalForm(), scale, scale, false, false));
 				}
 				else {
-					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm(), scale, scale, false, false));
+					tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm(), scale, scale, false, false));
 				}
 				
 		        add(tile, j, i);
