@@ -9,17 +9,21 @@ import Logic.Model;
 
 public class BattleFieldLoader {
 	
-	public static void main(String[] args) throws FileNotFoundException {
-		BattleFieldLoader l = new BattleFieldLoader();
-		l.loadField();
-	}
-	
 	private Model model;
+	private File file;
 	
-	public void loadField() throws FileNotFoundException {
+	public void loadField(int level) throws FileNotFoundException {
 		model = Model.getInstance();
 		
-		File file = new File("resources/maps/test.map");
+		if(level == 1) {
+			file = new File("resources/maps/dLittleIsland.map");
+		}else if(level == 2) {
+			file = new File("resources/maps/dEonSprings.map");
+		}else if(level == 3) {
+			file = new File("resources/maps/dPistonDam.map");
+		}else {
+			file = new File("resources/maps/test.map");
+		}
 		Scanner s = new Scanner(file);
 		ArrayList<String[]> map = new ArrayList<>();
 		

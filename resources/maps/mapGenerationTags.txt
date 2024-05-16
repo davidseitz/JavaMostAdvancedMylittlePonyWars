@@ -1,3 +1,4 @@
+Tiles:
 Tag:		Tile:
 
 PL			PlainTile
@@ -11,7 +12,22 @@ RD			StreetRightDown
 RU			StreetRightUp
 UD			StreetUpDown
 
+Units:
+Tag:		Unit:
+see Comment below
+
 Format:
 
 HEIGHT:WIDTH;
-X,Y,TAG,UNIT;X,Y,TAG,UNIT;
+TILE_TAG,UNIT_TAG;TILE_TAG,UNIT_TAG;
+
+Comment: UNIT has not yet been implemented. Use "NU" for No Unit instead.
+
+Example:
+
+2:2;
+PL,NU;MO,NU;
+WO,NU;WT,NU;
+
+
+Use test.map to test maploading

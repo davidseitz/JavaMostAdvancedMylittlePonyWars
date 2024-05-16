@@ -63,13 +63,6 @@ public class MainMenuController implements Initializable {
 		public void handle(MouseEvent event) {
 			Object level = event.getSource();
 			
-			BattleFieldLoader mapLoader = new BattleFieldLoader();
-			try {
-				mapLoader.loadField();
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			
 			if(level == levelOne) {
 				model.setLevel(1);
 				
@@ -79,6 +72,14 @@ public class MainMenuController implements Initializable {
 			}
 			else if(level == levelThree) {
 				model.setLevel(3);
+			}
+			
+			BattleFieldLoader mapLoader = new BattleFieldLoader();
+			try {
+				//model.getLevel()
+				mapLoader.loadField(-1);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
 			}
 			
 			Parent root;
