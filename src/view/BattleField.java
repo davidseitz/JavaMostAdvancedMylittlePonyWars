@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -15,19 +17,52 @@ public class BattleField extends GridPane{
 		 * @TODO Place Units while Map generation and dynamic map generation
 		 * 
 		 */
-		
+		this.setHgap(-1);
+		this.setVgap(-1);
 		final int height = model.getHeight();
 		final int width = model.getWidth();
-		
-		
+		Tile tile;
 		tiles = new Tile[width][height];
-		for (int i = 0; i < width; i++) {
-			for (int j = 0; j < height; j++) {
-				Tile s = new Tile(j, i, "Grass", new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm(), 50, 50, false, false));
-
-		        add(s, i, j);
-		        tiles[i][j] = s;
+		int offset = 0;
+		
+		// Size of Tiles
+		final int scale = 50;
+		
+		for (int i = 0; i < height; i++) {
+			for (int j = 0; j < width; j++) {
+				ArrayList<String[]> map = model.getMap();
+				String[] tileValue = map.get(j+offset);
+				
+				if (tileValue[2].equals("PL")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm(), scale, scale, false, false));
+				}
+				else if(tileValue[2].equals("MO")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/MountainTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("WO")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/WoodsTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("WT")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/WaterTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("LD")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftDownTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("LR")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftRightTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("LU")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetLeftUpTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("RD")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetRightDownTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("RU")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetRightUpTile.png").toExternalForm(), scale, scale, false, false));
+				}else if(tileValue[2].equals("UD")) {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/StreetUpDownTile.png").toExternalForm(), scale, scale, false, false));
+				}
+				else {
+					tile = new Tile(i, j, tileValue[2], new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm(), scale, scale, false, false));
+				}
+				
+		        add(tile, j, i);
+		        tiles[j][i] = tile;
 			}
+			offset += width;
 		}
 	}
 	

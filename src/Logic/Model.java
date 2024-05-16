@@ -1,11 +1,15 @@
 package Logic;
 
+import java.util.ArrayList;
+
+import view.Tile;
 
 public class Model {
 	
 	private int level;
 	private int width;
 	private int height;
+	private ArrayList<String[]> map;
 	private static Model instance;
 	
 	public static Model getInstance() {
@@ -40,9 +44,17 @@ public class Model {
 		this.height = height;
 	}
 
-	public void printPossibleMoves(int x, int y)
+	public void printPossibleMoves(int x, int y, Tile tile)
 	{
-		System.out.println("Tile at position: (" + x + " " + y + ") clicked ");
+		System.out.println("Tile with Type: "+ tile.getType() + " at position: (" + x + " " + y + ") clicked ");
 		System.out.println("Possible Moves: ");
+	}
+
+	public ArrayList<String[]> getMap() {
+		return map;
+	}
+
+	public void setMap(ArrayList<String[]> map) {
+		this.map = map;
 	}
 }

@@ -1,0 +1,17 @@
+Tag:		Tile:
+
+PL			PlainTile
+MO			MountainTile
+WO			WoodsTile
+WT			WaterTile
+LD			StreetLeftDown
+LR			StreetLeftRight
+LU			StreetLeftUp
+RD			StreetRightDown
+RU			StreetRightUp
+UD			StreetUpDown
+
+Format:
+
+HEIGHT:WIDTH;
+X,Y,TAG,UNIT;X,Y,TAG,UNIT;
