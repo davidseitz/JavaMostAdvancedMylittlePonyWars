@@ -10,9 +10,9 @@
    <children>
       <HBox alignment="CENTER" prefHeight="513.0" prefWidth="1920.0" spacing="200.0">
          <children>
-            <ImageView fx:id="levelOne" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="levelTwo" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="levelThree" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="levelOne" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="levelTwo" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="levelThree" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
          </children>
          <VBox.margin>
             <Insets />
