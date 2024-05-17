@@ -28,8 +28,7 @@ public class Tile extends StackPane{
 	 * 
 	 * @TODO Implement setUnit correctly
 	 */
-	public void setUnit() {
-		Node unit = null;
+	public void setUnit(ImageView unit) {
 		if (unit == null) {
 		      getChildren().remove(1);
 		    } else if (getChildren().size() == 2) {

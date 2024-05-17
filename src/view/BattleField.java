@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Logic.Model;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class BattleField extends GridPane{
@@ -32,7 +33,7 @@ public class BattleField extends GridPane{
 			for (int j = 0; j < width; j++) {
 				ArrayList<String[]> map = model.getMap();
 				String[] tileValue = map.get(j+offset);
-				String tilePath = "groundTiles/PlainTile.png";
+				String tilePath = "units/ATST.png";
 				
 				if (tileValue[0].equals("PL")) {
 					tilePath = "groundTiles/PlainTile.png";
@@ -55,7 +56,20 @@ public class BattleField extends GridPane{
 				}else if(tileValue[0].equals("UD")) {
 					tilePath = "groundTiles/StreetUpDownTile.png";
 				}
+				
 				tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));
+				if(tileValue[1].equals("NU")) {
+					System.out.println("NoUnit");
+				}else {
+					String unitpath = "units/ATST.png";
+					if(tileValue[1].equals("AS")) {
+						unitpath = "units/ATST.png";
+					}else if (tileValue[1].equals("TF")) {
+						unitpath = "units/TieFighter.png";
+					}
+					ImageView unit = new ImageView(new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false));	
+					tile.setUnit(unit);
+				}
 				
 		        add(tile, j, i);
 		        tiles[j][i] = tile;
