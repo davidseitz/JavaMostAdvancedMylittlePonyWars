@@ -24,10 +24,6 @@ public class Tile extends StackPane{
 	    getChildren().add(vt);
 	}
 	
-	/**
-	 * 
-	 * @TODO Implement setUnit correctly
-	 */
 	public void setUnit(ImageView unit) {
 		if (unit == null) {
 		      getChildren().remove(1);
@@ -36,6 +32,10 @@ public class Tile extends StackPane{
 		    } else {
 		      getChildren().add(unit);
 		    }
+	}
+	
+	public ImageView getUnit() {
+		return getChildren().size() == 2 ? (ImageView) getChildren().get(1) : null;
 	}
 	
 	public String getType() {
