@@ -18,6 +18,8 @@ Tag:		Unit:
 NU			No Unit
 AS			ATST
 TF			TieFighter
+AR			AnitAir Rebells
+IA			Imperial Artillery
 
 Format:
 

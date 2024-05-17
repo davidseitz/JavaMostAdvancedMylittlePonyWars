@@ -58,14 +58,16 @@ public class BattleField extends GridPane{
 				}
 				
 				tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));
-				if(tileValue[1].equals("NU")) {
-					System.out.println("NoUnit");
-				}else {
+				if(tileValue[1].equals("NU") != true) {
 					String unitpath = "units/ATST.png";
 					if(tileValue[1].equals("AS")) {
 						unitpath = "units/ATST.png";
 					}else if (tileValue[1].equals("TF")) {
 						unitpath = "units/TieFighter.png";
+					}else if (tileValue[1].equals("AR")) {
+						unitpath = "units/AntiAirRebells.png";
+					}else if (tileValue[1].equals("IA")) {
+						unitpath = "units/ImperialArtillery.png";
 					}
 					ImageView unit = new ImageView(new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false));	
 					tile.setUnit(unit);
