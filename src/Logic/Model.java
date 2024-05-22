@@ -11,6 +11,7 @@ public class Model {
 	private int height;
 	private int scale;
 	private ArrayList<String[]> map;
+	private Tile[][] field;
 	private static Model instance;
 	
 	public static Model getInstance() {
@@ -65,5 +66,13 @@ public class Model {
 
 	public void setScale(int scale) {
 		this.scale = scale;
+	}
+
+	public Tile[][] getField() {
+		return field;
+	}
+
+	public void setField(Tile[][] field) {
+		this.field = field;
 	}
 }

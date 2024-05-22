@@ -47,9 +47,9 @@ public class MainMenuController implements Initializable {
 	public void startGame() {
 		quitButton.setVisible(false);
 		startButton.setVisible(false);
-		levelOne.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/PlainTile.png").toExternalForm()));
-		levelTwo.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WaterTile.png").toExternalForm()));
-		levelThree.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WoodsTile.png").toExternalForm()));
+		levelOne.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/PL.png").toExternalForm()));
+		levelTwo.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WT.png").toExternalForm()));
+		levelThree.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WO.png").toExternalForm()));
 	}
 	
 	public void quitGame() {

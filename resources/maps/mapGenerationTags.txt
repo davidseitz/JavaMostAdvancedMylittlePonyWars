@@ -11,6 +11,22 @@ LU			StreetLeftUp
 RD			StreetRightDown
 RU			StreetRightUp
 UD			StreetUpDown
+BV			BridgeUpDown
+BH			BridgeLeftRight
+C0			CoastDown
+C1			CoastLeft
+C2			CoastLeftDown
+C3			CoastLeftUp
+C4			CoastRight
+C5			CoastRightDown
+C6			CoastRightUp
+C7			CoastUp
+CA			CornerLeftDown
+CB			CornerLeftUp
+CC			CornerRightDown
+CD			CornerRightUp
+RV			RiverUpDown
+RH			RiverLeftRight
 
 Units:
 Tag:		Unit:
