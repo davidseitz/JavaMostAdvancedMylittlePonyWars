@@ -77,7 +77,7 @@ public class MainMenuController implements Initializable {
 			BattleFieldLoader mapLoader = new BattleFieldLoader();
 			try {
 				//model.getLevel()
-				mapLoader.loadField(-1);
+				mapLoader.loadField(model.getLevel());
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}

@@ -14,20 +14,23 @@ UD			StreetUpDown
 
 Units:
 Tag:		Unit:
-see Comment below
+
+NU			No Unit
+AS			ATST
+TF			TieFighter
+AR			AnitAir Rebells
+IA			Imperial Artillery
 
 Format:
 
 HEIGHT:WIDTH;
 TILE_TAG,UNIT_TAG;TILE_TAG,UNIT_TAG;
 
-Comment: UNIT has not yet been implemented. Use "NU" for No Unit instead.
-
 Example:
 
 2:2;
 PL,NU;MO,NU;
-WO,NU;WT,NU;
+WO,AS;WT,TF;
 
 
 Use test.map to test maploading
