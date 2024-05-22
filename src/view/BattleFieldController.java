@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
@@ -25,9 +26,11 @@ public class BattleFieldController implements Initializable {
 	@FXML
 	private BorderPane background;
 	@FXML
-	private Button resetButton;
+	private Button reloadButton;
 	@FXML
 	private Slider slider;
+	@FXML
+	private Label sliderValue;
 	private Model model;
 
 	@Override
@@ -36,6 +39,7 @@ public class BattleFieldController implements Initializable {
 		this.background.setPadding(new Insets(100.0,100.0,100.0,100.0));
 		battlefield.setPadding(new Insets(0.0,0.0,0.0,0.0));
 		slider.setValue(model.getScale());
+		sliderValue.setText("" + (int)slider.getValue());
 
 		for (Tile lines[] : battlefield.getTiles()) {
 		      for (Tile field : lines) {
@@ -58,6 +62,10 @@ public class BattleFieldController implements Initializable {
 		levelStage.setScene(newScene);
 		levelStage.setFullScreen(true);
 		levelStage.show();
+	}
+	
+	public void onSliderChanged() {
+		sliderValue.setText(""+((int)slider.getValue()));
 	}
 	
 	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {

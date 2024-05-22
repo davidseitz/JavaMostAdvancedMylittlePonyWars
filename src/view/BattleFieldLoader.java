@@ -43,5 +43,6 @@ public class BattleFieldLoader {
 			
 		}
 		model.setMap(map);
+		s.close();
 	}
 }

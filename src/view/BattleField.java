@@ -15,6 +15,7 @@ public class BattleField extends GridPane{
 		model = Model.getInstance();
 		this.setHgap(-1);
 		this.setVgap(-1);
+		
 		loadMap(model.getScale());
 		
 	}
