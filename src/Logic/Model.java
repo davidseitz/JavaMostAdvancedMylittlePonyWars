@@ -9,6 +9,7 @@ public class Model {
 	private int level;
 	private int width;
 	private int height;
+	private int scale;
 	private ArrayList<String[]> map;
 	private static Model instance;
 	
@@ -56,5 +57,13 @@ public class Model {
 
 	public void setMap(ArrayList<String[]> map) {
 		this.map = map;
+	}
+
+	public int getScale() {
+		return scale;
+	}
+
+	public void setScale(int scale) {
+		this.scale = scale;
 	}
 }
