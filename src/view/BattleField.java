@@ -8,26 +8,23 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class BattleField extends GridPane{
-	private final Tile[][] tiles;
+	private Tile[][] tiles;
 	private Model model;
 	
 	public BattleField() {
 		model = Model.getInstance();
-		/**
-		 * 
-		 * @TODO Place Units while Map generation and dynamic map generation
-		 * 
-		 */
 		this.setHgap(-1);
 		this.setVgap(-1);
+		loadMap(model.getScale());
+		
+	}
+	
+	public void loadMap(int scale) {
+		Tile tile;
+		int offset = 0;
 		final int height = model.getHeight();
 		final int width = model.getWidth();
-		Tile tile;
-		tiles = new Tile[width][height];
-		int offset = 0;
-		
-		// Size of Tiles
-		final int scale = 50;
+		this.tiles = new Tile[width][height];
 		
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {

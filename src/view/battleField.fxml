@@ -3,9 +3,26 @@
 <?import javafx.geometry.Insets?>
 <?import view.BattleField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
 
 
 <BorderPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="912.0" prefWidth="1536.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.BattleFieldController">
+   <top>
+      <HBox prefHeight="88.0" prefWidth="602.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Slider fx:id="slider" blockIncrement="5.0" max="70.0" min="40.0" prefHeight="14.0" prefWidth="335.0" value="40.0" />
+            <Button fx:id="resetButton" mnemonicParsing="false" onAction="#loadMap" prefHeight="26.0" prefWidth="184.0" text="Reload" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="150.0" right="150.0" top="20.0" />
+         </padding>
+      </HBox>
+   </top>
    <center>
 		<BattleField fx:id="battlefield" prefHeight="530.0"
 			prefWidth="530.0" xmlns:fx="http://javafx.com/fxml/1"

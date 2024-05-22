@@ -73,7 +73,7 @@ public class MainMenuController implements Initializable {
 			else if(level == levelThree) {
 				model.setLevel(3);
 			}
-			
+			model.setScale(70);
 			BattleFieldLoader mapLoader = new BattleFieldLoader();
 			try {
 				//model.getLevel()
