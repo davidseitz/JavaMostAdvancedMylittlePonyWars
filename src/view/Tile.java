@@ -1,5 +1,6 @@
 package view;
 
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -10,11 +11,14 @@ public class Tile extends StackPane{
 	private final int column;
 	private final String type;
 	private boolean isSelected;
+	private Groundfigures unit;
+	
 
 	public Tile(int row, int column, String type,Image image) {
 		this.row = row;
 	    this.column = column;
 	    this.type = type;
+	    this.unit = null;
 	    
 	    ImageView vt = new ImageView(image);//new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
 	    
@@ -45,6 +49,14 @@ public class Tile extends StackPane{
 
 	public int getColumn() {
 		return column;
+	}
+
+	public Groundfigures getUnit() {
+		return unit;
+	}
+
+	public void setUnit(Groundfigures unit) {
+		this.unit = unit;
 	}
 	
 	

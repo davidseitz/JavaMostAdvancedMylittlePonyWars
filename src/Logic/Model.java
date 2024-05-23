@@ -46,10 +46,12 @@ public class Model {
 		this.height = height;
 	}
 
+
 	public void printPossibleMoves(int x, int y, Tile tile)
 	{
 		System.out.println("Tile with Type: "+ tile.getType() + " at position: (" + x + " " + y + ") clicked ");
 		System.out.println("Possible Moves: ");
+
 	}
 
 	public ArrayList<String[]> getMap() {
