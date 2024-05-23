@@ -1,6 +1,6 @@
 package view;
 
-
+import Logic.Groundfigures;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -49,10 +49,6 @@ public class Tile extends StackPane{
 
 	public int getColumn() {
 		return column;
-	}
-
-	public Groundfigures getUnit() {
-		return unit;
 	}
 
 	public void setUnit(Groundfigures unit) {
