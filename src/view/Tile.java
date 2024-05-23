@@ -1,12 +1,9 @@
 package view;
 
-import Logic.Groundfigures;
-import javafx.scene.Node;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane{
 	
@@ -28,12 +25,7 @@ public class Tile extends StackPane{
 	    getChildren().add(vt);
 	}
 	
-	/**
-	 * 
-	 * @TODO Implement setUnit correctly
-	 */
-	public void setUnit() {
-		Node unit = null;
+	public void setUnit(ImageView unit) {
 		if (unit == null) {
 		      getChildren().remove(1);
 		    } else if (getChildren().size() == 2) {
@@ -41,6 +33,14 @@ public class Tile extends StackPane{
 		    } else {
 		      getChildren().add(unit);
 		    }
+	}
+	
+	public ImageView getUnit() {
+		return getChildren().size() == 2 ? (ImageView) getChildren().get(1) : null;
+	}
+	
+	public String getType() {
+		return type;
 	}
 
 	public int getRow() {

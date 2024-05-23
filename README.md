@@ -1,3 +1,3 @@
-Java's most advanced My Little Pony Wars
+Java's most advanced Star Wars
 =========================
-The only place in java where you can see unicorns fight Advanced Wars style!!
+The only place in java where you can fight Advanced Wars in a galaxy far far away!!
