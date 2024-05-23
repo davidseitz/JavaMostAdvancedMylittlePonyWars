@@ -2,37 +2,47 @@ package view;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Logic.Model;
 
 public class BattleFieldLoader {
 	
-	public static void main(String[] args) throws FileNotFoundException {
-		BattleFieldLoader l = new BattleFieldLoader();
-		l.loadField();
-	}
-	
 	private Model model;
+	private File file;
 	
-	public void loadField() throws FileNotFoundException {
+	public void loadField(int level) throws FileNotFoundException {
 		model = Model.getInstance();
 		
-		File file = new File("resources/maps/test.map");
+		if(level == 1) {
+			file = new File("resources/maps/dLittleIsland.map");
+		}else if(level == 2) {
+			file = new File("resources/maps/dEonSprings.map");
+		}else if(level == 3) {
+			file = new File("resources/maps/dPistonDam.map");
+		}else {
+			file = new File("resources/maps/test.map");
+		}
 		Scanner s = new Scanner(file);
-		
+		ArrayList<String[]> map = new ArrayList<>();
 		
 		while(s.hasNextLine()) {
 			String line = s.nextLine();
-			System.out.println(line.indexOf(':'));
 			if(line.indexOf(':') != -1) {
 				line = line.replaceFirst(";", "");
 				String[] mapSize = line.split(":");
-				System.out.println("Loop");
-				model.setHeight(Integer.parseInt(mapSize[0]));
-				model.setWidth(Integer.parseInt(mapSize[1]));
-				System.out.println(model.getHeight() + " " + model.getWidth() + " ");
+				model.setWidth(Integer.parseInt(mapSize[0]));
+				model.setHeight(Integer.parseInt(mapSize[1]));
+			}else {
+				String[] tmpMap = line.split(";");
+				for (int i=0;i<tmpMap.length;i++) {
+					map.add(tmpMap[i].split(","));
+				}
 			}
+			
 		}
+		model.setMap(map);
+		s.close();
 	}
 }

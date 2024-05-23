@@ -1,0 +1,52 @@
+Tiles:
+Tag:		Tile:
+
+PL			PlainTile
+MO			MountainTile
+WO			WoodsTile
+WT			WaterTile
+LD			StreetLeftDown
+LR			StreetLeftRight
+LU			StreetLeftUp
+RD			StreetRightDown
+RU			StreetRightUp
+UD			StreetUpDown
+BV			BridgeUpDown
+BH			BridgeLeftRight
+C0			CoastDown
+C1			CoastLeft
+C2			CoastLeftDown
+C3			CoastLeftUp
+C4			CoastRight
+C5			CoastRightDown
+C6			CoastRightUp
+C7			CoastUp
+CA			CornerLeftDown
+CB			CornerLeftUp
+CC			CornerRightDown
+CD			CornerRightUp
+RV			RiverUpDown
+RH			RiverLeftRight
+
+Units:
+Tag:		Unit:
+
+NU			No Unit
+AS			ATST
+TF			TieFighter
+AR			AnitAir Rebells
+IA			Imperial Artillery
+
+Format:
+
+HEIGHT:WIDTH;
+TILE_TAG,UNIT_TAG;TILE_TAG,UNIT_TAG;
+
+Example:
+
+2:2;
+PL,NU;MO,NU;
+WO,AS;WT,TF;
+
+
+Use test.map to test maploading
