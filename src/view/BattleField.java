@@ -2,6 +2,8 @@ package view;
 
 import java.util.ArrayList;
 
+import Logic.Figuretype;
+import Logic.Groundfigures;
 import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -47,7 +49,7 @@ public class BattleField extends GridPane{
 					}else if (tileValue[1].equals("IA")) {
 						unitpath = "units/ImperialArtillery.png";
 					}
-					ImageView unit = new ImageView(new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false));	
+					ImageView unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));	
 					tile.setUnit(unit);
 				}
 				

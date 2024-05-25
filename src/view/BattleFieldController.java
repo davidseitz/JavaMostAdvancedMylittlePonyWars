@@ -76,8 +76,6 @@ public class BattleFieldController implements Initializable {
 
 			model.printPossibleMoves(tile.getRow(), tile.getColumn(),tile);
 			System.out.println("With Unit: " + tile.getUnit());
-
-			model.printPossibleMoves(tile.getRow(), tile.getColumn(), tile.getUnit());
 		}
 	}
 
