@@ -3,7 +3,7 @@ package Logic;
 public class Figuretype {
 	private String type;
 
-	Figuretype(String type) {
+	public Figuretype(String type) {
 		
 		this.type = type;
 	}

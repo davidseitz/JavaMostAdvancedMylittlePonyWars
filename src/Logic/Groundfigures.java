@@ -1,5 +1,7 @@
 package Logic;
 
+import javafx.scene.image.Image;
+
 public class Groundfigures extends Figure {
 	protected int x;
 	protected int y;
@@ -12,10 +14,12 @@ public class Groundfigures extends Figure {
 		this.lifepoints = lifepoints;
 	}
 	protected Figuretype type;
-	public Groundfigures(int x, int y) {
+	public Groundfigures(int x, int y, Image image, Figuretype type) {
 		this.x = x;
 		this.y = y;
 		this.lifepoints = 100;
+		this.type = type;
+		this.setImage(image);
 	}
 
 	public Figuretype getType() {
@@ -24,6 +28,10 @@ public class Groundfigures extends Figure {
 
 	public void setType(Figuretype type) {
 		this.type = type;
+	}
+	
+	public String toString() {
+		return "Groundfigures [type = "+ this.type+" x = "+ this.x +" y = "+ this.y +"]";
 	}
 	@Override
 	/**
