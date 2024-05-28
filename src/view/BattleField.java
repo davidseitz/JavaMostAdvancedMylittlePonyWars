@@ -11,19 +11,20 @@ import javafx.scene.layout.GridPane;
 
 public class BattleField extends GridPane{
 	private final Tile[][] tiles;
+	//private final String mode;
 	private Model model;
 	
 	public BattleField() {
 		model = Model.getInstance();
+		
 		this.setHgap(-1);
 		this.setVgap(-1);
 		final int height = model.getHeight();
 		final int width = model.getWidth();
 		
 		this.tiles = new Tile[width][height];
-			
-		loadMap(height,width,model.getScale());
 		
+		loadMap(height,width,model.getScale());
 	}
 	
 	public void loadMap(int height, int width,int scale) {
@@ -36,6 +37,7 @@ public class BattleField extends GridPane{
 				String[] tileValue = map.get(j+offset);
 				
 				String tilePath = "groundTiles/"+tileValue[0]+".png";
+				
 				tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));
 				
 				if(tileValue[1].equals("NU") != true) {
@@ -49,7 +51,7 @@ public class BattleField extends GridPane{
 					}else if (tileValue[1].equals("IA")) {
 						unitpath = "units/ImperialArtillery.png";
 					}
-					ImageView unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));	
+					ImageView unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));
 					tile.setUnit(unit);
 				}
 				
@@ -58,6 +60,10 @@ public class BattleField extends GridPane{
 			}
 			offset += width;
 		}
+	}
+	
+	public void setTile(int x, int y,String tag) {
+		tiles[y][x].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), model.getScale(), model.getScale(), false, false), tag);
 	}
 	
 	public Tile[][] getTiles(){

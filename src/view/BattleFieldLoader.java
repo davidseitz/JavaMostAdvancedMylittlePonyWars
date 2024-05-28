@@ -22,7 +22,7 @@ public class BattleFieldLoader {
 		}else if(level == 3) {
 			file = new File("resources/maps/dPistonDam.map");
 		}else {
-			file = new File("resources/maps/test.map");
+			file = new File("resources/maps/creator.map");
 		}
 		Scanner s = new Scanner(file);
 		ArrayList<String[]> map = new ArrayList<>();

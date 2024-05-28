@@ -5,24 +5,24 @@ import Logic.Groundfigures;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane{
 	
-	private final int row;
-	private final int column;
-	private final String type;
+	private final int x;
+	private final int y;
+	private String type;
 	private boolean isSelected;
 	private Groundfigures unit;
-	
 
-	public Tile(int row, int column, String type,Image image) {
-		this.row = row;
-	    this.column = column;
+	public Tile(int x, int y, String type,Image image) {
+		this.x = x;
+	    this.y = y;
 	    this.type = type;
 	    this.unit = null;
 	    
-	    ImageView vt = new ImageView(image);//new Image(getClass().getClassLoader().getResource("rook_white.png").toExternalForm()));
-	    
+	    ImageView vt = new ImageView(image);	    
 	    getChildren().add(vt);
 	}
 	
@@ -40,20 +40,37 @@ public class Tile extends StackPane{
 		return getChildren().size() == 2 ? (Groundfigures) getChildren().get(1) : null;
 	}
 	
+	public void setNewTile(Image image, String tag) {
+		this.setType(tag);
+		ImageView vt = new ImageView(image);
+		//getChildren().remove(0);
+		getChildren().set(0,vt);
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
 	public String getType() {
 		return type;
 	}
 
-	public int getRow() {
-		return row;
+	public int getX() {
+		return x;
 	}
 
-	public int getColumn() {
-		return column;
+	public int getY() {
+		return y;
 	}
 
 	public void setUnit(Groundfigures unit) {
 		this.unit = unit;
+	}
+
+	@Override
+	public String toString() {
+		return "Tile [row=" + x + ", column=" + y + ", type=" + type + ", isSelected=" + isSelected + ", unit="
+				+ unit + "]";
 	}
 	
 	
