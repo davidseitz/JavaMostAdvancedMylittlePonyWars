@@ -26,7 +26,7 @@ public class MapCreationMenu extends GridPane {
 			for (int j = 0; j < 3; j++) {
 				try {
 					String tilePath = "groundTiles/"+tags[j+offset]+".png";
-					tile = new Tile(i, j, tags[j+offset], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));	
+					tile = new Tile(i, j, tags[j+offset], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), 45, 45, false, false));	
 				}catch(IndexOutOfBoundsException e) {
 					continue;
 				}
