@@ -20,7 +20,7 @@ public class MapSaver {
 			writer.write(model.getWidth()+":"+model.getHeight()+";"+(char) 10);
 			for(int i = 0; i < tiles.length;i++) {
 				for (int j = 0; j < tiles[0].length;j++) {
-					writer.write(tiles[i][j].getType()+","+"NU"+";");
+					writer.write(tiles[j][i].getType()+","+"NU"+";");
 				}
 				writer.write((char) 10);
 			}

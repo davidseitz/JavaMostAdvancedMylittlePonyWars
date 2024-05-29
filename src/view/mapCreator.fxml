@@ -15,11 +15,15 @@
    <right>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-         	<Button fx:id="saveButton" onAction="#saveMap" mnemonicParsing="false" text="Save" />
-            <MapCreationMenu fx:id="menu" prefHeight="100.0"
-			prefWidth="100.0" xmlns:fx="http://javafx.com/fxml/1"
-			BorderPane.alignment="CENTER">
-            </MapCreationMenu>
+         	<VBox alignment="CENTER" prefHeight="10.0" prefWidth="244.0">
+               <children>
+         			<Button fx:id="saveButton" onAction="#saveMap" mnemonicParsing="false" text="Save" />
+            		<MapCreationMenu fx:id="menu" prefHeight="100.0"
+					prefWidth="100.0" xmlns:fx="http://javafx.com/fxml/1"
+					BorderPane.alignment="CENTER">
+            		</MapCreationMenu>
+            	</children>
+            </VBox>
             <ScrollBar orientation="VERTICAL" />
          </children>
       </HBox>
