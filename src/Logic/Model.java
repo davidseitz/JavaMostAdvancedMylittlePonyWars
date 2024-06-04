@@ -77,4 +77,42 @@ public class Model {
 	public void setField(Tile[][] field) {
 		this.field = field;
 	}
+
+	public boolean allowedTerrain(Tile tile) {
+		String tileType = tile.getType();
+		if (tileType.equals("MO")) {
+			return false;
+		}else if(tileType.equals("WT")) {
+            return false;
+		}else if(tileType.equals("C0")) {
+            return false;
+		}else if(tileType.equals("C1")) {
+            return false;
+		}else if(tileType.equals("C2")) {
+            return false;
+		}else if(tileType.equals("C3")) {
+            return false;
+		}else if(tileType.equals("C4")) {
+            return false;
+		}else if(tileType.equals("C5")) {
+            return false;
+		}else if(tileType.equals("C6")) {
+            return false;
+		}else if(tileType.equals("C7")) {
+            return false;
+		}else if(tileType.equals("CA")) {
+            return false;
+		}else if(tileType.equals("CB")) {
+            return false;
+		}else if(tileType.equals("CC")) {
+            return false;
+		}else if(tileType.equals("CD")) {
+            return false;
+		}else if(tileType.equals("RV")) {
+            return false;
+		}else if(tileType.equals("RH")) {
+            return false;
+		}
+		return true;
+	}
 }

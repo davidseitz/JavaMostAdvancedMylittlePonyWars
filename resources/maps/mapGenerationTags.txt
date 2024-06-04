@@ -1,10 +1,10 @@
 Tiles:
 Tag:		Tile:
 
+Allowed Tiles:
+
 PL			PlainTile
-MO			MountainTile
 WO			WoodsTile
-WT			WaterTile
 LD			StreetLeftDown
 LR			StreetLeftRight
 LU			StreetLeftUp
@@ -13,6 +13,11 @@ RU			StreetRightUp
 UD			StreetUpDown
 BV			BridgeUpDown
 BH			BridgeLeftRight
+
+Forbidden Tiles:
+
+WT			WaterTile
+MO			MountainTile
 C0			CoastDown
 C1			CoastLeft
 C2			CoastLeftDown

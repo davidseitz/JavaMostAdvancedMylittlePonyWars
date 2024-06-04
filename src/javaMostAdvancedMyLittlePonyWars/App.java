@@ -8,22 +8,21 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
 public class App extends Application {
 
-	
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-    	Parent root = FXMLLoader.load(getClass().getResource("../view/mainMenu.fxml"));
-        Scene scene = new Scene(root);
-        primaryStage.setTitle("Advance Wars");
-        primaryStage.setScene(scene);
-        //primaryStage.setResizable(false);
-        primaryStage.setFullScreen(true);
-        primaryStage.show();
-    }
-    public static void main(String[] args) {
-        launch();
-    }
+	@Override
+	public void start(Stage primaryStage) throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("../view/mainMenu.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage.setTitle("Advance Wars");
+		primaryStage.setScene(scene);
+		// primaryStage.setResizable(false);
+		primaryStage.setFullScreen(true);
+		primaryStage.show();
+	}
+
+	public static void main(String[] args) {
+		launch();
+	}
 
 }

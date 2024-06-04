@@ -92,8 +92,12 @@ public class BattleFieldController implements Initializable {
 				moveUnit = tile;
 			}else {
 				if (moveUnit != null) {
-					tile.setUnit(moveUnit.getUnit());
-					moveUnit = null;
+					if (model.allowedTerrain(tile)) {
+                        tile.setUnit(moveUnit.getUnit());
+                        moveUnit = null;
+                    }
+					
+					
 				}
 			}
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
