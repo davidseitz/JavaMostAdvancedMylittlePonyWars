@@ -115,4 +115,17 @@ public class Model {
 		}
 		return true;
 	}
+	
+	public boolean move(Tile tile /*New*/, Tile moveUnit) {
+		
+		Groundfigures unit = moveUnit.getUnit();
+		Groundfigures target = tile.getUnit();
+		if (unit != null && target == null && this.allowedTerrain(tile)) {
+			if (Math.abs(tile.getX()-moveUnit.getX())<= unit.getMovement_range() && Math.abs(tile.getY()-moveUnit.getY()) <= unit.getMovement_range()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

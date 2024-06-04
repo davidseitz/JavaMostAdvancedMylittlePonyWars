@@ -7,6 +7,7 @@ public class Groundfigures extends Figure {
 	protected int x;
 	protected int y;
 	protected int lifepoints;
+	protected int movement_range;
 	public int getLifepoints() {
 		return lifepoints;
 	}
@@ -20,6 +21,7 @@ public class Groundfigures extends Figure {
 		this.y = y;
 		this.lifepoints = 100;
 		this.type = type;
+		this.movement_range = 1;	
 		this.setImage(image);
 	}
 
@@ -42,5 +44,9 @@ public class Groundfigures extends Figure {
 	public boolean move(int x, int y, int new_x, int new_y) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public int getMovement_range() {
+		return movement_range;
 	}
 }
