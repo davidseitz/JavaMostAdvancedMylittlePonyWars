@@ -22,7 +22,7 @@ public class Tile extends StackPane{
 	    this.type = type;
 	    this.unit = null;
 	    
-	    ImageView vt = new ImageView(image);	    
+	    ImageView vt = new ImageView(image);
 	    getChildren().add(vt);
 	}
 	
@@ -34,6 +34,10 @@ public class Tile extends StackPane{
 		    } else {
 		      getChildren().add(unit);
 		    }
+	}
+	
+	public ImageView getBackgroundLayer() {
+		return (ImageView) getChildren().get(0);
 	}
 	
 	public Groundfigures getUnit() {
