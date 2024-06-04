@@ -3,6 +3,7 @@ package view;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Logic.Model;
@@ -28,6 +29,8 @@ public class MainMenuController implements Initializable {
 	@FXML
 	private Button quitButton;
 	@FXML
+	private Button mapCreation;
+	@FXML
 	private ImageView levelOne;
 	@FXML
 	private ImageView levelTwo;
@@ -51,6 +54,35 @@ public class MainMenuController implements Initializable {
 		levelTwo.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WT.png").toExternalForm()));
 		levelThree.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WO.png").toExternalForm()));
 	}
+	public void mapCreation() {
+		
+		ArrayList<String[]> map = new ArrayList<>();
+		String[] nt = {"PL","NU"};
+		model.setWidth(15);
+		model.setHeight(15);
+		for(int i = 0; i < 15*15; i++) {
+			map.add(nt);
+		}
+		model.setMap(map);
+		model.setScale(40);
+		
+		Parent root;
+		try {
+			root = FXMLLoader.load(getClass().getResource("mapCreator.fxml"));
+			Scene newScene = new Scene(root);
+			Scene currentScene = mapCreation.getScene();
+			Stage levelStage = (Stage) currentScene.getWindow();
+			levelStage.setScene(newScene);
+			levelStage.setFullScreen(true);
+			levelStage.show();
+			
+			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+			System.out.println(screenBounds.getHeight());
+			System.out.println(screenBounds.getWidth());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public void quitGame() {
 		Platform.exit();
@@ -65,18 +97,18 @@ public class MainMenuController implements Initializable {
 			
 			if(level == levelOne) {
 				model.setLevel(1);
-				
 			}
 			else if(level == levelTwo) {
 				model.setLevel(2);
 			}
 			else if(level == levelThree) {
-				model.setLevel(3);
+				model.setLevel(0);
 			}
-			model.setScale(70);
+			
+			model.setScale(40);
+			
 			BattleFieldLoader mapLoader = new BattleFieldLoader();
 			try {
-				//model.getLevel()
 				mapLoader.loadField(model.getLevel());
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();

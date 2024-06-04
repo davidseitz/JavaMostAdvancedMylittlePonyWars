@@ -22,7 +22,7 @@ public class BattleFieldLoader {
 		}else if(level == 3) {
 			file = new File("resources/maps/dPistonDam.map");
 		}else {
-			file = new File("resources/maps/test.map");
+			file = new File("resources/maps/creator.map");
 		}
 		Scanner s = new Scanner(file);
 		ArrayList<String[]> map = new ArrayList<>();
@@ -44,5 +44,21 @@ public class BattleFieldLoader {
 		}
 		model.setMap(map);
 		s.close();
+	}
+	
+	public void reloadMap(Tile[][] tiles) {
+		model = Model.getInstance();
+		
+		ArrayList<String[]> tmpMap = new ArrayList<>();
+		String[] tmpTile;
+		for(int i = 0; i < tiles.length;i++) {
+			for (int j = 0; j < tiles[0].length;j++) {
+				tmpTile = new String[] {tiles[j][i].getType(), "NU"};
+				tmpMap.add(tmpTile);
+			}
+			
+		}
+		model.setMap(tmpMap);
+		
 	}
 }

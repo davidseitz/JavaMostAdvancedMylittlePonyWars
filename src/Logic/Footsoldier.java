@@ -1,9 +1,11 @@
 package Logic;
 
+import javafx.scene.image.Image;
+
 public class Footsoldier extends Groundfigures {
 
-	public Footsoldier(int x, int y) {
-		super(x, y);
+	public Footsoldier(int x, int y, Image oldImage, Figuretype type) {
+		super(x, y, oldImage, type);
 		// TODO Auto-generated constructor stub
 	}
 	/**

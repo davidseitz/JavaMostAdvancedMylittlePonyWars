@@ -22,7 +22,7 @@
          <VBox.margin>
             <Insets top="100.0" />
          </VBox.margin></Button>
-      <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="WIP" />
+      <Button fx:id="mapCreation" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" onAction="#mapCreation" text="Map Creation" />
       <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitGame" prefHeight="50.0" prefWidth="300.0" text="Quit" />
    </children>
    <padding>

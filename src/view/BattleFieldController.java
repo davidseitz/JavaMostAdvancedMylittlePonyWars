@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class BattleFieldController implements Initializable {
@@ -31,13 +32,27 @@ public class BattleFieldController implements Initializable {
 	private Slider slider;
 	@FXML
 	private Label sliderValue;
+	@FXML
+	private HBox topMenu;
 	private Model model;
+	private Tile moveUnit;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.model = Model.getInstance();
-		this.background.setPadding(new Insets(100.0,100.0,100.0,100.0));
+		
+		double padding = 100.0;
+		if(model.getLevel() == 3) {
+			padding = 350.0;
+		}
+		this.background.setPadding(new Insets(10.0,100.0,100.0,padding));
+		this.background.setPrefSize(1200.0, 1920.0);
+		
+		BorderPane.setMargin(battlefield, new Insets(10));
+		BorderPane.setMargin(topMenu, new Insets(10));
+		
 		battlefield.setPadding(new Insets(0.0,0.0,0.0,0.0));
+		
 		slider.setValue(model.getScale());
 		sliderValue.setText("" + (int)slider.getValue());
 
@@ -73,8 +88,15 @@ public class BattleFieldController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-
-			model.printPossibleMoves(tile.getRow(), tile.getColumn(),tile);
+			if (tile.getUnit() != null) {
+				moveUnit = tile;
+			}else {
+				if (moveUnit != null) {
+					tile.setUnit(moveUnit.getUnit());
+					moveUnit = null;
+				}
+			}
+			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("With Unit: " + tile.getUnit());
 		}
 	}
