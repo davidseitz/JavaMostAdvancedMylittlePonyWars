@@ -51,7 +51,7 @@ public class BattleField extends GridPane{
 					}else if (tileValue[1].equals("IA")) {
 						unitpath = "units/ImperialArtillery.png";
 					}
-					ImageView unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));
+					Groundfigures unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));
 					tile.setUnit(unit);
 				}
 				

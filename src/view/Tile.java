@@ -63,7 +63,8 @@ public class Tile extends StackPane{
 		return y;
 	}
 
-	public void setUnit(Groundfigures unit) {
+	public void setUnit(Groundfigures unit) {   
+	    getChildren().add(unit);
 		this.unit = unit;
 	}
 

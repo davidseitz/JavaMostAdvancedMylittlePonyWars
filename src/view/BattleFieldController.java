@@ -35,6 +35,7 @@ public class BattleFieldController implements Initializable {
 	@FXML
 	private HBox topMenu;
 	private Model model;
+	private Tile moveUnit;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -87,7 +88,14 @@ public class BattleFieldController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			
+			if (tile.getUnit() != null) {
+				moveUnit = tile;
+			}else {
+				if (moveUnit != null) {
+					tile.setUnit(moveUnit.getUnit());
+					moveUnit = null;
+				}
+			}
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("With Unit: " + tile.getUnit());
 		}
