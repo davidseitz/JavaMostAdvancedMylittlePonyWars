@@ -108,6 +108,9 @@ public class Tile extends StackPane{
 		return "Tile [row=" + x + ", column=" + y + ", type=" + type + ", isSelected=" + isSelected + ", unit="
 				+ unit + "]";
 	}
-	
+
+	public boolean equals(Tile tile) {
+		return this.x == tile.getX() && this.y == tile.getY();
+	}
 	
 }
