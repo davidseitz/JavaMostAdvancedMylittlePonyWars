@@ -127,7 +127,6 @@ public class MapCreatorController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			System.out.println("Choosen Tile: " + tile.getType());
 			tagToChange = tile.getType();
 		}
 	}
@@ -136,7 +135,6 @@ public class MapCreatorController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			System.out.println("To Change Tile: " + tile.getType() +" with "+tagToChange);
 			if(tagToChange != null) {
 				field.setTile(tile.getX(), tile.getY(), tagToChange);
 			}

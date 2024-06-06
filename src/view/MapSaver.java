@@ -19,7 +19,6 @@ public class MapSaver {
 	public void saveMap(Tile[][] tiles) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter("resources/maps/creator.map"))) {
 			writer.write(model.getWidth()+":"+model.getHeight()+";"+(char) 10);
-			System.out.println("Size: " + tiles.length + " " + tiles[0].length);
 			for(int j = 0; j < tiles[0].length;j++) {
 				for (int i = 0; i < tiles.length;i++) {
 					writer.write(tiles[i][j].getType()+","+"NU"+";");

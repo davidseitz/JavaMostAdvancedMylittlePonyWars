@@ -55,8 +55,6 @@ public class BattleFieldLoader {
 		String[] tmpTile;
 		for(int j = 0; j < tiles[0].length;j++) {
 			for (int i = 0; i < tiles.length;i++) {
-				//System.out.println("y = "+ j + " x = "+i);
-				System.out.println("Tile: "+ tiles[i][j].getType() + " Tile number: " + (i+j) );
 				tmpTile = new String[] {tiles[i][j].getType(), "NU"};
 				tmpMap.add(tmpTile);
 			}
