@@ -1,7 +1,7 @@
 package view;
 
 public enum GeneralTypes {
-	MO, WT, WO, ST, RI, PL;
+	WT, MO, PL, ST, RI, WO;
 	
 	GeneralTypes() {
 	}
