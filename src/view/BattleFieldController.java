@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -36,6 +37,7 @@ public class BattleFieldController implements Initializable {
 	private HBox topMenu;
 	private Model model;
 	private Tile moveUnit;
+	private Tile oldTile;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -83,21 +85,43 @@ public class BattleFieldController implements Initializable {
 		sliderValue.setText(""+((int)slider.getValue()));
 	}
 	
+	private void setHighlightSelected(Tile tile, boolean highlight) {
+	    if (highlight) {
+	    	tile.getBackgroundLayer().setEffect(new ColorAdjust(0, 0, 0.5, 0));
+	    } else {
+	    	tile.getBackgroundLayer().setEffect(new ColorAdjust(0, 0, 0, 0));
+	    }
+	}
+	private void setHighlightAttack(Tile tile) {
+	    tile.getBackgroundLayer().setEffect(new ColorAdjust(-0.5, 0, 0.5, 0));
+	}
+	private void setHighlightAllie(Tile tile) {
+	    tile.getBackgroundLayer().setEffect(new ColorAdjust(0.5, 0, 0.5, 0));
+	}
+	
 	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {
 
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
+			if (oldTile != null) {
+				setHighlightSelected(oldTile, false);
+			}
+			oldTile = tile;
+			setHighlightSelected(tile, true);
 			if (tile.getUnit() != null) {
+				setHighlightAttack(tile);
 				moveUnit = tile;
 			}else {
 				if (moveUnit != null) {
 					tile.setUnit(moveUnit.getUnit());
+					setHighlightSelected(moveUnit, false);
+					setHighlightSelected(tile, false);
 					moveUnit = null;
 				}
 			}
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
-			System.out.println("With Unit: " + tile.getUnit());
+			System.out.println("With ClassType: " + tile.getClassType());
 		}
 	}
 

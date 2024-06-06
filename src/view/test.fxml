@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -34,6 +36,9 @@
    <top>
       <HBox alignment="CENTER" prefHeight="63.0" prefWidth="600.0" spacing="10.0" BorderPane.alignment="TOP_CENTER">
          <children>
+            <Label text="Size = 15 : 15" />
+            <TextField prefHeight="26.0" prefWidth="64.0" />
+            <Button mnemonicParsing="false" text="New Field" />
             <Slider prefHeight="26.0" prefWidth="266.0" />
             <Button mnemonicParsing="false" text="Resize" />
          </children>
