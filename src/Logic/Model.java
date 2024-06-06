@@ -50,8 +50,12 @@ public class Model {
 	public void printPossibleMoves(int x, int y, Tile tile)
 	{
 		System.out.println("Tile with Type: "+ tile.getType() + " at position: (" + x + " " + y + ") clicked ");
-		System.out.println("Possible Moves: ");
+		if (tile.getUnit() == null) {
+			System.out.println("No Unit on this Tile");
 
+		}else {
+			System.out.println("Possible Moves: "+ tile.getUnit().getMovement_range() + " fields");
+		}
 	}
 
 	public ArrayList<String[]> getMap() {
@@ -80,9 +84,7 @@ public class Model {
 
 	public boolean allowedTerrain(Tile tile) {
 		String tileType = tile.getType();
-		if (tileType.equals("MO")) {
-			return false;
-		}else if(tileType.equals("WT")) {
+		if (tileType.equals("WT")) {
             return false;
 		}else if(tileType.equals("C0")) {
             return false;

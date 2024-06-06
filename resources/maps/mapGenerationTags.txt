@@ -13,9 +13,6 @@ RU			StreetRightUp
 UD			StreetUpDown
 BV			BridgeUpDown
 BH			BridgeLeftRight
-
-Forbidden Tiles:
-
 WT			WaterTile
 MO			MountainTile
 C0			CoastDown
