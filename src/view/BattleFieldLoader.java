@@ -48,17 +48,31 @@ public class BattleFieldLoader {
 	
 	public void reloadMap(Tile[][] tiles) {
 		model = Model.getInstance();
-		
+		/*
+		 * TODO correcting the map because of changing tiles while reset
+		 */
 		ArrayList<String[]> tmpMap = new ArrayList<>();
 		String[] tmpTile;
 		for(int i = 0; i < tiles.length;i++) {
 			for (int j = 0; j < tiles[0].length;j++) {
-				tmpTile = new String[] {tiles[j][i].getType(), "NU"};
+				//System.out.println("y = "+ j + " x = "+i);
+				System.out.println("Tile: "+ tiles[i][j].getType() + " Tile number: " + (i+j) );
+				tmpTile = new String[] {tiles[i][j].getType(), "NU"};
 				tmpMap.add(tmpTile);
 			}
 			
 		}
 		model.setMap(tmpMap);
-		
+	}
+	
+	public void customMap() {
+		model = Model.getInstance();
+		ArrayList<String[]> map = new ArrayList<>();
+		String[] nt = {"PL","NU"};
+		for(int i = 0; i < model.getHeight()*model.getWidth(); i++) {
+			map.add(nt);
+		}
+		model.setMap(map);
+		model.setScale(40);
 	}
 }
