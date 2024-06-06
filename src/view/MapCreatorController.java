@@ -1,7 +1,9 @@
 package view;
 
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Logic.Model;
@@ -16,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Screen;
@@ -34,10 +37,11 @@ public class MapCreatorController implements Initializable {
 	@FXML
 	private Label sliderValue;
 	@FXML
-	private Button saveButton;
+	private Label sizeLabel;
+	@FXML
+	private TextField sizeTextfield;
 	
 	private Model model;
-	
 	private String tagToChange;
 
 	@Override
@@ -45,7 +49,8 @@ public class MapCreatorController implements Initializable {
 		this.model = Model.getInstance();
 		this.background.setPadding(new Insets(10.0,-10.0,100.0,100.0));
 		this.slider.setValue(model.getScale());
-		this.sliderValue.setText(slider.getValue()+"");
+		this.sliderValue.setText((int) slider.getValue()+"");
+		this.sizeLabel.setText("Size = "+ model.getWidth() + " : "+ model.getHeight());
 		
 		for (Tile lines[] : menu.getMenu()) {
 		      for (Tile menuVal : lines) {
@@ -71,6 +76,26 @@ public class MapCreatorController implements Initializable {
 	
 	public void onSliderChanged() {
 		sliderValue.setText(""+((int)slider.getValue()));
+		System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
+	}
+	
+	public void NewField() {
+		try {
+			String[] sizes = sizeTextfield.getText().split(":");
+			model.setHeight(Integer.parseInt(sizes[1]));
+			model.setWidth(Integer.parseInt(sizes[0]));
+			if(model.getHeight() > 20 || model.getWidth() > 26) {
+				throw new Exception();
+			}
+			sizeLabel.setText("Size = " + sizes[0] + " : " + sizes[1]);
+			
+			BattleFieldLoader loader = new BattleFieldLoader();
+			loader.customMap();
+			model.setScale(40);
+			reloadStage();
+		}catch (Exception e) {
+			System.out.println("Wrong Format");
+		}
 	}
 	
 	public void reload() {
@@ -79,7 +104,11 @@ public class MapCreatorController implements Initializable {
 		
 		final int scale = (int)slider.getValue();
 		model.setScale(scale);
-		
+		reloadStage();
+	}
+	
+	
+	private void reloadStage() {
 		Parent root;
 		try {
 			root = FXMLLoader.load(getClass().getResource("mapCreator.fxml"));
@@ -89,15 +118,10 @@ public class MapCreatorController implements Initializable {
 			levelStage.setScene(newScene);
 			levelStage.setFullScreen(true);
 			levelStage.show();
-			
-			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-			System.out.println(screenBounds.getHeight());
-			System.out.println(screenBounds.getWidth());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
 	private class MenuTileClickedEventHandler implements EventHandler<MouseEvent> {
 
 		@Override

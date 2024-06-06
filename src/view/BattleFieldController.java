@@ -121,7 +121,7 @@ public class BattleFieldController implements Initializable {
 				}
 			}
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
-			System.out.println("With Unit: " + tile.getUnit());
+			System.out.println("With ClassType: " + tile.getClassType());
 		}
 	}
 
