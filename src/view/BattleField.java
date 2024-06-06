@@ -9,8 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 public class BattleField extends GridPane{
-	private final Tile[][] tiles;
-	//private final String mode;
 	private Model model;
 	
 	public BattleField() throws Exception {
@@ -21,13 +19,12 @@ public class BattleField extends GridPane{
 		final int height = model.getHeight();
 		final int width = model.getWidth();
 		
-		this.tiles = new Tile[width][height];
-		
 		loadMap(height,width,model.getScale());
 	}
 	
 	public void loadMap(int height, int width,int scale) throws Exception {
 		Tile tile;
+		Tile[][] tiles = new Tile[width][height];
 		int offset = 0;
 		
 		for (int i = 0; i < height; i++) {
@@ -56,14 +53,7 @@ public class BattleField extends GridPane{
 			}
 			offset += width;
 		}
-	}
-	
-	public void setTile(int x, int y,String tag) {
-		tiles[y][x].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), model.getScale(), model.getScale(), false, false), tag);
-	}
-	
-	public Tile[][] getTiles(){
-		return tiles;
+		model.setField(tiles);
 	}
 	
 }
