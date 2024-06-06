@@ -40,8 +40,8 @@ public class Unit_Loader {
 			}else if (line.startsWith("MOVEMENT_COST")) {
 				this.setMovement_costs(scanner);
 				
-				System.out.println("Movement costs length: " + this.movement_costs.size());
-				System.out.println("Movement costs: " + this.movement_costs.get(0) + this.movement_costs.get(1) + this.movement_costs.get(2) +	this.movement_costs.get(3) + this.movement_costs.get(4) + this.movement_costs.get(5));
+				//System.out.println("Movement costs length: " + this.movement_costs.size());
+				//System.out.println("Movement costs: " + this.movement_costs.get(0) + this.movement_costs.get(1) + this.movement_costs.get(2) +	this.movement_costs.get(3) + this.movement_costs.get(4) + this.movement_costs.get(5));
 			}else if (line.startsWith("WEAPON1")) {
                 //TODO
 				weapon1 = new Weapon(1, null);
