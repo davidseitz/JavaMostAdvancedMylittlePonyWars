@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 public class MapCreationMenu extends GridPane {
 	private final Tile[][] tiles;
 	private final String[] tags = {"WT","C0","C1","C2","C3","C4","C5","C6","C7","CA","CB","CC","CD","BH","BV",
-			"RH","RV","PL","MO","WO","LD","LR","LU","RD","RU","UD",   "PL","PL","PL","PL","PL","PL","PL"};
+			"B0","B1","B2","RH","RV","PL","MO","WO","LD","LR","LU","RD","RU","UD","TU","TD",  "PL","PL"};
 	private Model model;
 	
 	public MapCreationMenu() {

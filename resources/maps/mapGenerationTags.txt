@@ -11,8 +11,13 @@ LU			StreetLeftUp
 RD			StreetRightDown
 RU			StreetRightUp
 UD			StreetUpDown
+TD			TIntersectionDown
+TU			TIntersectionUp
 BV			BridgeUpDown
 BH			BridgeLeftRight
+B0			BridgeUpOpen
+B1			BridgeDownOpen
+B2			BridgeMiddle
 WT			WaterTile
 MO			MountainTile
 C0			CoastDown
