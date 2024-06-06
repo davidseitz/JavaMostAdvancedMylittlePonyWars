@@ -33,7 +33,6 @@ public class Unit_Loader {
 				this.unit_name = line.substring(start_name+1, end_name);
 			}else if (line.startsWith("MOVEMENT_RANGE")) {
                 this.movement_range = Integer.parseInt(line.substring(line.indexOf(":")+1));
-                System.out.println("Movement Range: " + this.movement_range);
 			}else if (line.startsWith("MOVEMENT_COST")) {
 				//TODO
 			}else if (line.startsWith("WEAPON1")) {
