@@ -50,8 +50,12 @@ public class Model {
 	public void printPossibleMoves(int x, int y, Tile tile)
 	{
 		System.out.println("Tile with Type: "+ tile.getType() + " at position: (" + x + " " + y + ") clicked ");
-		System.out.println("Possible Moves: ");
+		if (tile.getUnit() == null) {
+			System.out.println("No Unit on this Tile");
 
+		}else {
+			System.out.println("Possible Moves: "+ tile.getUnit().getMovement_range() + " fields");
+		}
 	}
 
 	public ArrayList<String[]> getMap() {
@@ -76,5 +80,54 @@ public class Model {
 
 	public void setField(Tile[][] field) {
 		this.field = field;
+	}
+
+	public boolean allowedTerrain(Tile tile) {
+		String tileType = tile.getType();
+		if (tileType.equals("WT")) {
+            return false;
+		}else if(tileType.equals("C0")) {
+            return false;
+		}else if(tileType.equals("C1")) {
+            return false;
+		}else if(tileType.equals("C2")) {
+            return false;
+		}else if(tileType.equals("C3")) {
+            return false;
+		}else if(tileType.equals("C4")) {
+            return false;
+		}else if(tileType.equals("C5")) {
+            return false;
+		}else if(tileType.equals("C6")) {
+            return false;
+		}else if(tileType.equals("C7")) {
+            return false;
+		}else if(tileType.equals("CA")) {
+            return false;
+		}else if(tileType.equals("CB")) {
+            return false;
+		}else if(tileType.equals("CC")) {
+            return false;
+		}else if(tileType.equals("CD")) {
+            return false;
+		}else if(tileType.equals("RV")) {
+            return false;
+		}else if(tileType.equals("RH")) {
+            return false;
+		}
+		return true;
+	}
+	
+	public boolean move(Tile tile /*New*/, Tile moveUnit) {
+		
+		Groundfigures unit = moveUnit.getUnit();
+		Groundfigures target = tile.getUnit();
+		if (unit != null && target == null && this.allowedTerrain(tile)) {
+			if (Math.abs(tile.getX()-moveUnit.getX())<= unit.getMovement_range() && Math.abs(tile.getY()-moveUnit.getY()) <= unit.getMovement_range()) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

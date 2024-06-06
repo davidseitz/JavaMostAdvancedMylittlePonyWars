@@ -7,6 +7,8 @@ public class Groundfigures extends Figure {
 	protected int x;
 	protected int y;
 	protected int lifepoints;
+	protected int movement_range;
+	protected Unit_Loader unit_stats;
 	public int getLifepoints() {
 		return lifepoints;
 	}
@@ -15,12 +17,21 @@ public class Groundfigures extends Figure {
 		this.lifepoints = lifepoints;
 	}
 	protected Figuretype type;
-	public Groundfigures(int x, int y, Image image, Figuretype type) {
+	public Groundfigures(int x, int y, Image image, Figuretype type) throws Exception {
 		this.x = x;
 		this.y = y;
 		this.lifepoints = 100;
 		this.type = type;
+		this.movement_range = 1;	
 		this.setImage(image);
+		try {
+			this.unit_stats = new Unit_Loader(type.getType());
+			
+		} catch (Exception e) {
+			System.out.println("Error: Unit not found");
+			throw e;
+			//TODO throw exception
+		}
 	}
 
 	public Figuretype getType() {
@@ -42,5 +53,13 @@ public class Groundfigures extends Figure {
 	public boolean move(int x, int y, int new_x, int new_y) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public int getMovement_range() {
+		if (this.unit_stats != null) {
+			return this.unit_stats.getMovement_range();
+		}else {
+			return 0;
+		}
 	}
 }
