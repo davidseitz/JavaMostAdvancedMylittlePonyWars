@@ -55,16 +55,11 @@ public class MainMenuController implements Initializable {
 		levelThree.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WO.png").toExternalForm()));
 	}
 	public void mapCreation() {
-		
-		ArrayList<String[]> map = new ArrayList<>();
-		String[] nt = {"PL","NU"};
 		model.setWidth(15);
 		model.setHeight(15);
-		for(int i = 0; i < 15*15; i++) {
-			map.add(nt);
-		}
-		model.setMap(map);
-		model.setScale(40);
+		
+		BattleFieldLoader loader = new BattleFieldLoader();
+		loader.customMap();
 		
 		Parent root;
 		try {

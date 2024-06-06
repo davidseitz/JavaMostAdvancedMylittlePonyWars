@@ -13,16 +13,19 @@ public class Tile extends StackPane{
 	private final int x;
 	private final int y;
 	private String type;
+	private String classType;
+	
 	private boolean isSelected;
 	private Groundfigures unit;
 
-	public Tile(int x, int y, String type,Image image) {
+	public Tile(int x, int y,String type,Image image) {
 		this.x = x;
 	    this.y = y;
+	    this.classType = evalClassType(type);
 	    this.type = type;
 	    this.unit = null;
 	    
-	    ImageView vt = new ImageView(image);	    
+	    ImageView vt = new ImageView(image);
 	    getChildren().add(vt);
 	}
 	
@@ -34,6 +37,38 @@ public class Tile extends StackPane{
 		    } else {
 		      getChildren().add(unit);
 		    }
+	}
+	
+	private String evalClassType(String type) {
+		String evaledClassType;
+		String mountain = "MO";
+		String plain = "PL";
+		String streets = "BV BH LD LR LU RD RU UD";
+		String rivers = "RV RH";
+		String woods = "WO";
+		
+		if(type.equals(mountain)){
+			evaledClassType = GeneralTypes.MO.name();
+		}else if(type.equals(plain)) {
+			evaledClassType = GeneralTypes.PL.name();
+		}else if (type.equals(woods)) {
+			evaledClassType = GeneralTypes.WO.name();
+		}else if (streets.contains(type)) {
+			evaledClassType = GeneralTypes.ST.name();
+		}else if (rivers.contains(type)) {
+			evaledClassType = GeneralTypes.RI.name();
+		}else {
+			evaledClassType = GeneralTypes.WT.name();
+		}
+		return evaledClassType;
+	}
+	
+	public String getClassType() {
+		return classType;
+	}
+
+	public ImageView getBackgroundLayer() {
+		return (ImageView) getChildren().get(0);
 	}
 	
 	public Groundfigures getUnit() {
