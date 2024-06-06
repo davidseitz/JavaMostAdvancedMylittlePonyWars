@@ -116,7 +116,7 @@ public class Tile extends StackPane{
 
 	public Tile getNeighbourNorth() {
 		if (this.y != 0) {
-			System.out.println("X: " + this.x + " Y: " + this.y);
+			//System.out.println("X: " + this.x + " Y: " + this.y);
 			return Model.getInstance().getTile(this.x, this.y-1);
 		}
 		return null;
@@ -124,28 +124,25 @@ public class Tile extends StackPane{
 	}
 	
 	public Tile getNeighbourEast() {
-		try {
+		if (this.x != 0) {
+			//System.out.println("X: " + this.x + " Y: " + this.y);
 			return Model.getInstance().getTile(this.x-1, this.y);
-		} catch (Exception e) {
-			System.out.println("Exception: Out of bounds");
 		}
 		return null;
 	}
 	
 	public Tile getNeighbourSouth() {
-		try {
+		if (this.y != Model.getInstance().getHeight()-1) {
+			//System.out.println("X: " + this.x + " Y: " + this.y);
 			return Model.getInstance().getTile(this.x, this.y+1);
-		} catch (Exception e) {
-			System.out.println("Exception: Out of bounds");
 		}
 		return null;
 	}
 	
 	public Tile getNeighbourWest() {
-		try {
+		if (this.x != Model.getInstance().getWidth()-1) {
+			//System.out.println("X: " + this.x + " Y: " + this.y);
 			return Model.getInstance().getTile(this.x+1, this.y);
-		} catch (Exception e) {
-			System.out.println("Exception: Out of bounds");
 		}
 		return null;
 	}

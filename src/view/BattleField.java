@@ -24,6 +24,7 @@ public class BattleField extends GridPane{
 		this.tiles = new Tile[width][height];
 		
 		loadMap(height,width,model.getScale());
+		model.setField(tiles);
 	}
 	
 	public void loadMap(int height, int width,int scale) throws Exception {

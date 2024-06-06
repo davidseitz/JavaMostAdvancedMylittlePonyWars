@@ -131,29 +131,32 @@ public class Model {
 		return false;
 	}
 	
-	private boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
+	public boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
 		if (start.equals(end)) {
 			return true;
 		}
 		if (range <0) {
 			return false;
 		}
-		if (findPath(start.getNeighbourNorth(), end, range-unit_stats.getMovementCost(start.getNeighbourNorth().getType()),unit_stats)) {
-			return true;
+		try {
+			if (findPath(start.getNeighbourNorth(), end, range-unit_stats.getMovementCost(start.getNeighbourNorth().getType()),unit_stats) || 
+					findPath(start.getNeighbourEast(), end, range-unit_stats.getMovementCost(start.getNeighbourEast().getType()),unit_stats) || 
+					findPath(start.getNeighbourSouth(), end, range-unit_stats.getMovementCost(start.getNeighbourSouth().getType()),unit_stats) || 
+					findPath(start.getNeighbourWest(), end, range-unit_stats.getMovementCost(start.getNeighbourWest().getType()),unit_stats)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			return false;
 		}
-		if (findPath(start.getNeighbourEast(), end, range-unit_stats.getMovementCost(start.getNeighbourEast().getType()),unit_stats)) {
-			return true;
-		}
-		if (findPath(start.getNeighbourSouth(), end, range-unit_stats.getMovementCost(start.getNeighbourSouth().getType()),unit_stats)) {
-			return true;
-		}
-		if (findPath(start.getNeighbourWest(), end, range-unit_stats.getMovementCost(start.getNeighbourWest().getType()),unit_stats)) {
-			return true;
-		}
+
 		return false;
 	}
 
 	public Tile getTile(int x, int y) {
 		return this.field[x][y];
+	}
+	
+	public void setfield(Tile[][] field) {
+		this.field = field;
 	}
 }
