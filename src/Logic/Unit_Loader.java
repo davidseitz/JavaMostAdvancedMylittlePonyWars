@@ -122,6 +122,16 @@ public class Unit_Loader {
 			}
 		}
 	}
+
+	public int getMovementCost(String tileTag) {
+		for (int i = 0; i < movement_costs.size(); i++) {
+			if (movement_costs.get(i).getType().equals(tileTag)) {
+				return movement_costs.get(i).getCost();
+			}
+		}
+		// Should never happen
+        return 100000000;
+    }
 	
 	public String getUnit_tag() {
 		return unit_tag;

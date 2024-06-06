@@ -62,4 +62,8 @@ public class Groundfigures extends Figure {
 			return 0;
 		}
 	}
+
+	public Unit_Loader getUnitStats() {
+		return this.unit_stats;
+	}
 }

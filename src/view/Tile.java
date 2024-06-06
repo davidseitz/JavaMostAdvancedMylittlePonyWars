@@ -2,6 +2,7 @@ package view;
 
 
 import Logic.Groundfigures;
+import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -111,6 +112,42 @@ public class Tile extends StackPane{
 
 	public boolean equals(Tile tile) {
 		return this.x == tile.getX() && this.y == tile.getY();
+	}
+
+	public Tile getNeighbourNorth() {
+		if (this.y != 0) {
+			System.out.println("X: " + this.x + " Y: " + this.y);
+			return Model.getInstance().getTile(this.x, this.y-1);
+		}
+		return null;
+
+	}
+	
+	public Tile getNeighbourEast() {
+		try {
+			return Model.getInstance().getTile(this.x-1, this.y);
+		} catch (Exception e) {
+			System.out.println("Exception: Out of bounds");
+		}
+		return null;
+	}
+	
+	public Tile getNeighbourSouth() {
+		try {
+			return Model.getInstance().getTile(this.x, this.y+1);
+		} catch (Exception e) {
+			System.out.println("Exception: Out of bounds");
+		}
+		return null;
+	}
+	
+	public Tile getNeighbourWest() {
+		try {
+			return Model.getInstance().getTile(this.x+1, this.y);
+		} catch (Exception e) {
+			System.out.println("Exception: Out of bounds");
+		}
+		return null;
 	}
 	
 }

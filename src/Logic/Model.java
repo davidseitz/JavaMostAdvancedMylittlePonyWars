@@ -122,8 +122,8 @@ public class Model {
 		
 		Groundfigures unit = moveUnit.getUnit();
 		Groundfigures target = tile.getUnit();
-		if (unit != null && target == null && this.allowedTerrain(tile)) {
-			if (Math.abs(tile.getX()-moveUnit.getX())<= unit.getMovement_range() && Math.abs(tile.getY()-moveUnit.getY()) <= unit.getMovement_range()) {
+		if (unit != null && target == null) {
+			if (this.findPath(moveUnit, tile, unit.getMovement_range(), unit.getUnitStats())) {
 				return true;
 			}
 		}
@@ -131,10 +131,29 @@ public class Model {
 		return false;
 	}
 	
-	private boolean findShortestPath(Tile start, Tile end, int range) {
+	private boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
 		if (start.equals(end)) {
 			return true;
 		}
+		if (range <0) {
+			return false;
+		}
+		if (findPath(start.getNeighbourNorth(), end, range-unit_stats.getMovementCost(start.getNeighbourNorth().getType()),unit_stats)) {
+			return true;
+		}
+		if (findPath(start.getNeighbourEast(), end, range-unit_stats.getMovementCost(start.getNeighbourEast().getType()),unit_stats)) {
+			return true;
+		}
+		if (findPath(start.getNeighbourSouth(), end, range-unit_stats.getMovementCost(start.getNeighbourSouth().getType()),unit_stats)) {
+			return true;
+		}
+		if (findPath(start.getNeighbourWest(), end, range-unit_stats.getMovementCost(start.getNeighbourWest().getType()),unit_stats)) {
+			return true;
+		}
 		return false;
+	}
+
+	public Tile getTile(int x, int y) {
+		return this.field[x][y];
 	}
 }
