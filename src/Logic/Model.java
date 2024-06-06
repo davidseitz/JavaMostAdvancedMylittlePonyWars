@@ -130,4 +130,11 @@ public class Model {
 		
 		return false;
 	}
+	
+	private boolean findShortestPath(Tile start, Tile end, int range) {
+		if (start.equals(end)) {
+			return true;
+		}
+		return false;
+	}
 }
