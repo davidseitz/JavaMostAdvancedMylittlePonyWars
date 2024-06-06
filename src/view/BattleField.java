@@ -6,7 +6,6 @@ import Logic.Figuretype;
 import Logic.Groundfigures;
 import Logic.Model;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 public class BattleField extends GridPane{
@@ -14,7 +13,7 @@ public class BattleField extends GridPane{
 	//private final String mode;
 	private Model model;
 	
-	public BattleField() {
+	public BattleField() throws Exception {
 		model = Model.getInstance();
 		
 		this.setHgap(-1);
@@ -27,7 +26,7 @@ public class BattleField extends GridPane{
 		loadMap(height,width,model.getScale());
 	}
 	
-	public void loadMap(int height, int width,int scale) {
+	public void loadMap(int height, int width,int scale) throws Exception {
 		Tile tile;
 		int offset = 0;
 		
@@ -51,8 +50,14 @@ public class BattleField extends GridPane{
 					}else if (tileValue[1].equals("IA")) {
 						unitpath = "units/ImperialArtillery.png";
 					}
-					Groundfigures unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));
-					tile.setUnit(unit);
+					try {
+						Groundfigures unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));
+						tile.setUnit(unit);
+					} catch (Exception e) {
+						System.out.println("Error: Unit not found");
+						e.printStackTrace();
+						throw e;
+					}
 				}
 				
 		        add(tile, j, i);
