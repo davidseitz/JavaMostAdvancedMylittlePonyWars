@@ -48,17 +48,17 @@ public class Tile extends StackPane{
 		String woods = "WO";
 		
 		if(type.equals(mountain)){
-			evaledClassType = "MO";
+			evaledClassType = GeneralTypes.MO.name();
 		}else if(type.equals(plain)) {
-			evaledClassType = "PL";
+			evaledClassType = GeneralTypes.PL.name();
 		}else if (type.equals(woods)) {
-			evaledClassType = "WO";
+			evaledClassType = GeneralTypes.WO.name();
 		}else if (streets.contains(type)) {
-			evaledClassType = "ST";
+			evaledClassType = GeneralTypes.ST.name();
 		}else if (rivers.contains(type)) {
-			evaledClassType = "RI";
+			evaledClassType = GeneralTypes.RI.name();
 		}else {
-			evaledClassType = "WT";
+			evaledClassType = GeneralTypes.WT.name();
 		}
 		return evaledClassType;
 	}
