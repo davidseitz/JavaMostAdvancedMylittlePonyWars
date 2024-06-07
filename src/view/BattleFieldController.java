@@ -58,7 +58,7 @@ public class BattleFieldController implements Initializable {
 		slider.setValue(model.getScale());
 		sliderValue.setText("" + (int)slider.getValue());
 
-		for (Tile lines[] : battlefield.getTiles()) {
+		for (Tile lines[] : model.getField()) {
 		      for (Tile field : lines) {
 		        field.setOnMouseClicked(new FieldClickedEventHandler());
 		      }
@@ -67,6 +67,10 @@ public class BattleFieldController implements Initializable {
 	}
 	
 	public void loadMap() throws IOException {
+		
+		BattleFieldLoader loader = new BattleFieldLoader();
+		loader.reloadMap(model.getField());
+		
 		final int scale = (int)slider.getValue();
 		model.setScale(scale);
 		
@@ -117,9 +121,9 @@ public class BattleFieldController implements Initializable {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
                         tile.setUnit(moveUnit.getUnit());
-                        moveUnit = null;
-					}
-					setHighlightSelected(tile, false);
+                        setHighlightSelected(tile, false);
+ 					}
+ 					moveUnit = null;
 				}
 			}
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);

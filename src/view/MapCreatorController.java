@@ -62,7 +62,7 @@ public class MapCreatorController implements Initializable {
 		      }
 		}
 		
-		for (Tile lines[] : field.getTiles()) {
+		for (Tile lines[] : model.getField()) {
 		      for (Tile fieldVal : lines) {
 		    	  fieldVal.setOnMouseClicked(new FieldClickedEventHandler());
 		      }
@@ -71,7 +71,7 @@ public class MapCreatorController implements Initializable {
 	
 	public void saveMap() {
 		MapSaver saver = new MapSaver();
-		saver.saveMap(field.getTiles());
+		saver.saveMap(model.getField());
 	}
 	
 	public void onSliderChanged() {
@@ -100,7 +100,7 @@ public class MapCreatorController implements Initializable {
 	
 	public void reload() {
 		BattleFieldLoader loader = new BattleFieldLoader();
-		loader.reloadMap(field.getTiles());
+		loader.reloadMap(model.getField());
 		
 		final int scale = (int)slider.getValue();
 		model.setScale(scale);
@@ -127,7 +127,6 @@ public class MapCreatorController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			System.out.println("Choosen Tile: " + tile.getType());
 			tagToChange = tile.getType();
 		}
 	}
@@ -136,9 +135,8 @@ public class MapCreatorController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			System.out.println("To Change Tile: " + tile.getType() +" with "+tagToChange);
 			if(tagToChange != null) {
-				field.setTile(tile.getX(), tile.getY(), tagToChange);
+				model.setTile(tile.getX(), tile.getY(), tagToChange);
 			}
 		}
 	}

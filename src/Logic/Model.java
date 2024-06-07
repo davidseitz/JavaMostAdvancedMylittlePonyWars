@@ -2,6 +2,7 @@ package Logic;
 
 import java.util.ArrayList;
 
+import javafx.scene.image.Image;
 import view.Tile;
 
 public class Model {
@@ -80,6 +81,10 @@ public class Model {
 
 	public void setField(Tile[][] field) {
 		this.field = field;
+	}
+	
+	public void setTile(int x, int y,String tag) {
+		field[y][x].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), this.scale, this.scale, false, false), tag);
 	}
 
 	public boolean allowedTerrain(Tile tile) {

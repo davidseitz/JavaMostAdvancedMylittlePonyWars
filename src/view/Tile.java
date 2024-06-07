@@ -44,7 +44,7 @@ public class Tile extends StackPane{
 		String evaledClassType;
 		String mountain = "MO";
 		String plain = "PL";
-		String streets = "BV BH LD LR LU RD RU UD";
+		String streets = "BV BH LD LR LU RD RU UD TU TD B0 B1 B2";
 		String rivers = "RV RH";
 		String woods = "WO";
 		

@@ -9,8 +9,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
 public class BattleField extends GridPane{
-	private final Tile[][] tiles;
-	//private final String mode;
 	private Model model;
 	
 	public BattleField() throws Exception {
@@ -21,14 +19,13 @@ public class BattleField extends GridPane{
 		final int height = model.getHeight();
 		final int width = model.getWidth();
 		
-		this.tiles = new Tile[width][height];
-		
 		loadMap(height,width,model.getScale());
 		model.setField(tiles);
 	}
 	
 	public void loadMap(int height, int width,int scale) throws Exception {
 		Tile tile;
+		Tile[][] tiles = new Tile[width][height];
 		int offset = 0;
 		
 		for (int i = 0; i < height; i++) {
@@ -41,18 +38,9 @@ public class BattleField extends GridPane{
 				tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));
 				
 				if(tileValue[1].equals("NU") != true) {
-					String unitpath = "units/ATST.png";
-					if(tileValue[1].equals("AS")) {
-						unitpath = "units/ATST.png";
-					}else if (tileValue[1].equals("TF")) {
-						unitpath = "units/TieFighter.png";
-					}else if (tileValue[1].equals("AR")) {
-						unitpath = "units/AntiAirRebells.png";
-					}else if (tileValue[1].equals("IA")) {
-						unitpath = "units/ImperialArtillery.png";
-					}
+					String unitpath = "units/"+tileValue[1]+".png";
 					try {
-						Groundfigures unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype("Test"));
+						Groundfigures unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype(tileValue[1]));
 						tile.setUnit(unit);
 					} catch (Exception e) {
 						System.out.println("Error: Unit not found");
@@ -66,14 +54,7 @@ public class BattleField extends GridPane{
 			}
 			offset += width;
 		}
-	}
-	
-	public void setTile(int x, int y,String tag) {
-		tiles[y][x].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), model.getScale(), model.getScale(), false, false), tag);
-	}
-	
-	public Tile[][] getTiles(){
-		return tiles;
+		model.setField(tiles);
 	}
 	
 }

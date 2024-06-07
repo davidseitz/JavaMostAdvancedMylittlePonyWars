@@ -11,8 +11,13 @@ LU			StreetLeftUp
 RD			StreetRightDown
 RU			StreetRightUp
 UD			StreetUpDown
+TD			TIntersectionDown
+TU			TIntersectionUp
 BV			BridgeUpDown
 BH			BridgeLeftRight
+B0			BridgeUpOpen
+B1			BridgeDownOpen
+B2			BridgeMiddle
 WT			WaterTile
 MO			MountainTile
 C0			CoastDown
@@ -34,12 +39,44 @@ Units:
 Tag:		Unit:
 
 NU			No Unit
-AS			ATST
-TF			TieFighter
-AR			AnitAir Rebells
-IA			Imperial Artillery
 
-Format:
+Empire:
+IE			-
+ME			-
+TE			ATST
+KE			Imperial Artillery
+AE			-
+FE			TieFighter
+BE			-
+CE			-
+
+Rebels:
+IR			-
+MR			-
+TR			-
+KR			-
+AR			AnitAir Rebells
+FR			-
+BR			-
+CR			-
+
+Prefix:		Meaning:
+
+I			Infantry
+M			Mechanized Infantry
+T			Tank
+K			Mobile Artillery
+A			Anti-Air
+F			Fighter
+B			Bomber
+C			Battle Copter
+
+Postfix:
+
+R			Rebel
+E			Empire
+
+Map Format:
 
 HEIGHT:WIDTH;
 TILE_TAG,UNIT_TAG;TILE_TAG,UNIT_TAG;
