@@ -108,26 +108,52 @@ public class BattleFieldController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
+			
 			if (oldTile != null) {
+				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
 			oldTile = tile;
-			setHighlightSelected(tile, true);
+			
 			if (tile.getUnit() != null) {
+				//Highlight unit tile
 				setHighlightAttack(tile);
 				moveUnit = tile;
 			}else {
+				//Move Unit
+				
 				if (moveUnit != null) {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
+                        this.clearHighlights();
  					}
  					moveUnit = null;
 				}
 			}
+			if (moveUnit != null && moveUnit.getUnit() != null) {
+				this.setHighlightMoveableTiles();
+			}
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("With ClassType: " + tile.getClassType());
+		}
+		private void setHighlightMoveableTiles() {
+			for (Tile[] allTiles : model.getField()) {
+				for (Tile field : allTiles) {
+					if (Model.getInstance().findPath(moveUnit, field, 3, moveUnit.getUnit().getUnitStats())) {
+						setHighlightSelected(field, true);
+					}
+				}
+			}
+		}
+		
+		private void clearHighlights() {
+			for (Tile[] allTiles : model.getField()) {
+				for (Tile field : allTiles) {
+					setHighlightSelected(field, false);
+				}
+			}
 		}
 	}
 
