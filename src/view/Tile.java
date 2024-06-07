@@ -16,7 +16,6 @@ public class Tile extends StackPane{
 	
 	private boolean isSelected;
 	private Groundfigures unit;
-
 	public Tile(int x, int y,String type,Image image) {
 		this.x = x;
 	    this.y = y;
@@ -84,7 +83,11 @@ public class Tile extends StackPane{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+	/**
+	 * Returns the type not the class type of the tile
+	 * Use getClassType to get the class type
+	 * @return type
+	 */
 	public String getType() {
 		return type;
 	}

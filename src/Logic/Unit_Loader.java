@@ -124,12 +124,14 @@ public class Unit_Loader {
 	}
 
 	public int getMovementCost(String tileTag) {
+		//System.out.print("TileTag: " + tileTag);
 		for (int i = 0; i < movement_costs.size(); i++) {
 			if (movement_costs.get(i).getType().equals(tileTag)) {
 				return movement_costs.get(i).getCost();
 			}
 		}
 		// Should never happen
+		System.out.println("Error: No movement cost found for tile tag: " + tileTag);
         return 100000000;
     }
 	
@@ -147,5 +149,9 @@ public class Unit_Loader {
 	}
 	public Weapon getWeapon2() {
 		return weapon2;
+	}
+
+	public ArrayList<MovementCost> getMovement_costs() {
+		return movement_costs;
 	}
 }

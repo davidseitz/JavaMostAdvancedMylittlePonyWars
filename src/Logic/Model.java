@@ -57,9 +57,9 @@ public class Model {
 		System.out.println("Tile with Type: "+ tile.getType() + " at position: (" + x + " " + y + ") clicked ");
 		if (tile.getUnit() == null) {
 			System.out.println("No Unit on this Tile");
-
+			
 		}else {
-			System.out.println("Possible Moves: "+ tile.getUnit().getMovement_range() + " fields");
+			System.out.println("Possible Moves: " + tile.getUnit().getUnitStats().getMovementCost("ST"));
 			System.out.println("Map size: " + this.getWidth() + " " + this.getHeight());
 		}
 	}
@@ -142,17 +142,17 @@ public class Model {
 	}
 	
 	public boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
-		if (start.equals(end)) {
-			return true;
-		}
 		if (range < 0) {
 			return false;
 		}
+		if (start.equals(end)) {
+			return true;
+		}
 		try {
-			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getType()),unit_stats) || 
-					findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getType()),unit_stats) || 
-					findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getType()),unit_stats) || 
-					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getType()),unit_stats)) {
+			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats) || 
+					findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getClassType()),unit_stats) || 
+					findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getClassType()),unit_stats) || 
+					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)) {
 				return true;
 			}
 		} catch (NullPointerException e) {
