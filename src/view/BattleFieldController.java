@@ -142,8 +142,13 @@ public class BattleFieldController implements Initializable {
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
-					if (Model.getInstance().findPath(moveUnit, field, 3, moveUnit.getUnit().getUnitStats())) {
+					
+					if (model.findPath(moveUnit, field, 3, moveUnit.getUnit().getUnitStats())) {
 						setHighlightSelected(field, true);
+					}
+					// Only for testing
+					if (model.attackPossible(moveUnit, field, 1)) {
+						setHighlightAttack(field);
 					}
 				}
 			}

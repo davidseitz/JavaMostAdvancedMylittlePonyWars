@@ -140,7 +140,49 @@ public class Model {
 		
 		return false;
 	}
-	
+	public boolean attackPossible(Tile unit, Tile target, int range) {
+		if (this.findPath(unit, target, range) && !unit.equals(target)) {
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * To be used when Terrain information isn't necessary 
+	 * e.g. when firing a weapon
+	 * @param start
+	 * @param end
+	 * @param range
+	 * @return true if start and end are only range tiles apart
+	 */
+	public boolean findPath(Tile start, Tile end, int range) {
+		if (range < 0) {
+			return false;
+		}
+		if (start.equals(end)) {
+			return true;
+		}
+		try {
+			if (findPath(this.getNeighbourNorth(start), end, range-1) || 
+					findPath(this.getNeighbourEast(start), end, range-1) || 
+					findPath(this.getNeighbourSouth(start), end, range-1) || 
+					findPath(this.getNeighbourWest(start), end, range-1)
+					) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			return false;
+		}
+		return false;
+	}
+	/**
+	 * To be used when a unit needs to traverse terrain
+	 * @param start
+	 * @param end
+	 * @param range
+	 * @param unit_stats
+	 * @return true if a path exists
+	 * @return false if a path doesn't exist
+	 */
 	public boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
 		if (range < 0) {
 			return false;
@@ -152,7 +194,8 @@ public class Model {
 			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats) || 
 					findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getClassType()),unit_stats) || 
 					findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getClassType()),unit_stats) || 
-					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)) {
+					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)
+					) {
 				return true;
 			}
 		} catch (NullPointerException e) {
