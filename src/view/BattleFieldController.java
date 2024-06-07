@@ -133,6 +133,7 @@ public class BattleFieldController implements Initializable {
 				}
 			}
 			if (moveUnit != null && moveUnit.getUnit() != null) {
+				//Highlight tiles to move to
 				this.setHighlightMoveableTiles();
 			}
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);

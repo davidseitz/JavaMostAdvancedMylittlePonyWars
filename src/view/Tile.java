@@ -112,37 +112,5 @@ public class Tile extends StackPane{
 		return this.x == tile.getX() && this.y == tile.getY();
 	}
 
-	public Tile getNeighbourNorth() {
-		if (this.y != 0) {
-			//System.out.println("X: " + this.x + " Y: " + this.y);
-			return Model.getInstance().getTile(this.x, this.y-1);
-		}
-		return null;
 
-	}
-	
-	public Tile getNeighbourEast() {
-		if (this.x != 0) {
-			//System.out.println("X: " + this.x + " Y: " + this.y);
-			return Model.getInstance().getTile(this.x-1, this.y);
-		}
-		return null;
-	}
-	
-	public Tile getNeighbourSouth() {
-		if (this.y != Model.getInstance().getHeight()-1) {
-			//System.out.println("X: " + this.x + " Y: " + this.y);
-			return Model.getInstance().getTile(this.x, this.y+1);
-		}
-		return null;
-	}
-	
-	public Tile getNeighbourWest() {
-		if (this.x != Model.getInstance().getWidth()-1) {
-			//System.out.println("X: " + this.x + " Y: " + this.y);
-			return Model.getInstance().getTile(this.x+1, this.y);
-		}
-		return null;
-	}
-	
 }

@@ -14,6 +14,10 @@ public class Model {
 	private ArrayList<String[]> map;
 	private Tile[][] field;
 	private static Model instance;
+
+	private Model() {
+
+	}
 	
 	public static Model getInstance() {
 	    if (instance == null) {
@@ -56,6 +60,7 @@ public class Model {
 
 		}else {
 			System.out.println("Possible Moves: "+ tile.getUnit().getMovement_range() + " fields");
+			System.out.println("Map size: " + this.getWidth() + " " + this.getHeight());
 		}
 	}
 
@@ -144,10 +149,10 @@ public class Model {
 			return false;
 		}
 		try {
-			if (findPath(start.getNeighbourNorth(), end, range-unit_stats.getMovementCost(start.getNeighbourNorth().getType()),unit_stats) || 
-					findPath(start.getNeighbourEast(), end, range-unit_stats.getMovementCost(start.getNeighbourEast().getType()),unit_stats) || 
-					findPath(start.getNeighbourSouth(), end, range-unit_stats.getMovementCost(start.getNeighbourSouth().getType()),unit_stats) || 
-					findPath(start.getNeighbourWest(), end, range-unit_stats.getMovementCost(start.getNeighbourWest().getType()),unit_stats)) {
+			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getType()),unit_stats) || 
+					findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getType()),unit_stats) || 
+					findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getType()),unit_stats) || 
+					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getType()),unit_stats)) {
 				return true;
 			}
 		} catch (NullPointerException e) {
@@ -158,10 +163,51 @@ public class Model {
 	}
 
 	public Tile getTile(int x, int y) {
-		return this.field[x][y];
+		// Bad convention
+		return this.field[y][x];
 	}
 	
 	public void setfield(Tile[][] field) {
 		this.field = field;
 	}
+	
+	public Tile getNeighbourNorth(Tile tile) {
+		if (tile.getY() != 0) {
+			System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX(), tile.getY()-1);
+		}
+		return null;
+
+	}
+	
+	public Tile getNeighbourEast(Tile tile) {
+		if (tile.getX() != 0) {
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX()-1, tile.getY());
+		}
+		return null;
+	}
+	/*
+	 * X and Y are mixed up
+	 * Pls fix
+	 * Also change back Width and Height
+	 */
+	public Tile getNeighbourSouth(Tile tile) {
+		if (tile.getY() != this.getWidth()-1) {
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX(), tile.getY()+1);
+		}
+		return null;
+	}
+	
+	public Tile getNeighbourWest(Tile tile) {
+		
+		if (tile.getX() != this.getHeight()-1) {
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX()+1, tile.getY());
+		}
+		return null;
+	}
+	
+	
 }
