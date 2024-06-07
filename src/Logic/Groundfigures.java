@@ -1,7 +1,6 @@
 package Logic;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Groundfigures extends Figure {
 	protected int x;

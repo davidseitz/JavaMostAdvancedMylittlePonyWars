@@ -99,7 +99,7 @@ public class BattleFieldController implements Initializable {
 	private void setHighlightAttack(Tile tile) {
 	    tile.getBackgroundLayer().setEffect(new ColorAdjust(-0.5, 0, 0.5, 0));
 	}
-	private void setHighlightAllie(Tile tile) {
+	private void setHighlightAllies(Tile tile) {
 	    tile.getBackgroundLayer().setEffect(new ColorAdjust(0.5, 0, 0.5, 0));
 	}
 	
