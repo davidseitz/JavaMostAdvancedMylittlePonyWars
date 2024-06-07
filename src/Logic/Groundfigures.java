@@ -8,6 +8,7 @@ public class Groundfigures extends Figure {
 	protected int lifepoints;
 	protected int movement_range;
 	protected Unit_Loader unit_stats;
+	protected int player;
 	public int getLifepoints() {
 		return lifepoints;
 	}
@@ -16,13 +17,14 @@ public class Groundfigures extends Figure {
 		this.lifepoints = lifepoints;
 	}
 	protected Figuretype type;
-	public Groundfigures(int x, int y, Image image, Figuretype type) throws Exception {
+	public Groundfigures(int x, int y, Image image, Figuretype type, int player) throws Exception {
 		this.x = x;
 		this.y = y;
 		this.lifepoints = 100;
 		this.type = type;
 		this.movement_range = 1;	
 		this.setImage(image);
+		this.player = player;
 		try {
 			this.unit_stats = new Unit_Loader(type.getType());
 			
@@ -32,6 +34,7 @@ public class Groundfigures extends Figure {
 			//TODO throw exception
 		}
 	}
+
 
 	public Figuretype getType() {
 		return type;

@@ -230,8 +230,8 @@ public class Model {
 		}
 		return null;
 	}
-	/*
-	 * X and Y are mixed up
+	/**
+	 * X and Y are mixed up somewhere would be real great if this was fixed
 	 * Pls fix
 	 * Also change back Width and Height
 	 */
