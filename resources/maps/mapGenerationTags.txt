@@ -85,7 +85,7 @@ Example:
 
 2:2;
 PL,NU;MO,NU;
-WO,AS;WT,TF;
+WO,TE;WT,FE;
 
 
 Use test.map to test maploading
