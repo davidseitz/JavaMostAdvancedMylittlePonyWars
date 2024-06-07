@@ -140,7 +140,7 @@ public class Model {
 		if (start.equals(end)) {
 			return true;
 		}
-		if (range <0) {
+		if (range < 0) {
 			return false;
 		}
 		try {

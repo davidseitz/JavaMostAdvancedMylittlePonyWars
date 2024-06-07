@@ -20,7 +20,6 @@ public class BattleField extends GridPane{
 		final int width = model.getWidth();
 		
 		loadMap(height,width,model.getScale());
-		model.setField(tiles);
 	}
 	
 	public void loadMap(int height, int width,int scale) throws Exception {
