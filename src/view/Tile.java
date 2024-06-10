@@ -1,7 +1,7 @@
 package view;
 
 
-import Logic.Groundfigures;
+import Logic.Figures;
 import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,7 +15,7 @@ public class Tile extends StackPane{
 	private String classType;
 	
 	private boolean isSelected;
-	private Groundfigures unit;
+	private Figures unit;
 	public Tile(int x, int y,String type,Image image) {
 		this.x = x;
 	    this.y = y;
@@ -25,16 +25,6 @@ public class Tile extends StackPane{
 	    
 	    ImageView vt = new ImageView(image);
 	    getChildren().add(vt);
-	}
-	
-	public void setUnit(ImageView unit) {
-		if (unit == null) {
-		      getChildren().remove(1);
-		    } else if (getChildren().size() == 2) {
-		      getChildren().set(1, unit);
-		    } else {
-		      getChildren().add(unit);
-		    }
 	}
 	
 	private String evalClassType(String type) {
@@ -69,7 +59,7 @@ public class Tile extends StackPane{
 		return (ImageView) getChildren().get(0);
 	}
 	
-	public Groundfigures getUnit() {
+	public Figures getUnit() {
 		return this.unit;
 	}
 	
@@ -99,10 +89,16 @@ public class Tile extends StackPane{
 		return y;
 	}
 
-	public void setUnit(Groundfigures unit) {
-		System.out.println(unit.getType());
-	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource("units/"+unit.getType()+".png").toExternalForm())));
+	public void setUnit(Figures unit) {
+		int scale = Model.getInstance().getScale();
+		String path = "units/"+ "T" + "E" + ".png" ;//unit.getType().getType().charAt(0) + unit.getFaction() + ".png";
+	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource(path).toExternalForm(), scale, scale, false, false)));
 		this.unit = unit;
+	}
+	
+	public void removeUnit() {
+		this.unit = null;
+		getChildren().remove(1);
 	}
 
 	@Override

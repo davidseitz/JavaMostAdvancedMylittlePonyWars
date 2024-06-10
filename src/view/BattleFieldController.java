@@ -113,7 +113,6 @@ public class BattleFieldController implements Initializable {
 				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			oldTile = tile;
 			
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
@@ -128,6 +127,7 @@ public class BattleFieldController implements Initializable {
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
+                        oldTile.removeUnit();
  					}
 				}
 				moveUnit = null;
@@ -136,6 +136,8 @@ public class BattleFieldController implements Initializable {
 				//Highlight tiles to move to
 				this.setHighlightMoveableTiles();
 			}
+			oldTile = tile;
+			
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("With ClassType: " + tile.getClassType());
 		}

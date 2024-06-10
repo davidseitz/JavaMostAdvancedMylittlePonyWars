@@ -130,8 +130,8 @@ public class Model {
 	
 	public boolean move(Tile tile /*New*/, Tile moveUnit) {
 		
-		Groundfigures unit = moveUnit.getUnit();
-		Groundfigures target = tile.getUnit();
+		Figures unit = moveUnit.getUnit();
+		Figures target = tile.getUnit();
 		if (unit != null && target == null) {
 			if (this.findPath(moveUnit, tile, unit.getMovement_range(), unit.getUnitStats())) {
 				return true;

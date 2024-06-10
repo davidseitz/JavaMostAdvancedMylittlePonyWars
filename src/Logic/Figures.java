@@ -1,8 +1,6 @@
 package Logic;
 
-import javafx.scene.image.Image;
-
-public class Groundfigures extends Figure {
+public class Figures {
 	protected int x;
 	protected int y;
 	protected int lifepoints;
@@ -17,13 +15,12 @@ public class Groundfigures extends Figure {
 		this.lifepoints = lifepoints;
 	}
 	protected Figuretype type;
-	public Groundfigures(int x, int y, Image image, Figuretype type, int player) throws Exception {
+	public Figures(int x, int y, Figuretype type, int player) throws Exception {
 		this.x = x;
 		this.y = y;
 		this.lifepoints = 100;
 		this.type = type;
-		this.movement_range = 1;	
-		this.setImage(image);
+		this.movement_range = 1;
 		this.player = player;
 		try {
 			this.unit_stats = new Unit_Loader(type.getType());
@@ -32,6 +29,14 @@ public class Groundfigures extends Figure {
 			System.out.println("Error: Unit not found");
 			throw e;
 			//TODO throw exception
+		}
+	}
+	
+	public char getFaction() {
+		if (this.player == 0) {
+			return 'E';
+		}else {
+			return 'R';
 		}
 	}
 
@@ -46,15 +51,6 @@ public class Groundfigures extends Figure {
 	
 	public String toString() {
 		return "Groundfigures [type = "+ this.type+" x = "+ this.x +" y = "+ this.y +"]";
-	}
-	@Override
-	/**
-	 * This method is used to move the ground figures
-	 * @return boolean true if the move is successful, false otherwise
-	 */
-	public boolean move(int x, int y, int new_x, int new_y) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 	
 	public int getMovement_range() {
