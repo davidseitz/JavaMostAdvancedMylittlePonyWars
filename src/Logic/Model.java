@@ -158,6 +158,9 @@ public class Model {
 		if (range < 0) {
 			return false;
 		}
+		if (start == null) {
+			return false;
+		}
 		if (start.equals(end)) {
 			return true;
 		}
@@ -185,6 +188,9 @@ public class Model {
 	 */
 	public boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
 		if (range < 0) {
+			return false;
+		}
+		if (start == null) {
 			return false;
 		}
 		if (start.equals(end)) {
