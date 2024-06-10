@@ -7,14 +7,8 @@ public class Figures {
 	protected int movement_range;
 	protected Unit_Loader unit_stats;
 	protected int player;
-	public int getLifepoints() {
-		return lifepoints;
-	}
-
-	public void setLifepoints(int lifepoints) {
-		this.lifepoints = lifepoints;
-	}
 	protected Figuretype type;
+	
 	public Figures(int x, int y, Figuretype type, int player) throws Exception {
 		this.x = x;
 		this.y = y;
@@ -39,7 +33,13 @@ public class Figures {
 			return 'R';
 		}
 	}
+	public int getLifepoints() {
+		return lifepoints;
+	}
 
+	public void setLifepoints(int lifepoints) {
+		this.lifepoints = lifepoints;
+	}
 
 	public Figuretype getType() {
 		return type;

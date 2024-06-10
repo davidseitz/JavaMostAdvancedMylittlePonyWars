@@ -156,14 +156,21 @@ public class Model {
 				Weapon weapon = unitStats.getWeapon1();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 					if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-						return this.attackPossible(unit, target, weapon.getRange());
+						if (this.attackPossible(unit, target, weapon.getRange())) {
+							target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
+							return true;
+						}
+						
 					}
 				}
 			}
 			if (unitStats.getWeapon2() != null) {
 				Weapon weapon = unitStats.getWeapon2();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-					return this.attackPossible(unit, target, weapon.getRange());
+					if (this.attackPossible(unit, target, weapon.getRange())) {
+						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
+						return true;
+					}
 				}
 			}
 		}
@@ -251,7 +258,7 @@ public class Model {
 	
 	public Tile getNeighbourNorth(Tile tile) {
 		if (tile.getY() != 0) {
-			System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
 			return this.getTile(tile.getX(), tile.getY()-1);
 		}
 		return null;
