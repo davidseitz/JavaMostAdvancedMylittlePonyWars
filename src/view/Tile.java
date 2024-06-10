@@ -1,12 +1,11 @@
 package view;
 
 
-import Logic.Groundfigures;
+import Logic.Figures;
+import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane{
 	
@@ -16,8 +15,7 @@ public class Tile extends StackPane{
 	private String classType;
 	
 	private boolean isSelected;
-	private Groundfigures unit;
-
+	private Figures unit;
 	public Tile(int x, int y,String type,Image image) {
 		this.x = x;
 	    this.y = y;
@@ -27,16 +25,6 @@ public class Tile extends StackPane{
 	    
 	    ImageView vt = new ImageView(image);
 	    getChildren().add(vt);
-	}
-	
-	public void setUnit(ImageView unit) {
-		if (unit == null) {
-		      getChildren().remove(1);
-		    } else if (getChildren().size() == 2) {
-		      getChildren().set(1, unit);
-		    } else {
-		      getChildren().add(unit);
-		    }
 	}
 	
 	private String evalClassType(String type) {
@@ -71,21 +59,24 @@ public class Tile extends StackPane{
 		return (ImageView) getChildren().get(0);
 	}
 	
-	public Groundfigures getUnit() {
-		return getChildren().size() == 2 ? (Groundfigures) getChildren().get(1) : null;
+	public Figures getUnit() {
+		return this.unit;
 	}
 	
 	public void setNewTile(Image image, String tag) {
 		this.setType(tag);
 		ImageView vt = new ImageView(image);
-		//getChildren().remove(0);
 		getChildren().set(0,vt);
 	}
 	
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+	/**
+	 * Returns the type not the class type of the tile
+	 * Use getClassType to get the class type
+	 * @return type
+	 */
 	public String getType() {
 		return type;
 	}
@@ -98,9 +89,16 @@ public class Tile extends StackPane{
 		return y;
 	}
 
-	public void setUnit(Groundfigures unit) {   
-	    getChildren().add(unit);
+	public void setUnit(Figures unit) {
+		int scale = Model.getInstance().getScale();
+		String path = "units/"+ "T" + "E" + ".png" ;//unit.getType().getType().charAt(0) + unit.getFaction() + ".png";
+	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource(path).toExternalForm(), scale, scale, false, false)));
 		this.unit = unit;
+	}
+	
+	public void removeUnit() {
+		this.unit = null;
+		getChildren().remove(1);
 	}
 
 	@Override
@@ -108,6 +106,10 @@ public class Tile extends StackPane{
 		return "Tile [row=" + x + ", column=" + y + ", type=" + type + ", isSelected=" + isSelected + ", unit="
 				+ unit + "]";
 	}
-	
-	
+
+	public boolean equals(Tile tile) {
+		return this.x == tile.getX() && this.y == tile.getY();
+	}
+
+
 }

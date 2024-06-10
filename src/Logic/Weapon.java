@@ -6,6 +6,11 @@ public class Weapon {
 	private int range;
 	private LinkedList<String> can_attack;
 	
+	@Override
+	public String toString() {
+		return "Weapon [range=" + range + ", can_attack=" + can_attack + "]";
+	}
+
 	public Weapon(int range, LinkedList<String> can_attack) {
 		this.range = range;
 		this.can_attack = can_attack;

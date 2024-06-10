@@ -3,7 +3,7 @@ package view;
 import java.util.ArrayList;
 
 import Logic.Figuretype;
-import Logic.Groundfigures;
+import Logic.Figures;
 import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
@@ -39,7 +39,13 @@ public class BattleField extends GridPane{
 				if(tileValue[1].equals("NU") != true) {
 					String unitpath = "units/"+tileValue[1]+".png";
 					try {
-						Groundfigures unit = new Groundfigures(j,i,new Image(getClass().getClassLoader().getResource(unitpath).toExternalForm(), scale, scale, false, false), new Figuretype(tileValue[1]));
+						int player = 0;
+						if(tileValue[1].endsWith("E")) {
+							player = 0;
+						}else {
+							player = 1;
+						}
+						Figures unit = new Figures(i,j, new Figuretype(tileValue[1]), player);
 						tile.setUnit(unit);
 					} catch (Exception e) {
 						System.out.println("Error: Unit not found");

@@ -2,7 +2,6 @@ package view;
 
 import Logic.Model;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 
 public class MapCreationMenu extends GridPane {

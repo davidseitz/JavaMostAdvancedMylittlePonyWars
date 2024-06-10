@@ -8,17 +8,17 @@ MOVEMENT_COST:
  	("WT";-)
  	("MO";2)
  	("PL";1)
- 	("UD";1)
- 	("RV";2)
+ 	("ST";1)
+ 	("RI";2)
  	("WO";1)
 
 WEAPON1:
 	EXISTS: N
 		
+		
 WEAPON2:
 	EXISTS: Y
 	FIRE_RANGE:1
-	ATTACKABLE: 
-		("INF")
-		("INF")
-		("INF")
+	ATTACKABLE:INF
+	
+	

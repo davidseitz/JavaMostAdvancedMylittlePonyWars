@@ -99,7 +99,7 @@ public class BattleFieldController implements Initializable {
 	private void setHighlightAttack(Tile tile) {
 	    tile.getBackgroundLayer().setEffect(new ColorAdjust(-0.5, 0, 0.5, 0));
 	}
-	private void setHighlightAllie(Tile tile) {
+	private void setHighlightAllies(Tile tile) {
 	    tile.getBackgroundLayer().setEffect(new ColorAdjust(0.5, 0, 0.5, 0));
 	}
 	
@@ -108,26 +108,60 @@ public class BattleFieldController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
+			
 			if (oldTile != null) {
+				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			oldTile = tile;
-			setHighlightSelected(tile, true);
+			
 			if (tile.getUnit() != null) {
+				//Highlight unit tile
 				setHighlightAttack(tile);
 				moveUnit = tile;
 			}else {
+				//Move Unit
+				
 				if (moveUnit != null) {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
-					}
-					moveUnit = null;
+                        this.clearHighlights();
+                        oldTile.removeUnit();
+ 					}
 				}
+				moveUnit = null;
 			}
+			if (moveUnit != null && moveUnit.getUnit() != null) {
+				//Highlight tiles to move to
+				this.setHighlightMoveableTiles();
+			}
+			oldTile = tile;
+			
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("With ClassType: " + tile.getClassType());
+		}
+		private void setHighlightMoveableTiles() {
+			for (Tile[] allTiles : model.getField()) {
+				for (Tile field : allTiles) {
+					
+					if (model.findPath(moveUnit, field, 3, moveUnit.getUnit().getUnitStats())) {
+						setHighlightSelected(field, true);
+					}
+					// Only for testing
+					if (model.attackPossible(moveUnit, field, 1)) {
+						setHighlightAttack(field);
+					}
+				}
+			}
+		}
+		
+		private void clearHighlights() {
+			for (Tile[] allTiles : model.getField()) {
+				for (Tile field : allTiles) {
+					setHighlightSelected(field, false);
+				}
+			}
 		}
 	}
 
