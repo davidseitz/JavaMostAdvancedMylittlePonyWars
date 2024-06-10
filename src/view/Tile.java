@@ -70,13 +70,12 @@ public class Tile extends StackPane{
 	}
 	
 	public Groundfigures getUnit() {
-		return getChildren().size() == 2 ? (Groundfigures) getChildren().get(1) : null;
+		return this.unit;
 	}
 	
 	public void setNewTile(Image image, String tag) {
 		this.setType(tag);
 		ImageView vt = new ImageView(image);
-		//getChildren().remove(0);
 		getChildren().set(0,vt);
 	}
 	
@@ -100,8 +99,9 @@ public class Tile extends StackPane{
 		return y;
 	}
 
-	public void setUnit(Groundfigures unit) {   
-	    getChildren().add(unit);
+	public void setUnit(Groundfigures unit) {
+		System.out.println(unit.getType());
+	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource("units/"+unit.getType()+".png").toExternalForm())));
 		this.unit = unit;
 	}
 

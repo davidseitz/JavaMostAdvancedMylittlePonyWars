@@ -129,8 +129,8 @@ public class BattleFieldController implements Initializable {
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
  					}
- 					moveUnit = null;
 				}
+				moveUnit = null;
 			}
 			if (moveUnit != null && moveUnit.getUnit() != null) {
 				//Highlight tiles to move to
