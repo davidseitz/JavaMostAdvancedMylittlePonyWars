@@ -14,6 +14,10 @@ public class Model {
 	private ArrayList<String[]> map;
 	private Tile[][] field;
 	private static Model instance;
+
+	private Model() {
+
+	}
 	
 	public static Model getInstance() {
 	    if (instance == null) {
@@ -53,9 +57,10 @@ public class Model {
 		System.out.println("Tile with Type: "+ tile.getType() + " at position: (" + x + " " + y + ") clicked ");
 		if (tile.getUnit() == null) {
 			System.out.println("No Unit on this Tile");
-
+			
 		}else {
-			System.out.println("Possible Moves: "+ tile.getUnit().getMovement_range() + " fields");
+			System.out.println("Possible Moves: " + tile.getUnit().getUnitStats().getMovementCost("ST"));
+			System.out.println("Map size: " + this.getWidth() + " " + this.getHeight());
 		}
 	}
 
@@ -127,12 +132,125 @@ public class Model {
 		
 		Groundfigures unit = moveUnit.getUnit();
 		Groundfigures target = tile.getUnit();
-		if (unit != null && target == null && this.allowedTerrain(tile)) {
-			if (Math.abs(tile.getX()-moveUnit.getX())<= unit.getMovement_range() && Math.abs(tile.getY()-moveUnit.getY()) <= unit.getMovement_range()) {
+		if (unit != null && target == null) {
+			if (this.findPath(moveUnit, tile, unit.getMovement_range(), unit.getUnitStats())) {
 				return true;
 			}
 		}
 		
 		return false;
 	}
+	public boolean attackPossible(Tile unit, Tile target, int range) {
+		if (this.findPath(unit, target, range) && !unit.equals(target)) {
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * To be used when Terrain information isn't necessary 
+	 * e.g. when firing a weapon
+	 * @param start
+	 * @param end
+	 * @param range
+	 * @return true if start and end are only range tiles apart
+	 */
+	public boolean findPath(Tile start, Tile end, int range) {
+		if (range < 0) {
+			return false;
+		}
+		if (start.equals(end)) {
+			return true;
+		}
+		try {
+			if (findPath(this.getNeighbourNorth(start), end, range-1) || 
+					findPath(this.getNeighbourEast(start), end, range-1) || 
+					findPath(this.getNeighbourSouth(start), end, range-1) || 
+					findPath(this.getNeighbourWest(start), end, range-1)
+					) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			return false;
+		}
+		return false;
+	}
+	/**
+	 * To be used when a unit needs to traverse terrain
+	 * @param start
+	 * @param end
+	 * @param range
+	 * @param unit_stats
+	 * @return true if a path exists
+	 * @return false if a path doesn't exist
+	 */
+	public boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
+		if (range < 0) {
+			return false;
+		}
+		if (start.equals(end)) {
+			return true;
+		}
+		try {
+			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats) || 
+					findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getClassType()),unit_stats) || 
+					findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getClassType()),unit_stats) || 
+					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)
+					) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			return false;
+		}
+
+		return false;
+	}
+
+	public Tile getTile(int x, int y) {
+		// Bad convention
+		return this.field[y][x];
+	}
+	
+	public void setfield(Tile[][] field) {
+		this.field = field;
+	}
+	
+	public Tile getNeighbourNorth(Tile tile) {
+		if (tile.getY() != 0) {
+			System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX(), tile.getY()-1);
+		}
+		return null;
+
+	}
+	
+	public Tile getNeighbourEast(Tile tile) {
+		if (tile.getX() != 0) {
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX()-1, tile.getY());
+		}
+		return null;
+	}
+	/**
+	 * X and Y are mixed up somewhere would be real great if this was fixed
+	 * Pls fix
+	 * Also change back Width and Height
+	 */
+	public Tile getNeighbourSouth(Tile tile) {
+		if (tile.getY() != this.getWidth()-1) {
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX(), tile.getY()+1);
+		}
+		return null;
+	}
+	
+	public Tile getNeighbourWest(Tile tile) {
+		
+		if (tile.getX() != this.getHeight()-1) {
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			return this.getTile(tile.getX()+1, tile.getY());
+		}
+		return null;
+	}
+	
+	
 }

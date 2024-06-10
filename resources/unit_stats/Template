@@ -1,0 +1,33 @@
+#This is the template for the units. The text below can be copy-pasted to create a new unit
+
+#If the unit can't move somewhere COST := -
+----------------
+
+UNIT_NAME: "Name"
+
+UNIT_TAG: "TAG"
+
+MOVEMENT_RANGE:3
+ 
+MOVEMENT_COST:
+ 	("TERRAIN_TAG";COST)
+ 	("TERRAIN_TAG";COST)
+ 	("TERRAIN_TAG";COST)
+ 	("TERRAIN_TAG";COST)
+ 	("TERRAIN_TAG";COST)
+ 	("TERRAIN_TAG";COST)
+ 	("TERRAIN_TAG";COST)
+ 	("TERRAIN_TAG";COST)
+
+WEAPON1:
+	EXISTS: Y/N
+	FIRE_RANGE:Range
+	ATTACKABLE:UNIT_TAG,UNIT_TAG,UNIT_TAG,...
+	
+		
+WEAPON2:
+	EXISTS: Y/N
+	FIRE_RANGE:Range
+	ATTACKABLE:UNIT_TAG,UNIT_TAG,UNIT_TAG,...
+	
+	

@@ -2,11 +2,10 @@ package view;
 
 
 import Logic.Groundfigures;
+import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane{
 	
@@ -17,7 +16,6 @@ public class Tile extends StackPane{
 	
 	private boolean isSelected;
 	private Groundfigures unit;
-
 	public Tile(int x, int y,String type,Image image) {
 		this.x = x;
 	    this.y = y;
@@ -84,7 +82,11 @@ public class Tile extends StackPane{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+	/**
+	 * Returns the type not the class type of the tile
+	 * Use getClassType to get the class type
+	 * @return type
+	 */
 	public String getType() {
 		return type;
 	}
@@ -108,6 +110,10 @@ public class Tile extends StackPane{
 		return "Tile [row=" + x + ", column=" + y + ", type=" + type + ", isSelected=" + isSelected + ", unit="
 				+ unit + "]";
 	}
-	
-	
+
+	public boolean equals(Tile tile) {
+		return this.x == tile.getX() && this.y == tile.getY();
+	}
+
+
 }
