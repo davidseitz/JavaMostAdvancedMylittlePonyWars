@@ -139,7 +139,7 @@ public class BattleFieldController implements Initializable {
 			oldTile = tile;
 			
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
-			System.out.println("With ClassType: " + tile.getClassType());
+			System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
 		}
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {

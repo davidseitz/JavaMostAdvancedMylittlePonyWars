@@ -34,7 +34,7 @@ public class BattleField extends GridPane{
 				
 				String tilePath = "groundTiles/"+tileValue[0]+".png";
 				
-				tile = new Tile(i, j, tileValue[0], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));
+				tile = new Tile(j, i, tileValue[0], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));
 				
 				if(tileValue[1].equals("NU") != true) {
 					String unitpath = "units/"+tileValue[1]+".png";
@@ -45,7 +45,7 @@ public class BattleField extends GridPane{
 						}else {
 							player = 1;
 						}
-						Figures unit = new Figures(i,j, new Figuretype(tileValue[1]), player);
+						Figures unit = new Figures(j,i, new Figuretype(tileValue[1]), player);
 						tile.setUnit(unit);
 					} catch (Exception e) {
 						System.out.println("Error: Unit not found");

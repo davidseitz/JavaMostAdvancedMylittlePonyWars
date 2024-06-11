@@ -3,9 +3,12 @@ package view;
 
 import Logic.Figures;
 import Logic.Model;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane{
 	
@@ -93,11 +96,19 @@ public class Tile extends StackPane{
 		int scale = Model.getInstance().getScale();
 		String path = "units/"+ "T" + "E" + ".png" ;//unit.getType().getType().charAt(0) + unit.getFaction() + ".png";
 	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource(path).toExternalForm(), scale, scale, false, false)));
-		this.unit = unit;
+		
+	    //Live bar
+	    Rectangle r = new Rectangle(30,5);
+		r.setFill(Color.GREEN);
+		StackPane.setAlignment(r, Pos.BOTTOM_CENTER);
+	    getChildren().add(r);
+	    
+	    this.unit = unit;
 	}
 	
 	public void removeUnit() {
 		this.unit = null;
+		getChildren().remove(1);
 		getChildren().remove(1);
 	}
 

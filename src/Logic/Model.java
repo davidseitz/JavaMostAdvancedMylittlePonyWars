@@ -89,7 +89,7 @@ public class Model {
 	}
 	
 	public void setTile(int x, int y,String tag) {
-		field[y][x].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), this.scale, this.scale, false, false), tag);
+		field[x][y].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), this.scale, this.scale, false, false), tag);
 	}
 
 	public boolean allowedTerrain(Tile tile) {
