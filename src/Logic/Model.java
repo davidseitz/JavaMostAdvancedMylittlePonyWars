@@ -140,6 +140,42 @@ public class Model {
 		
 		return false;
 	}
+	/**
+	 * Checks if a unit can attack another unit
+	 * @note There might be edge cases where Weapon 1 can't reach target but Weapon 2 can
+	 * @param unit
+	 * @param target
+	 * @return true if unit can attack target
+	 */
+	public boolean attackUnit(Tile unit, Tile target) {
+		if (unit.getUnit() != null && target.getUnit() != null) {
+			Unit_Loader unitStats = unit.getUnit().getUnitStats();
+			Unit_Loader targetStats = target.getUnit().getUnitStats();
+			// Check if unit has a weapon to attack target
+			if (unitStats.getWeapon1() != null)  {
+				Weapon weapon = unitStats.getWeapon1();
+				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
+					if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
+						if (this.attackPossible(unit, target, weapon.getRange())) {
+							target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
+							return true;
+						}
+						
+					}
+				}
+			}
+			if (unitStats.getWeapon2() != null) {
+				Weapon weapon = unitStats.getWeapon2();
+				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
+					if (this.attackPossible(unit, target, weapon.getRange())) {
+						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
 	public boolean attackPossible(Tile unit, Tile target, int range) {
 		if (this.findPath(unit, target, range) && !unit.equals(target)) {
 			return true;
@@ -156,6 +192,9 @@ public class Model {
 	 */
 	public boolean findPath(Tile start, Tile end, int range) {
 		if (range < 0) {
+			return false;
+		}
+		if (start == null) {
 			return false;
 		}
 		if (start.equals(end)) {
@@ -187,6 +226,9 @@ public class Model {
 		if (range < 0) {
 			return false;
 		}
+		if (start == null) {
+			return false;
+		}
 		if (start.equals(end)) {
 			return true;
 		}
@@ -216,7 +258,7 @@ public class Model {
 	
 	public Tile getNeighbourNorth(Tile tile) {
 		if (tile.getY() != 0) {
-			System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
 			return this.getTile(tile.getX(), tile.getY()-1);
 		}
 		return null;
