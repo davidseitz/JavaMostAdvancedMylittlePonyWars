@@ -248,8 +248,7 @@ public class Model {
 	}
 
 	public Tile getTile(int x, int y) {
-		// Bad convention
-		return this.field[y][x];
+		return this.field[x][y];
 	}
 	
 	public void setfield(Tile[][] field) {
@@ -258,7 +257,6 @@ public class Model {
 	
 	public Tile getNeighbourNorth(Tile tile) {
 		if (tile.getY() != 0) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
 			return this.getTile(tile.getX(), tile.getY()-1);
 		}
 		return null;
@@ -267,19 +265,13 @@ public class Model {
 	
 	public Tile getNeighbourEast(Tile tile) {
 		if (tile.getX() != 0) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
 			return this.getTile(tile.getX()-1, tile.getY());
 		}
 		return null;
 	}
-	/**
-	 * X and Y are mixed up somewhere would be real great if this was fixed
-	 * Pls fix
-	 * Also change back Width and Height
-	 */
+	
 	public Tile getNeighbourSouth(Tile tile) {
-		if (tile.getY() != this.getWidth()-1) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+		if (tile.getY() != this.getHeight()-1) {
 			return this.getTile(tile.getX(), tile.getY()+1);
 		}
 		return null;
@@ -287,8 +279,7 @@ public class Model {
 	
 	public Tile getNeighbourWest(Tile tile) {
 		
-		if (tile.getX() != this.getHeight()-1) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+		if (tile.getX() != this.getWidth()-1) {
 			return this.getTile(tile.getX()+1, tile.getY());
 		}
 		return null;
