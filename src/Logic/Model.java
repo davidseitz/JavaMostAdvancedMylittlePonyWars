@@ -132,10 +132,12 @@ public class Model {
 		
 		Figures unit = moveUnit.getUnit();
 		Figures target = tile.getUnit();
-		if (unit != null && target == null) {
+		if (unit != null && target == null && !unit.isHasMoved()) {
 			if (this.findPath(moveUnit, tile, unit.getMovement_range(), unit.getUnitStats())) {
+				unit.setHasMoved(true);
 				return true;
 			}
+			
 		}
 		
 		return false;
@@ -148,6 +150,9 @@ public class Model {
 	 * @return true if unit can attack target
 	 */
 	public boolean attackUnit(Tile unit, Tile target) {
+		if (unit.getUnit().isHasAttacked() && unit.getUnit().getPlayer() != target.getUnit().getPlayer()) {
+			return false;
+		}
 		if (unit.getUnit() != null && target.getUnit() != null) {
 			Unit_Loader unitStats = unit.getUnit().getUnitStats();
 			Unit_Loader targetStats = target.getUnit().getUnitStats();
@@ -177,7 +182,7 @@ public class Model {
 		return false;
 	}
 	public boolean attackPossible(Tile unit, Tile target, int range) {
-		if (this.findPath(unit, target, range) && !unit.equals(target)) {
+		if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked()) {
 			return true;
 		}
 		return false;
