@@ -121,12 +121,14 @@ public class BattleFieldController implements Initializable {
 				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			if (moveUnit != null && moveUnit.getUnit() != null 
+			System.out.println("Unit: " + moveUnit);
+			System.out.println("Target: " + tile);
+			if (tile != null && tile.getUnit() != null 
 					&& oldTile != null && oldTile.getUnit() != null) {
 				//Attack enemy
-				model.attackUnit(oldTile, moveUnit);
-				if (moveUnit.getUnit().getLifepoints() <= 0) {
-					moveUnit = null;
+				model.attackUnit(oldTile, tile);
+				if (tile.getUnit().getLifepoints() <= 0) {
+					tile.setUnit(null);;
 				}
 			}
 			if (tile.getUnit() != null) {

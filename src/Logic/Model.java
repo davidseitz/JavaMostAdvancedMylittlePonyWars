@@ -189,6 +189,7 @@ public class Model {
 				Weapon weapon = unitStats.getWeapon2();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 					if (this.attackPossible(unit, target, weapon.getRange())) {
+						System.out.println("Unit: " + unit + " attacked target: " + target);
 						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
 						return true;
 					}
