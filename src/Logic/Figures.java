@@ -20,9 +20,8 @@ public class Figures {
 			this.unit_stats = new Unit_Loader(type.getType());
 			
 		} catch (Exception e) {
-			System.out.println("Error: Unit not found");
-			throw e;
-			//TODO throw exception
+			System.out.println("Error: Unit not found doing Inf instead");
+			this.unit_stats = new Unit_Loader("I");
 		}
 	}
 	public boolean isHasMoved() {
