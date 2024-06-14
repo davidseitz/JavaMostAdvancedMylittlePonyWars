@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane{
@@ -93,20 +94,67 @@ public class Tile extends StackPane{
 	}
 
 	public void setUnit(Figures unit) {
-		int scale = Model.getInstance().getScale();
+		int nolife = 1;
+	    if(unit.getLifepoints() <= 0) {
+	    	nolife = 0;
+	    }
+		int scale = (Model.getInstance().getScale()-10);
+		
 		String path = "units/"+ "T" + "E" + ".png" ;//unit.getType().getType().charAt(0) + unit.getFaction() + ".png";
 	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource(path).toExternalForm(), scale, scale, false, false)));
 		
 	    //Live bar
-	    Rectangle r = new Rectangle(30,5);
-		r.setFill(Color.GREEN);
-		StackPane.setAlignment(r, Pos.BOTTOM_CENTER);
-	    getChildren().add(r);
+	    int unitlive = unit.getLifepoints();
+	    
+	    Line redlive = new Line();
+		redlive.setStartX(0.0); 
+		redlive.setEndX(scale);
+		redlive.setStartY(0.0); 
+		redlive.setEndY(0.0);
+		redlive.setScaleY(7.0);
+		redlive.setStroke(Color.RED);
+		StackPane.setAlignment(redlive, Pos.BOTTOM_CENTER);
+
+	    getChildren().add(redlive);
+	    
+	    double newscale = scale * ((double)unitlive/100);
+	    
+	    Line greenlive = new Line();
+	    if (nolife == 0) {
+	    	greenlive.setStartX(0.0); 
+	    	greenlive.setEndX(0.0);
+	    	greenlive.setStartY(0.0); 
+	    	greenlive.setEndY(0.0);
+	    }else {
+	    	greenlive.setStartX(0.0); 
+	    	greenlive.setEndX(newscale);
+	    	greenlive.setStartY(0.0); 
+	    	greenlive.setEndY(0.0);
+	    }
+	    /**
+	     * TODO right scaling of livebar
+	     */
+	    System.out.println("Scale: " + (3 - scale/10));
+	    double movelivebar = (-16 +(16*((double)unitlive/100))+(3 - scale/10));
+	    System.out.println(movelivebar);
+	    greenlive.setTranslateX(movelivebar * nolife);
+	    greenlive.setTranslateY(0);
+        
+	    greenlive.setScaleY(7.0);
+	    greenlive.setStroke(Color.GREEN);
+		StackPane.setAlignment(greenlive, Pos.BOTTOM_CENTER);
+		
+		if (nolife == 1) {
+			getChildren().add(greenlive);
+		}
 	    
 	    this.unit = unit;
 	}
 	
 	public void removeUnit() {
+		if(this.unit.getLifepoints() >= 0) {
+			getChildren().remove(1);
+		}
 		this.unit = null;
 		getChildren().remove(1);
 		getChildren().remove(1);

@@ -124,6 +124,7 @@ public class BattleFieldController implements Initializable {
 				if (moveUnit != null) {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
+						moveUnit.getUnit().setLifepoints(moveUnit.getUnit().getLifepoints()-10);
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
@@ -139,7 +140,7 @@ public class BattleFieldController implements Initializable {
 			oldTile = tile;
 			
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
-			System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
+			//System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
 		}
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {
