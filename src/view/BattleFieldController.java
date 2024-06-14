@@ -155,7 +155,9 @@ public class BattleFieldController implements Initializable {
 			oldTile = tile;
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
-			System.out.println("With Unit: " + tile.getUnit().getType().getType() + "" + tile.getUnit().getFaction());
+			if (tile.getUnit() != null) {
+                System.out.println("With Unit: " + tile.getUnit().getType().getType() + "" + tile.getUnit().getFaction());
+            }
 		}
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {
@@ -164,7 +166,7 @@ public class BattleFieldController implements Initializable {
 						setHighlightSelected(field, true);
 					}
 					// Only for testing
-					if (model.attackPossible(moveUnit, field, 1)) {
+					if (model.attackPossible(moveUnit, field, 1) && !moveUnit.getUnit().isHasAttacked()) {
 						setHighlightAttack(field);
 					}
 				}

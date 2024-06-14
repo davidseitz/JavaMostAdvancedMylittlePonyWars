@@ -57,8 +57,10 @@ public class Model {
                 if (field.getUnit() != null) {
                 	if (field.getUnit().getPlayer() == this.round % 2){
                 		field.getUnit().setHasMoved(false);
+                		field.getUnit().setHasAttacked(false);
                 	}else {
                 		field.getUnit().setHasMoved(true);
+                		field.getUnit().setHasAttacked(true);
                 	}
                 }
         	}
