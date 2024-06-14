@@ -14,7 +14,7 @@ public class Model {
 	private ArrayList<String[]> map;
 	private Tile[][] field;
 	private static Model instance;
-
+	private int round = 0;
 	private Model() {
 
 	}
@@ -50,6 +50,20 @@ public class Model {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	public void endRound() {
+        this.round++;
+        for (Tile[] allTiles : this.getField()) {
+            for (Tile field : allTiles) {
+                if (field.getUnit() != null) {
+                	if (field.getUnit().getPlayer() == this.round % 2){
+                		field.getUnit().setHasMoved(false);
+                	}else {
+                		field.getUnit().setHasMoved(true);
+                	}
+                }
+        	}
+        }
+    }
 
 
 	public void printPossibleMoves(int x, int y, Tile tile)

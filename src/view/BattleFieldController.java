@@ -103,6 +103,7 @@ public class BattleFieldController implements Initializable {
 	    tile.getBackgroundLayer().setEffect(new ColorAdjust(0.5, 0, 0.5, 0));
 	}
 	
+	
 	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {
 
 		@Override
@@ -169,6 +170,7 @@ public class BattleFieldController implements Initializable {
 				}
 			}
 		}
+		
 	}
 
 }
