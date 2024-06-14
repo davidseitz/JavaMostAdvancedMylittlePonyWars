@@ -89,6 +89,7 @@ public class BattleFieldController implements Initializable {
 	
 	public void endRound() {
 		System.out.println("Next Round");
+		model.endRound();
 	}
 	
 	public void onSliderChanged() {
@@ -120,7 +121,14 @@ public class BattleFieldController implements Initializable {
 				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			
+			if (moveUnit != null && moveUnit.getUnit() != null 
+					&& oldTile != null && oldTile.getUnit() != null) {
+				//Attack enemy
+				model.attackUnit(oldTile, moveUnit);
+				if (moveUnit.getUnit().getLifepoints() <= 0) {
+					moveUnit = null;
+				}
+			}
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
 				setHighlightAttack(tile);
@@ -131,7 +139,6 @@ public class BattleFieldController implements Initializable {
 				if (moveUnit != null) {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
-						moveUnit.getUnit().setLifepoints(moveUnit.getUnit().getLifepoints()-10);
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
@@ -144,14 +151,7 @@ public class BattleFieldController implements Initializable {
 				//Highlight tiles to move to
 				this.setHighlightMoveableTiles();
 			}
-			if (moveUnit != null && moveUnit.getUnit() != null 
-					&& oldTile != null && oldTile.getUnit() != null) {
-				//Attack enemy
-				model.attackUnit(oldTile, moveUnit);
-				if (moveUnit.getUnit().getLifepoints() <= 0) {
-					moveUnit = null;
-				}
-			}
+			
 			oldTile = tile;
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
