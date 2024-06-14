@@ -51,7 +51,7 @@ public class Unit_Loader {
 			} else if (line.isEmpty()) {
 				
 			}else {
-				System.out.println("Error: Unknown line in unit file: Line " + counter + ": " + line);
+				//System.out.println("Error: Unknown line in unit file: Line " + counter + ": " + line);
 			}
 		}
 		scanner.close();

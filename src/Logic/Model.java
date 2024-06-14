@@ -14,7 +14,7 @@ public class Model {
 	private ArrayList<String[]> map;
 	private Tile[][] field;
 	private static Model instance;
-
+	private int round = 0;
 	private Model() {
 
 	}
@@ -50,6 +50,20 @@ public class Model {
 	public void setHeight(int height) {
 		this.height = height;
 	}
+	public void endRound() {
+        this.round++;
+        for (Tile[] allTiles : this.getField()) {
+            for (Tile field : allTiles) {
+                if (field.getUnit() != null) {
+                	if (field.getUnit().getPlayer() == this.round % 2){
+                		field.getUnit().setHasMoved(false);
+                	}else {
+                		field.getUnit().setHasMoved(true);
+                	}
+                }
+        	}
+        }
+    }
 
 
 	public void printPossibleMoves(int x, int y, Tile tile)
@@ -132,10 +146,12 @@ public class Model {
 		
 		Figures unit = moveUnit.getUnit();
 		Figures target = tile.getUnit();
-		if (unit != null && target == null) {
+		if (unit != null && target == null && !unit.isHasMoved()) {
 			if (this.findPath(moveUnit, tile, unit.getMovement_range(), unit.getUnitStats())) {
+				unit.setHasMoved(true);
 				return true;
 			}
+			
 		}
 		
 		return false;
@@ -148,6 +164,9 @@ public class Model {
 	 * @return true if unit can attack target
 	 */
 	public boolean attackUnit(Tile unit, Tile target) {
+		if (unit.getUnit().isHasAttacked() && unit.getUnit().getPlayer() != target.getUnit().getPlayer()) {
+			return false;
+		}
 		if (unit.getUnit() != null && target.getUnit() != null) {
 			Unit_Loader unitStats = unit.getUnit().getUnitStats();
 			Unit_Loader targetStats = target.getUnit().getUnitStats();
@@ -177,7 +196,7 @@ public class Model {
 		return false;
 	}
 	public boolean attackPossible(Tile unit, Tile target, int range) {
-		if (this.findPath(unit, target, range) && !unit.equals(target)) {
+		if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked()) {
 			return true;
 		}
 		return false;
@@ -248,8 +267,7 @@ public class Model {
 	}
 
 	public Tile getTile(int x, int y) {
-		// Bad convention
-		return this.field[y][x];
+		return this.field[x][y];
 	}
 	
 	public void setfield(Tile[][] field) {
@@ -258,7 +276,6 @@ public class Model {
 	
 	public Tile getNeighbourNorth(Tile tile) {
 		if (tile.getY() != 0) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
 			return this.getTile(tile.getX(), tile.getY()-1);
 		}
 		return null;
@@ -267,19 +284,13 @@ public class Model {
 	
 	public Tile getNeighbourEast(Tile tile) {
 		if (tile.getX() != 0) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
 			return this.getTile(tile.getX()-1, tile.getY());
 		}
 		return null;
 	}
-	/**
-	 * X and Y are mixed up somewhere would be real great if this was fixed
-	 * Pls fix
-	 * Also change back Width and Height
-	 */
+	
 	public Tile getNeighbourSouth(Tile tile) {
-		if (tile.getY() != this.getWidth()-1) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+		if (tile.getY() != this.getHeight()-1) {
 			return this.getTile(tile.getX(), tile.getY()+1);
 		}
 		return null;
@@ -287,8 +298,7 @@ public class Model {
 	
 	public Tile getNeighbourWest(Tile tile) {
 		
-		if (tile.getX() != this.getHeight()-1) {
-			//System.out.println("X: " + tile.getX() + " Y: " + tile.getY());
+		if (tile.getX() != this.getWidth()-1) {
 			return this.getTile(tile.getX()+1, tile.getY());
 		}
 		return null;

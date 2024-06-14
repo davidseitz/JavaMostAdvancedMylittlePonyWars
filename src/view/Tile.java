@@ -100,7 +100,7 @@ public class Tile extends StackPane{
 	    }
 		int scale = (Model.getInstance().getScale()-10);
 		
-		String path = "units/"+ "T" + "E" + ".png" ;//unit.getType().getType().charAt(0) + unit.getFaction() + ".png";
+		String path = "units/"+ unit.getType().getType() + unit.getFaction() + ".png" ;
 	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource(path).toExternalForm(), scale, scale, false, false)));
 		
 	    //Live bar
