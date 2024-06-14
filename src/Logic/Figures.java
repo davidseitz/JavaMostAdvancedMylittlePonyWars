@@ -1,33 +1,46 @@
 package Logic;
 
 public class Figures {
-	protected int x;
-	protected int y;
-	protected int lifepoints;
-	protected int movement_range;
-	protected Unit_Loader unit_stats;
-	protected int player;
-	protected Figuretype type;
+	private int x;
+	private int y;
+	private int lifepoints;
+	private Unit_Loader unit_stats;
+	private int player;
+	private Figuretype type;
+	private boolean hasMoved = false;
+	private boolean hasAttacked = false;
 	
 	public Figures(int x, int y, Figuretype type, int player) throws Exception {
 		this.x = x;
 		this.y = y;
 		this.lifepoints = 100;
 		this.type = type;
-		this.movement_range = 1;
 		this.player = player;
 		try {
 			this.unit_stats = new Unit_Loader(type.getType());
 			
 		} catch (Exception e) {
-			System.out.println("Error: Unit not found");
-			throw e;
-			//TODO throw exception
+			System.out.println("Error: Unit not found doing Inf instead");
+			this.unit_stats = new Unit_Loader("I");
 		}
 	}
+	public boolean isHasMoved() {
+		return hasMoved;
+	}
+
+	public void setHasMoved(boolean hasMoved) {
+		this.hasMoved = hasMoved;
+	}
 	
+	public boolean isHasAttacked() {
+		return hasAttacked;
+	}
+	public void setHasAttacked(boolean hasAttacked) {
+		this.hasAttacked = hasAttacked;
+	}
+
 	public char getFaction() {
-		if (this.player == 0) {
+		if (this.player%2 == 0) {
 			return 'E';
 		}else {
 			return 'R';
@@ -39,6 +52,10 @@ public class Figures {
 
 	public void setLifepoints(int lifepoints) {
 		this.lifepoints = lifepoints;
+	}
+
+	public int getPlayer() {
+		return player;
 	}
 
 	public Figuretype getType() {
