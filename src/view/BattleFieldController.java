@@ -89,6 +89,7 @@ public class BattleFieldController implements Initializable {
 	
 	public void endRound() {
 		System.out.println("Next Round");
+		model.endRound();
 	}
 	
 	public void onSliderChanged() {
@@ -120,7 +121,14 @@ public class BattleFieldController implements Initializable {
 				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			
+			if (moveUnit != null && moveUnit.getUnit() != null 
+					&& oldTile != null && oldTile.getUnit() != null) {
+				//Attack enemy
+				model.attackUnit(oldTile, moveUnit);
+				if (moveUnit.getUnit().getLifepoints() <= 0) {
+					moveUnit = null;
+				}
+			}
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
 				setHighlightAttack(tile);
@@ -131,7 +139,6 @@ public class BattleFieldController implements Initializable {
 				if (moveUnit != null) {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
-						moveUnit.getUnit().setLifepoints(moveUnit.getUnit().getLifepoints()-10);
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
@@ -144,18 +151,13 @@ public class BattleFieldController implements Initializable {
 				//Highlight tiles to move to
 				this.setHighlightMoveableTiles();
 			}
-			if (moveUnit != null && moveUnit.getUnit() != null 
-					&& oldTile != null && oldTile.getUnit() != null) {
-				//Attack enemy
-				model.attackUnit(oldTile, moveUnit);
-				if (moveUnit.getUnit().getLifepoints() <= 0) {
-					moveUnit = null;
-				}
-			}
+			
 			oldTile = tile;
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
-			System.out.println("With Unit: " + tile.getUnit().getType().getType() + "" + tile.getUnit().getFaction());
+			if (tile.getUnit() != null) {
+                System.out.println("With Unit: " + tile.getUnit().getType().getType() + "" + tile.getUnit().getFaction());
+            }
 		}
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {
@@ -164,7 +166,7 @@ public class BattleFieldController implements Initializable {
 						setHighlightSelected(field, true);
 					}
 					// Only for testing
-					if (model.attackPossible(moveUnit, field, 1)) {
+					if (model.attackPossible(moveUnit, field, 1) && !moveUnit.getUnit().isHasAttacked()) {
 						setHighlightAttack(field);
 					}
 				}

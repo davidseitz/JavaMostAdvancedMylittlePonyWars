@@ -57,8 +57,10 @@ public class Model {
                 if (field.getUnit() != null) {
                 	if (field.getUnit().getPlayer() == this.round % 2){
                 		field.getUnit().setHasMoved(false);
+                		field.getUnit().setHasAttacked(false);
                 	}else {
                 		field.getUnit().setHasMoved(true);
+                		field.getUnit().setHasAttacked(true);
                 	}
                 }
         	}
@@ -164,7 +166,7 @@ public class Model {
 	 * @return true if unit can attack target
 	 */
 	public boolean attackUnit(Tile unit, Tile target) {
-		if (unit.getUnit().isHasAttacked() && unit.getUnit().getPlayer() != target.getUnit().getPlayer()) {
+		if (unit.getUnit().isHasAttacked() && unit.getUnit().getPlayer() == target.getUnit().getPlayer()) {
 			return false;
 		}
 		if (unit.getUnit() != null && target.getUnit() != null) {
