@@ -14,7 +14,7 @@ public class Model {
 	private ArrayList<String[]> map;
 	private Tile[][] field;
 	private static Model instance;
-	private int round = 0;
+	private int round = -1; // Startbutten must be pressed before gamestart
 	private Model() {
 
 	}
@@ -24,7 +24,11 @@ public class Model {
 	      instance = new Model();
 	    }
 	    return instance;
-	  }
+	}
+	
+	public int getRound() {
+		return round;
+	}
 
 	public int getLevel() {
 		return level;

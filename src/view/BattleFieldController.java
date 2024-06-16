@@ -57,6 +57,7 @@ public class BattleFieldController implements Initializable {
 		
 		battlefield.setPadding(new Insets(0.0,0.0,0.0,0.0));
 		
+		finishRoundButton.setText("Start Game");
 		slider.setValue(model.getScale());
 		sliderValue.setText("" + (int)slider.getValue());
 
@@ -88,7 +89,19 @@ public class BattleFieldController implements Initializable {
 	}
 	
 	public void endRound() {
+		if(model.getRound() == -1) {
+			finishRoundButton.setText("Next Round");
+			slider.setVisible(false);
+			reloadButton.setVisible(false);
+			
+		}
 		model.endRound();
+		if(model.getRound()%2 == 0){
+			sliderValue.setText("Turn Empire");
+		}else {
+			sliderValue.setText("Turn Rebels");
+		}
+		
 	}
 	
 	public void onSliderChanged() {
@@ -114,6 +127,8 @@ public class BattleFieldController implements Initializable {
 
 		@Override
 		public void handle(MouseEvent event) {
+			if (model.getRound() != -1) {  // Begin of Round if
+				
 			Tile tile = (Tile) event.getSource();
 			
 			if (oldTile != null) {
@@ -157,6 +172,8 @@ public class BattleFieldController implements Initializable {
 			if (tile.getUnit() != null) {
                 System.out.println("With Unit: " + tile.getUnit().getType().getType() + "" + tile.getUnit().getFaction());
             }
+			
+			} // End of Round If
 		}
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {
