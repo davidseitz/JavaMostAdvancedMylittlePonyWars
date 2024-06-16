@@ -55,7 +55,7 @@ public class BattleFieldLoader {
 			for (int i = 0; i < tiles.length;i++) {
 				String unit = "NU";
 				if(tiles[i][j].getUnit() != null) {
-					unit = "FE";
+					unit = tiles[i][j].getUnit().getType().getType() +"" + tiles[i][j].getUnit().getFaction();
 				}
 				tmpTile = new String[] {tiles[i][j].getType(), unit};
 				tmpMap.add(tmpTile);
