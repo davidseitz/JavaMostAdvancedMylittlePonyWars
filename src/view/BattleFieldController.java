@@ -89,6 +89,12 @@ public class BattleFieldController implements Initializable {
 	
 	public void endRound() {
 		System.out.println("Next Round");
+		
+		// Testing purposes
+		//if (moveUnit != null) {
+		//	moveUnit.setUnit(moveUnit.getUnit());
+		//}
+		
 		model.endRound();
 	}
 	
@@ -133,6 +139,7 @@ public class BattleFieldController implements Initializable {
 				//Highlight unit tile
 				setHighlightAttack(tile);
 				moveUnit = tile;
+				moveUnit.getUnit().setLifepoints(moveUnit.getUnit().getLifepoints()-10);
 			}else {
 				//Move Unit
 				
