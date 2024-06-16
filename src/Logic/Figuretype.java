@@ -11,12 +11,7 @@ public class Figuretype {
 	}
 
 	private String type_converter(String type) {
-        if(type.equals("INF")) {
-            return type;
-        }else {
-			// TODO: Add more types
-			return "INF";
-        }
+        return type.charAt(0) + "";
         }
 	
 	public String getType() {

@@ -30,6 +30,8 @@ public class BattleFieldController implements Initializable {
 	@FXML
 	private Button reloadButton;
 	@FXML
+	private Button finishRoundButton;
+	@FXML
 	private Slider slider;
 	@FXML
 	private Label sliderValue;
@@ -85,6 +87,17 @@ public class BattleFieldController implements Initializable {
 		levelStage.show();
 	}
 	
+	public void endRound() {
+		System.out.println("Next Round");
+		
+		// Testing purposes
+		//if (moveUnit != null) {
+		//	moveUnit.setUnit(moveUnit.getUnit());
+		//}
+		
+		model.endRound();
+	}
+	
 	public void onSliderChanged() {
 		sliderValue.setText(""+((int)slider.getValue()));
 	}
@@ -103,6 +116,7 @@ public class BattleFieldController implements Initializable {
 	    tile.getBackgroundLayer().setEffect(new ColorAdjust(0.5, 0, 0.5, 0));
 	}
 	
+	
 	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {
 
 		@Override
@@ -113,11 +127,19 @@ public class BattleFieldController implements Initializable {
 				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			
+			if (moveUnit != null && moveUnit.getUnit() != null 
+					&& oldTile != null && oldTile.getUnit() != null) {
+				//Attack enemy
+				model.attackUnit(oldTile, moveUnit);
+				if (moveUnit.getUnit().getLifepoints() <= 0) {
+					moveUnit = null;
+				}
+			}
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
 				setHighlightAttack(tile);
 				moveUnit = tile;
+				moveUnit.getUnit().setLifepoints(moveUnit.getUnit().getLifepoints()-10);
 			}else {
 				//Move Unit
 				
@@ -136,20 +158,22 @@ public class BattleFieldController implements Initializable {
 				//Highlight tiles to move to
 				this.setHighlightMoveableTiles();
 			}
-			oldTile = tile;
 			
+			oldTile = tile;
 			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
 			System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
+			if (tile.getUnit() != null) {
+                System.out.println("With Unit: " + tile.getUnit().getType().getType() + "" + tile.getUnit().getFaction());
+            }
 		}
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
-					
-					if (model.findPath(moveUnit, field, 3, moveUnit.getUnit().getUnitStats())) {
+					if (!moveUnit.getUnit().isHasMoved() && model.findPath(moveUnit, field, moveUnit.getUnit().getUnitStats().getMovement_range(), moveUnit.getUnit().getUnitStats())) {
 						setHighlightSelected(field, true);
 					}
 					// Only for testing
-					if (model.attackPossible(moveUnit, field, 1)) {
+					if (model.attackPossible(moveUnit, field, 1) && !moveUnit.getUnit().isHasAttacked()) {
 						setHighlightAttack(field);
 					}
 				}
@@ -163,6 +187,7 @@ public class BattleFieldController implements Initializable {
 				}
 			}
 		}
+		
 	}
 
 }

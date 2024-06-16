@@ -53,6 +53,7 @@ public class MainMenuController implements Initializable {
 		levelTwo.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WT.png").toExternalForm()));
 		levelThree.setImage(new Image(getClass().getClassLoader().getResource("groundTiles/WO.png").toExternalForm()));
 	}
+	
 	public void mapCreation() {
 		model.setWidth(15);
 		model.setHeight(15);
