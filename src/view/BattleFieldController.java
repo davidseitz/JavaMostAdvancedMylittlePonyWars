@@ -128,7 +128,8 @@ public class BattleFieldController implements Initializable {
 				//Attack enemy
 				model.attackUnit(oldTile, tile);
 				if (tile.getUnit().getLifepoints() <= 0) {
-					tile.setUnit(null);;
+					tile.setUnit(null);
+					tile.removeUnit();
 				}
 			}
 			if (tile.getUnit() != null) {
