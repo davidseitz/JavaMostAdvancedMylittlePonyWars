@@ -21,6 +21,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the BattleField
+ * Handles the main game loop
+ */
 public class BattleFieldController implements Initializable {
 	
 	@FXML

@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 import view.Tile;
 
+/**
+ * Model class that holds the game state
+ */
 public class Model {
 	
 	private int level;
