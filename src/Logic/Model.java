@@ -14,7 +14,7 @@ public class Model {
 	private ArrayList<String[]> map;
 	private Tile[][] field;
 	private static Model instance;
-	private int round = -1; // Startbutten must be pressed before gamestart
+	private int round = -1; // Startbutton must be pressed before the game starts
 	private Model() {
 
 	}
@@ -53,6 +53,14 @@ public class Model {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public char roundToFaction() {
+		if (this.round % 2 == 0) {
+            return 'E';
+            } else {
+            	return 'R';
+            }
 	}
 	public void endRound() {
         this.round++;

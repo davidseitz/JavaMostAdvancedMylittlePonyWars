@@ -162,13 +162,14 @@ public class BattleFieldController implements Initializable {
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
                         oldTile.removeUnit();
+ 					}else {
+ 						clearHighlights();
  					}
 				}
 				moveUnit = null;
 			}
 			if (moveUnit != null && moveUnit.getUnit() != null) {
-				//Highlight tiles to move to
-				this.clearHighlights();
+				//Highlight tiles to move to or attack
 				this.setHighlightMoveableTiles();
 			}
 			
@@ -182,6 +183,10 @@ public class BattleFieldController implements Initializable {
 			} // End of Round If
 		}
 		private void setHighlightMoveableTiles() {
+			this.clearHighlights();
+			if (moveUnit.getUnit().getFaction() == model.roundToFaction()) {
+				setHighlightAllies(moveUnit);
+			}
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
 					if (!moveUnit.getUnit().isHasMoved()
