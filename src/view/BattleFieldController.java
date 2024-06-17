@@ -184,7 +184,9 @@ public class BattleFieldController implements Initializable {
 		private void setHighlightMoveableTiles() {
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
-					if (!moveUnit.getUnit().isHasMoved() && model.findPath(moveUnit, field, moveUnit.getUnit().getUnitStats().getMovement_range(), moveUnit.getUnit().getUnitStats())) {
+					if (!moveUnit.getUnit().isHasMoved()
+							&& model.findPath(moveUnit, field, moveUnit.getUnit().getUnitStats().getMovement_range(), moveUnit.getUnit().getUnitStats())
+							&& field.getUnit() == null) {
 						setHighlightSelected(field, true);
 					}
 					// Only for testing
@@ -195,7 +197,9 @@ public class BattleFieldController implements Initializable {
 						range = moveUnit.getUnit().getUnitStats().getWeapon2().getRange();
 					}
 					if (model.attackPossible(moveUnit, field, range)
-							&& !moveUnit.getUnit().isHasAttacked()) {
+							&& !moveUnit.getUnit().isHasAttacked()
+							&& field.getUnit() != null
+							&& field.getUnit().getPlayer() != moveUnit.getUnit().getPlayer()) {
 						setHighlightAttack(field);
 					}
 				}
