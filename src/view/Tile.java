@@ -98,25 +98,28 @@ public class Tile extends StackPane{
 	    if(unit.getLifepoints() <= 0) {
 	    	nolife = 0;
 	    }
-		int scale = (Model.getInstance().getScale()-10);
+		int scale = (Model.getInstance().getScale());
 		
 		String path = "units/"+ unit.getType().getType() + unit.getFaction() + ".png" ;
 	    getChildren().add(new ImageView(new Image(getClass().getClassLoader().getResource(path).toExternalForm(), scale, scale, false, false)));
-		
-	    //Live bar
+	    setLivebar(nolife, scale,unit);
+	    this.unit = unit;
+	}
+	
+	private void setLivebar(int nolife, int scale, Figures unit) {
+		//Live bar
 	    int unitlive = unit.getLifepoints();
-	    
+	    scale -= 10;
 	    Line redlive = new Line();
 		redlive.setStartX(0.0); 
 		redlive.setEndX(scale);
 		redlive.setStartY(0.0); 
 		redlive.setEndY(0.0);
-		redlive.setScaleY(7.0);
+		redlive.setScaleY(7.0 + ((scale/10)-4));
 		redlive.setStroke(Color.RED);
 		StackPane.setAlignment(redlive, Pos.BOTTOM_CENTER);
 
 	    getChildren().add(redlive);
-	    
 	    double newscale = scale * ((double)unitlive/100);
 	    
 	    Line greenlive = new Line();
@@ -134,25 +137,25 @@ public class Tile extends StackPane{
 	    /**
 	     * TODO right scaling of livebar
 	     */
-	    System.out.println("Scale: " + (3 - scale/10));
-	    double movelivebar = (-16 +(16*((double)unitlive/100))+(3 - scale/10));
-	    System.out.println(movelivebar);
-	    greenlive.setTranslateX(movelivebar * nolife);
+	    double movelivebar = ((-1)*(scale - newscale))/2;
+	    greenlive.setTranslateX(movelivebar);
 	    greenlive.setTranslateY(0);
-        
-	    greenlive.setScaleY(7.0);
+	    greenlive.setScaleY(7.0 + ((scale/10)-4));
 	    greenlive.setStroke(Color.GREEN);
 		StackPane.setAlignment(greenlive, Pos.BOTTOM_CENTER);
 		
 		if (nolife == 1) {
 			getChildren().add(greenlive);
+		}else {
+			if (getChildren().size() == 4) {
+				getChildren().remove(1);
+			}
 		}
-	    
-	    this.unit = unit;
+		
 	}
 	
 	public void removeUnit() {
-		if(this.unit.getLifepoints() >= 0) {
+		if(getChildren().size() == 4) {
 			getChildren().remove(1);
 		}
 		this.unit = null;
