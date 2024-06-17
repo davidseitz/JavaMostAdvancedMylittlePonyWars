@@ -140,15 +140,17 @@ public class BattleFieldController implements Initializable {
 			if (tile != null && tile.getUnit() != null 
 					&& oldTile != null && oldTile.getUnit() != null) {
 				//Attack enemy
-				model.attackUnit(oldTile, tile);
+				if(model.attackUnit(oldTile, tile)) {
+					oldTile.getUnit().setHasAttacked(true);
+				}
 				if (tile.getUnit().getLifepoints() <= 0) {
-					tile.setUnit(null);
 					tile.removeUnit();
+					
 				}
 			}
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
-				setHighlightAttack(tile);
+				setHighlightAllies(tile);
 				moveUnit = tile;
 			}else {
 				//Move Unit
@@ -166,6 +168,7 @@ public class BattleFieldController implements Initializable {
 			}
 			if (moveUnit != null && moveUnit.getUnit() != null) {
 				//Highlight tiles to move to
+				this.clearHighlights();
 				this.setHighlightMoveableTiles();
 			}
 			
@@ -185,7 +188,14 @@ public class BattleFieldController implements Initializable {
 						setHighlightSelected(field, true);
 					}
 					// Only for testing
-					if (model.attackPossible(moveUnit, field, 1) && !moveUnit.getUnit().isHasAttacked()) {
+					int range = 0;
+					if (moveUnit.getUnit().getUnitStats().getWeapon1() != null) {
+						range = moveUnit.getUnit().getUnitStats().getWeapon1().getRange();
+					} else if (moveUnit.getUnit().getUnitStats().getWeapon2() != null) {
+						range = moveUnit.getUnit().getUnitStats().getWeapon2().getRange();
+					}
+					if (model.attackPossible(moveUnit, field, range)
+							&& !moveUnit.getUnit().isHasAttacked()) {
 						setHighlightAttack(field);
 					}
 				}

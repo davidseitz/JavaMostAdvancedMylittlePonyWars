@@ -170,7 +170,7 @@ public class Model {
 	 * @return true if unit can attack target
 	 */
 	public boolean attackUnit(Tile unit, Tile target) {
-		if (unit.getUnit().isHasAttacked() && unit.getUnit().getPlayer() == target.getUnit().getPlayer()) {
+		if (unit.getUnit().isHasAttacked() || unit.getUnit().getPlayer() == target.getUnit().getPlayer()) {
 			return false;
 		}
 		if (unit.getUnit() != null && target.getUnit() != null) {
