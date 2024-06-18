@@ -17,13 +17,14 @@ public class Unit_Loader {
 	ArrayList<MovementCost> movement_costs = new ArrayList<MovementCost>();
 	
 	public Unit_Loader(String UNIT_TAG) throws FileNotFoundException {
-		this.unit_tag = UNIT_TAG;
-		loadUnits(UNIT_TAG);
+		this.unit_tag = UNIT_TAG.trim();
+		loadUnits(this.unit_tag);
 	}
 	public void loadUnits(String UNIT_TAG) throws FileNotFoundException {
 		String filename = "resources/unit_stats/"+UNIT_TAG+".unit";
 		File file = new File(filename);
 		Scanner scanner = new Scanner(file);
+		System.out.println("Loading unit: " + filename);
 		int counter = 0;
 		while (scanner.hasNextLine()) {
 			counter += 1;
@@ -51,7 +52,7 @@ public class Unit_Loader {
 			} else if (line.isEmpty()) {
 				
 			}else {
-				//System.out.println("Error: Unknown line in unit file: Line " + counter + ": " + line);
+				System.out.println("Error: Unknown line in unit file: Line " + counter + ": " + line);
 			}
 		}
 		scanner.close();

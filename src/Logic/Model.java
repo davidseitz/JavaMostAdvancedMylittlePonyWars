@@ -270,15 +270,32 @@ public class Model {
 			return true;
 		}
 		try {
-			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats) || 
-					findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getClassType()),unit_stats) || 
-					findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getClassType()),unit_stats) || 
-					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)
-					) {
+			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats)) {
 				return true;
 			}
 		} catch (NullPointerException e) {
-			return false;
+			//Pass
+		}
+		try {
+			if (findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			//Pass
+		}
+		try {
+			if (findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getClassType()),unit_stats)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			//Pass
+		}
+		try {
+			if (findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getClassType()),unit_stats)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			//Pass
 		}
 
 		return false;
