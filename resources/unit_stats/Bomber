@@ -1,0 +1,22 @@
+UNIT_NAME: "Bomber"
+
+UNIT_TAG: "B"
+
+MOVEMENT_RANGE:7
+ 
+MOVEMENT_COST:
+ 	("WT";1)
+ 	("MO";1)
+ 	("PL";1)
+ 	("ST";1)
+ 	("RI";1)
+ 	("WO";1)
+
+WEAPON1:
+	EXISTS: Y
+	FIRE_RANGE:1
+	ATTACKABLE:I,M,T,K,A
+	
+		
+WEAPON2:
+	EXISTS:N
