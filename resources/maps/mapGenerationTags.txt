@@ -35,6 +35,15 @@ CD			CornerRightUp
 RV			RiverUpDown
 RH			RiverLeftRight
 
+ClassTags:
+
+MO			All Mountaintile
+WT			All Watertiles
+ST			All Streettiles
+RI			All Rivertiles
+PL			All Plaintiles
+WO			All Woodtiles
+
 Units:
 Tag:		Unit:
 

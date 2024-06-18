@@ -1,5 +1,6 @@
 #This is the template for the units. The text below can be copy-pasted to create a new unit
 
+# TERRAIN_TAG see maps/mapGenerationTags.txt -> ClassTags
 #If the unit can't move somewhere COST := -
 ----------------
 
