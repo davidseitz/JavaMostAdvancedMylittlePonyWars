@@ -1,0 +1,25 @@
+UNIT_NAME: "Tank"
+
+UNIT_TAG: "T"
+
+MOVEMENT_RANGE:6
+ 
+MOVEMENT_COST:
+ 	("WT";-)
+ 	("MO";-)
+ 	("PL";1)
+ 	("ST";1)
+ 	("RI";2)
+ 	("WO";2)
+
+WEAPON1:
+	EXISTS: Y
+	FIRE_RANGE:1
+	ATTACKABLE:M,T,K,A
+	
+		
+WEAPON2:
+	EXISTS: Y
+	FIRE_RANGE:1
+	ATTACKABLE:I,M,T,K,A,C
+	
