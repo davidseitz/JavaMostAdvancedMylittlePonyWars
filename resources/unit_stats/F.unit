@@ -19,6 +19,6 @@ WEAPON1:
 	
 		
 WEAPON2:
-	EXISTS:N
+	EXISTS: N
 
 	

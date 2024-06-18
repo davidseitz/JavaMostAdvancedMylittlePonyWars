@@ -51,8 +51,12 @@ public class Unit_Loader {
 				System.out.println("Weapon2: " + this.weapon2);
 			} else if (line.isEmpty()) {
 				
+			}else if (line.startsWith("UNIT_TAG:")) {
+				if (line.substring(line.indexOf(":")+1).trim().contains(UNIT_TAG) == false) {
+					System.out.println("Error: Unit tag does not match file name: " + line.substring(line.indexOf(":")+1).trim());
+				}
 			}else {
-				System.out.println("Error: Unknown line in unit file: Line " + counter + ": " + line);
+				//System.out.println("Error: Unknown line in unit file: Line " + counter + ": " + line);
 			}
 		}
 		scanner.close();
