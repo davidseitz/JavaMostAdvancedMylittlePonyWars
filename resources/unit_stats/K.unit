@@ -1,0 +1,22 @@
+UNIT_NAME: "Artillery"
+
+UNIT_TAG: "K"
+
+MOVEMENT_RANGE:3
+ 
+MOVEMENT_COST:
+  ("WT";-)
+ 	("MO";-)
+ 	("PL";1)
+ 	("ST";1)
+ 	("RI";-)
+ 	("WO";2)
+
+WEAPON1:
+	EXISTS: Y
+	FIRE_RANGE:3
+	ATTACKABLE:I,M,T,K,A
+	
+		
+WEAPON2:
+	EXISTS: N

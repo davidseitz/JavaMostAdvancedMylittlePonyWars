@@ -1,0 +1,22 @@
+UNIT_NAME: "Fighter"
+
+UNIT_TAG: "F"
+
+MOVEMENT_RANGE:9
+ 
+MOVEMENT_COST:
+  ("WT";1)
+ 	("MO";1)
+ 	("PL";1)
+ 	("ST";1)
+ 	("RI";1)
+ 	("WO";1)
+
+WEAPON1:
+	EXISTS: Y
+	FIRE_RANGE:1
+	ATTACKABLE:F,B,C
+	
+		
+WEAPON2:
+	EXISTS:N
