@@ -2,7 +2,6 @@ package view;
 
 import Logic.Figures;
 import Logic.Figuretype;
-import Logic.Model;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 
@@ -12,19 +11,16 @@ public class MapCreationMenu extends GridPane {
 	private final String[] tiletags = {"WT","C0","C1","C2","C3","C4","C5","C6","C7","CA","CB","CC","CD","BH","BV",
 			"B0","B1","B2","RH","RV","PL","MO","WO","LD","LR","LU","RD","RU","UD","TU","TD",  "PL","PL"};
 	private final String[] unittags = {"IE","AE","KE","BE","FE","ME","CE","TE","IR","AR","KR","BR","FR","MR","CR","TR"};
-	private Model model;
 	
 	public MapCreationMenu() throws Exception {
 		this.tiles = new Tile[11][3];
 		this.units = new Tile[7][3];
-		this.model = Model.getInstance();
 
 		this.setHgap(5);
 		this.setVgap(5);
 		
 		Tile tile;
 		int offset = 0;
-		int scale = model.getScale();
 		
 		for(int i = 0; i < 11; i++) {
 			for (int j = 0; j < 3; j++) {

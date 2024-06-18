@@ -37,7 +37,6 @@ public class BattleField extends GridPane{
 				tile = new Tile(j, i, tileValue[0], new Image(getClass().getClassLoader().getResource(tilePath).toExternalForm(), scale, scale, false, false));
 				
 				if(tileValue[1].equals("NU") != true) {
-					String unitpath = "units/"+tileValue[1]+".png";
 					try {
 						int player = 0;
 						if(tileValue[1].endsWith("E")) {

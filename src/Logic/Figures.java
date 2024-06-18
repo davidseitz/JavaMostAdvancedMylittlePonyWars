@@ -1,5 +1,7 @@
 package Logic;
 
+import java.io.FileNotFoundException;
+
 public class Figures {
 	private int x;
 	private int y;
@@ -10,7 +12,16 @@ public class Figures {
 	private boolean hasMoved = false;
 	private boolean hasAttacked = false;
 	
-	public Figures(int x, int y, Figuretype type, int player) throws Exception {
+	/**
+	 * TODO Figure Movement at the edges
+	 * 
+	 * @param x
+	 * @param y
+	 * @param type
+	 * @param player
+	 * @throws Exception
+	 */
+	public Figures(int x, int y, Figuretype type, int player) throws FileNotFoundException {
 		this.x = x;
 		this.y = y;
 		this.lifepoints = 100;
