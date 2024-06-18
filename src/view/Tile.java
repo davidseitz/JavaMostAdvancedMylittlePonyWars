@@ -172,6 +172,4 @@ public class Tile extends StackPane{
 	public boolean equals(Tile tile) {
 		return this.x == tile.getX() && this.y == tile.getY();
 	}
-
-
 }
