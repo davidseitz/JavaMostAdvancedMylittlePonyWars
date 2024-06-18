@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Logic.Figures;
 import Logic.Model;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -39,11 +40,12 @@ public class MapCreatorController implements Initializable {
 	
 	private Model model;
 	private String tagToChange;
+	private Figures unitToChange;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.model = Model.getInstance();
-		this.background.setPadding(new Insets(10.0,-10.0,100.0,100.0));
+		this.background.setPadding(new Insets(10.0,20.0,100.0,100.0));
 		this.slider.setValue(model.getScale());
 		this.sliderValue.setText((int) slider.getValue()+"");
 		this.sizeLabel.setText("Size = "+ model.getWidth() + " : "+ model.getHeight());
@@ -57,6 +59,16 @@ public class MapCreatorController implements Initializable {
 		    	  }
 		      }
 		}
+		for (Tile lines[] : menu.getUnits()) {
+		      for (Tile menuVal : lines) {
+		    	  try {
+		    		  menuVal.setOnMouseClicked(new MenuTileClickedEventHandler());
+		    	  }catch(NullPointerException e) {
+		    		  continue;
+		    	  }
+		      }
+		}
+		
 		
 		for (Tile lines[] : model.getField()) {
 		      for (Tile fieldVal : lines) {
@@ -72,7 +84,6 @@ public class MapCreatorController implements Initializable {
 	
 	public void onSliderChanged() {
 		sliderValue.setText(""+((int)slider.getValue()));
-		System.out.println(Toolkit.getDefaultToolkit().getScreenSize());
 	}
 	
 	public void NewField() {
@@ -123,7 +134,16 @@ public class MapCreatorController implements Initializable {
 		@Override
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
-			tagToChange = tile.getType();
+			if(tile.getType().equals("NAT")) {
+				unitToChange = tile.getUnitForCreator();
+				tagToChange = null;
+			}else if(tile.getType().equals("RUT")) {
+				tagToChange = tile.getType();
+				unitToChange = null;
+			}
+			else {
+				tagToChange = tile.getType();
+			}
 		}
 	}
 	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {
@@ -132,8 +152,23 @@ public class MapCreatorController implements Initializable {
 		public void handle(MouseEvent event) {
 			Tile tile = (Tile) event.getSource();
 			if(tagToChange != null) {
-				model.setTile(tile.getX(), tile.getY(), tagToChange);
+				if(tagToChange.equals("RUT")) {
+					if(tile.getUnit() != null) {
+						tile.removeUnit();
+					}
+				}else {
+					model.setTile(tile.getX(), tile.getY(), tagToChange);
+				}
+				unitToChange = null;
 			}
+			if(unitToChange != null) {
+				if(tile.getUnit() != null) {
+					tile.removeUnit();
+				}
+				tile.setUnit(unitToChange);
+				tagToChange = null;
+			}
+			
 		}
 	}
 	

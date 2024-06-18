@@ -18,7 +18,11 @@ public class MapSaver {
 			writer.write(model.getWidth()+":"+model.getHeight()+";"+(char) 10);
 			for(int j = 0; j < tiles[0].length;j++) {
 				for (int i = 0; i < tiles.length;i++) {
-					writer.write(tiles[i][j].getType()+","+"NU"+";");
+					if(tiles[i][j].getUnitForCreator() != null) {
+						writer.write(tiles[i][j].getType()+","+tiles[i][j].getUnitForCreator().getType().getType()+tiles[i][j].getUnitForCreator().getFaction()+";");
+					}else {
+						writer.write(tiles[i][j].getType()+",NU;");
+					}
 				}
 				writer.write((char) 10);
 			}

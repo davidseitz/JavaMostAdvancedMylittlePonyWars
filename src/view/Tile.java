@@ -92,6 +92,14 @@ public class Tile extends StackPane{
 	public int getY() {
 		return y;
 	}
+	
+	public void setUnitForCreator(Figures unitToSet) {
+		this.unit = unitToSet;
+	}
+	
+	public Figures getUnitForCreator() {
+		return this.unit;
+	}
 
 	public void setUnit(Figures unit) {
 		int nolife = 1;
