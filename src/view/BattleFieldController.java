@@ -21,6 +21,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+/**
+ * Controller for the BattleField
+ * Handles the main game loop
+ */
 public class BattleFieldController implements Initializable {
 	
 	@FXML
@@ -135,17 +139,22 @@ public class BattleFieldController implements Initializable {
 				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			if (moveUnit != null && moveUnit.getUnit() != null 
+			System.out.println("Unit: " + moveUnit);
+			System.out.println("Target: " + tile);
+			if (tile != null && tile.getUnit() != null 
 					&& oldTile != null && oldTile.getUnit() != null) {
 				//Attack enemy
-				model.attackUnit(oldTile, moveUnit);
-				if (moveUnit.getUnit().getLifepoints() <= 0) {
-					moveUnit = null;
+				if(model.attackUnit(oldTile, tile)) {
+					oldTile.getUnit().setHasAttacked(true);
+				}
+				if (tile.getUnit().getLifepoints() <= 0) {
+					tile.removeUnit();
+					
 				}
 			}
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
-				setHighlightAttack(tile);
+				setHighlightAllies(tile);
 				moveUnit = tile;
 			}else {
 				//Move Unit
@@ -157,12 +166,14 @@ public class BattleFieldController implements Initializable {
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
                         oldTile.removeUnit();
+ 					}else {
+ 						clearHighlights();
  					}
 				}
 				moveUnit = null;
 			}
 			if (moveUnit != null && moveUnit.getUnit() != null) {
-				//Highlight tiles to move to
+				//Highlight tiles to move to or attack
 				this.setHighlightMoveableTiles();
 			}
 			
@@ -176,13 +187,28 @@ public class BattleFieldController implements Initializable {
 			} // End of Round If
 		}
 		private void setHighlightMoveableTiles() {
+			this.clearHighlights();
+			if (moveUnit.getUnit().getFaction() == model.roundToFaction()) {
+				setHighlightAllies(moveUnit);
+			}
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
-					if (!moveUnit.getUnit().isHasMoved() && model.findPath(moveUnit, field, moveUnit.getUnit().getUnitStats().getMovement_range(), moveUnit.getUnit().getUnitStats())) {
+					if (!moveUnit.getUnit().isHasMoved()
+							&& model.findPath(moveUnit, field, moveUnit.getUnit().getUnitStats().getMovement_range(), moveUnit.getUnit().getUnitStats())
+							&& field.getUnit() == null) {
 						setHighlightSelected(field, true);
 					}
 					// Only for testing
-					if (model.attackPossible(moveUnit, field, 1) && !moveUnit.getUnit().isHasAttacked()) {
+					int range = 0;
+					if (moveUnit.getUnit().getUnitStats().getWeapon1() != null) {
+						range = moveUnit.getUnit().getUnitStats().getWeapon1().getRange();
+					} else if (moveUnit.getUnit().getUnitStats().getWeapon2() != null) {
+						range = moveUnit.getUnit().getUnitStats().getWeapon2().getRange();
+					}
+					if (model.attackPossible(moveUnit, field, range)
+							&& !moveUnit.getUnit().isHasAttacked()
+							&& field.getUnit() != null
+							&& field.getUnit().getPlayer() != moveUnit.getUnit().getPlayer()) {
 						setHighlightAttack(field);
 					}
 				}

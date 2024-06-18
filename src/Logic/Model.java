@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import javafx.scene.image.Image;
 import view.Tile;
 
+/**
+ * Model class that holds the game state
+ */
 public class Model {
 	
 	private int level;
@@ -14,7 +17,7 @@ public class Model {
 	private ArrayList<String[]> map;
 	private Tile[][] field;
 	private static Model instance;
-	private int round = -1; // Startbutten must be pressed before gamestart
+	private int round = -1; // Startbutton must be pressed before the game starts
 	private Model() {
 
 	}
@@ -53,6 +56,14 @@ public class Model {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public char roundToFaction() {
+		if (this.round % 2 == 0) {
+            return 'E';
+            } else {
+            	return 'R';
+            }
 	}
 	public void endRound() {
         this.round++;
@@ -170,7 +181,7 @@ public class Model {
 	 * @return true if unit can attack target
 	 */
 	public boolean attackUnit(Tile unit, Tile target) {
-		if (unit.getUnit().isHasAttacked() && unit.getUnit().getPlayer() == target.getUnit().getPlayer()) {
+		if (unit.getUnit().isHasAttacked() || unit.getUnit().getPlayer() == target.getUnit().getPlayer()) {
 			return false;
 		}
 		if (unit.getUnit() != null && target.getUnit() != null) {
@@ -193,6 +204,7 @@ public class Model {
 				Weapon weapon = unitStats.getWeapon2();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 					if (this.attackPossible(unit, target, weapon.getRange())) {
+						System.out.println("Unit: " + unit + " attacked target: " + target);
 						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
 						return true;
 					}
