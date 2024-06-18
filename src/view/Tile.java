@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 
 public class Tile extends StackPane{
 	
@@ -91,6 +90,14 @@ public class Tile extends StackPane{
 
 	public int getY() {
 		return y;
+	}
+	
+	public void setUnitForCreator(Figures unitToSet) {
+		this.unit = unitToSet;
+	}
+	
+	public Figures getUnitForCreator() {
+		return this.unit;
 	}
 
 	public void setUnit(Figures unit) {
