@@ -5,7 +5,7 @@ UNIT_TAG: "K"
 MOVEMENT_RANGE:3
  
 MOVEMENT_COST:
-  ("WT";-)
+    ("WT";-)
  	("MO";-)
  	("PL";1)
  	("ST";1)
