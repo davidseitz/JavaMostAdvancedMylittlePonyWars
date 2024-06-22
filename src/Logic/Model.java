@@ -194,6 +194,7 @@ public class Model {
 					if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 						if (this.attackPossible(unit, target, weapon.getRange())) {
 							target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
+							target.setUnit(target.getUnit());
 							return true;
 						}
 						
@@ -206,6 +207,7 @@ public class Model {
 					if (this.attackPossible(unit, target, weapon.getRange())) {
 						System.out.println("Unit: " + unit + " attacked target: " + target);
 						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
+						target.setUnit(target.getUnit());
 						return true;
 					}
 				}
