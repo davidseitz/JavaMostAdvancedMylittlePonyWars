@@ -118,10 +118,6 @@ public class Model {
 	public void setField(Tile[][] field) {
 		this.field = field;
 	}
-	
-	public void setTile(int x, int y,String tag) {
-		field[x][y].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), this.scale, this.scale, false, false), tag);
-	}
 
 	public boolean allowedTerrain(Tile tile) {
 		String tileType = tile.getType();
