@@ -125,7 +125,11 @@ public class Tile extends StackPane{
 		redlive.setEndX(scale);
 		redlive.setStartY(0.0); 
 		redlive.setEndY(0.0);
-		redlive.setScaleY(7.0 + ((scale/10)-4));
+		if(this.getY() == Model.getInstance().getHeight()-1) {
+			redlive.setScaleY(3.0 + ((scale/10)-4));
+		}else {
+			redlive.setScaleY(7.0 + ((scale/10)-4));
+		}
 		redlive.setStroke(Color.RED);
 		StackPane.setAlignment(redlive, Pos.BOTTOM_CENTER);
 
@@ -147,7 +151,11 @@ public class Tile extends StackPane{
 	    double movelivebar = ((-1)*(scale - newscale))/2;
 	    greenlive.setTranslateX(movelivebar);
 	    greenlive.setTranslateY(0);
-	    greenlive.setScaleY(7.0 + ((scale/10)-4));
+	    if(this.getY() == Model.getInstance().getHeight()-1) {
+	    	greenlive.setScaleY(3.0 + ((scale/10)-4));
+		}else {
+			greenlive.setScaleY(7.0 + ((scale/10)-4));
+		}
 	    greenlive.setStroke(Color.GREEN);
 		StackPane.setAlignment(greenlive, Pos.BOTTOM_CENTER);
 		
