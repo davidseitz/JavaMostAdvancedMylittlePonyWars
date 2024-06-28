@@ -2,7 +2,6 @@ package Logic;
 
 import java.util.ArrayList;
 
-import javafx.scene.image.Image;
 import view.Tile;
 
 /**
@@ -190,7 +189,12 @@ public class Model {
 					if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 						if (this.attackPossible(unit, target, weapon.getRange())) {
 							target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
-							target.setUnit(target.getUnit());
+							if(target.getUnit().getLifepoints() <= 0) {
+								target.setUnit(target.getUnit());
+								target.removeUnit();
+							}else {
+								target.setUnit(target.getUnit());
+							}
 							return true;
 						}
 						
@@ -203,7 +207,12 @@ public class Model {
 					if (this.attackPossible(unit, target, weapon.getRange())) {
 						System.out.println("Unit: " + unit + " attacked target: " + target);
 						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
-						target.setUnit(target.getUnit());
+						if(target.getUnit().getLifepoints() <= 0) {
+							target.setUnit(target.getUnit());
+							target.removeUnit();
+						}else {
+							target.setUnit(target.getUnit());
+						}
 						return true;
 					}
 				}

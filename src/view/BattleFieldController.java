@@ -146,10 +146,6 @@ public class BattleFieldController implements Initializable {
 				if(model.attackUnit(oldTile, tile)) {
 					oldTile.getUnit().setHasAttacked(true);
 				}
-				if (tile.getUnit().getLifepoints() <= 0) {
-					tile.removeUnit();
-					
-				}
 			}
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
@@ -160,7 +156,7 @@ public class BattleFieldController implements Initializable {
 				
 				if (moveUnit != null) {
 					setHighlightSelected(moveUnit, false);
-					if (model.move(tile, moveUnit)) {
+					if (model.move(tile, moveUnit) && !moveUnit.getUnit().isHasAttacked()) {
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         this.clearHighlights();

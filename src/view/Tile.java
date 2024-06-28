@@ -101,6 +101,9 @@ public class Tile extends StackPane{
 	}
 
 	public void setUnit(Figures unit) {
+		if(this.unit != null) {
+			removeUnit();
+		}
 		int nolife = 1;
 	    if(unit.getLifepoints() <= 0) {
 	    	nolife = 0;
@@ -141,9 +144,6 @@ public class Tile extends StackPane{
 	    	greenlive.setStartY(0.0); 
 	    	greenlive.setEndY(0.0);
 	    }
-	    /**
-	     * TODO right scaling of livebar
-	     */
 	    double movelivebar = ((-1)*(scale - newscale))/2;
 	    greenlive.setTranslateX(movelivebar);
 	    greenlive.setTranslateY(0);
@@ -153,10 +153,6 @@ public class Tile extends StackPane{
 		
 		if (nolife == 1) {
 			getChildren().add(greenlive);
-		}else {
-			if (getChildren().size() == 4) {
-				getChildren().remove(1);
-			}
 		}
 		
 	}
