@@ -1,5 +1,6 @@
 package view;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import Logic.Figuretype;
@@ -11,7 +12,7 @@ import javafx.scene.layout.GridPane;
 public class BattleField extends GridPane{
 	private Model model;
 	
-	public BattleField() throws Exception {
+	public BattleField() throws FileNotFoundException {
 		model = Model.getInstance();
 		
 		this.setHgap(-1);
@@ -22,7 +23,7 @@ public class BattleField extends GridPane{
 		loadMap(height,width,model.getScale());
 	}
 	
-	public void loadMap(int height, int width,int scale) throws Exception {
+	public void loadMap(int height, int width,int scale) throws FileNotFoundException {
 		Tile tile;
 		Tile[][] tiles = new Tile[width][height];
 		int offset = 0;
@@ -46,7 +47,7 @@ public class BattleField extends GridPane{
 						}
 						Figures unit = new Figures(j,i, new Figuretype(tileValue[1]), player);
 						tile.setUnit(unit);
-					} catch (Exception e) {
+					} catch (FileNotFoundException e) {
 						System.out.println("Error: Unit not found");
 						e.printStackTrace();
 						throw e;

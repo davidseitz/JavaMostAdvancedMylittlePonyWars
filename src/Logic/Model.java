@@ -2,7 +2,6 @@ package Logic;
 
 import java.util.ArrayList;
 
-import javafx.scene.image.Image;
 import view.Tile;
 
 /**
@@ -118,10 +117,6 @@ public class Model {
 	public void setField(Tile[][] field) {
 		this.field = field;
 	}
-	
-	public void setTile(int x, int y,String tag) {
-		field[x][y].setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tag+".png").toExternalForm(), this.scale, this.scale, false, false), tag);
-	}
 
 	public boolean allowedTerrain(Tile tile) {
 		String tileType = tile.getType();
@@ -194,6 +189,12 @@ public class Model {
 					if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 						if (this.attackPossible(unit, target, weapon.getRange())) {
 							target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
+							if(target.getUnit().getLifepoints() <= 0) {
+								target.setUnit(target.getUnit());
+								target.removeUnit();
+							}else {
+								target.setUnit(target.getUnit());
+							}
 							return true;
 						}
 						
@@ -206,6 +207,12 @@ public class Model {
 					if (this.attackPossible(unit, target, weapon.getRange())) {
 						System.out.println("Unit: " + unit + " attacked target: " + target);
 						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
+						if(target.getUnit().getLifepoints() <= 0) {
+							target.setUnit(target.getUnit());
+							target.removeUnit();
+						}else {
+							target.setUnit(target.getUnit());
+						}
 						return true;
 					}
 				}
@@ -270,15 +277,32 @@ public class Model {
 			return true;
 		}
 		try {
-			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats) || 
-					findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getClassType()),unit_stats) || 
-					findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getClassType()),unit_stats) || 
-					findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)
-					) {
+			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats)) {
 				return true;
 			}
 		} catch (NullPointerException e) {
-			return false;
+			//Pass
+		}
+		try {
+			if (findPath(this.getNeighbourWest(start), end, range-unit_stats.getMovementCost(this.getNeighbourWest(start).getClassType()),unit_stats)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			//Pass
+		}
+		try {
+			if (findPath(this.getNeighbourEast(start), end, range-unit_stats.getMovementCost(this.getNeighbourEast(start).getClassType()),unit_stats)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			//Pass
+		}
+		try {
+			if (findPath(this.getNeighbourSouth(start), end, range-unit_stats.getMovementCost(this.getNeighbourSouth(start).getClassType()),unit_stats)) {
+				return true;
+			}
+		} catch (NullPointerException e) {
+			//Pass
 		}
 
 		return false;

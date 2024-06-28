@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -71,9 +73,36 @@ public class MapCreatorController implements Initializable {
 		
 		for (Tile lines[] : model.getField()) {
 		      for (Tile fieldVal : lines) {
-		    	  fieldVal.setOnMouseClicked(new FieldClickedEventHandler());
+		    	  fieldVal.setOnDragDetected(mouseEvent -> fieldVal.startFullDrag());
+		    	  fieldVal.setOnMouseDragEntered(mouseEvent -> changeTile((Tile) mouseEvent.getSource()));
+		    	  fieldVal.setOnMousePressed(mouseEvent -> changeTile((Tile) mouseEvent.getSource()));
 		      }
 		}
+	}
+	
+	public void changeTile(Tile source) {
+		//System.out.println(source);
+		Tile tile = source;
+		
+		if(tagToChange != null) {
+			if(tagToChange.equals("RUT")) {
+				if(tile.getUnit() != null) {
+					tile.removeUnit();
+				}
+			}else {
+				tile.setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tagToChange+".png").toExternalForm(), model.getScale(), model.getScale(), false, false), tagToChange);
+			}
+			unitToChange = null;
+		}
+		if(unitToChange != null) {
+			if(tile.getUnit() != null) {
+				tile.removeUnit();
+			}
+			tile.setUnit(unitToChange);
+			tagToChange = null;
+		}
+		
+		
 	}
 	
 	public void saveMap() {
@@ -156,7 +185,7 @@ public class MapCreatorController implements Initializable {
 						tile.removeUnit();
 					}
 				}else {
-					model.setTile(tile.getX(), tile.getY(), tagToChange);
+					tile.setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tagToChange+".png").toExternalForm(), model.getScale(), model.getScale(), false, false), tagToChange);
 				}
 				unitToChange = null;
 			}

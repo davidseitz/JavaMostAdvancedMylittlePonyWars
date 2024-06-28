@@ -101,6 +101,9 @@ public class Tile extends StackPane{
 	}
 
 	public void setUnit(Figures unit) {
+		if(this.unit != null) {
+			removeUnit();
+		}
 		int nolife = 1;
 	    if(unit.getLifepoints() <= 0) {
 	    	nolife = 0;
@@ -122,7 +125,11 @@ public class Tile extends StackPane{
 		redlive.setEndX(scale);
 		redlive.setStartY(0.0); 
 		redlive.setEndY(0.0);
-		redlive.setScaleY(7.0 + ((scale/10)-4));
+		if(this.getY() == Model.getInstance().getHeight()-1) {
+			redlive.setScaleY(3.0 + ((scale/10)-4));
+		}else {
+			redlive.setScaleY(7.0 + ((scale/10)-4));
+		}
 		redlive.setStroke(Color.RED);
 		StackPane.setAlignment(redlive, Pos.BOTTOM_CENTER);
 
@@ -141,22 +148,19 @@ public class Tile extends StackPane{
 	    	greenlive.setStartY(0.0); 
 	    	greenlive.setEndY(0.0);
 	    }
-	    /**
-	     * TODO right scaling of livebar
-	     */
 	    double movelivebar = ((-1)*(scale - newscale))/2;
 	    greenlive.setTranslateX(movelivebar);
 	    greenlive.setTranslateY(0);
-	    greenlive.setScaleY(7.0 + ((scale/10)-4));
+	    if(this.getY() == Model.getInstance().getHeight()-1) {
+	    	greenlive.setScaleY(3.0 + ((scale/10)-4));
+		}else {
+			greenlive.setScaleY(7.0 + ((scale/10)-4));
+		}
 	    greenlive.setStroke(Color.GREEN);
 		StackPane.setAlignment(greenlive, Pos.BOTTOM_CENTER);
 		
 		if (nolife == 1) {
 			getChildren().add(greenlive);
-		}else {
-			if (getChildren().size() == 4) {
-				getChildren().remove(1);
-			}
 		}
 		
 	}

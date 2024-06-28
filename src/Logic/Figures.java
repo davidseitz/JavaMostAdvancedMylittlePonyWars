@@ -30,8 +30,8 @@ public class Figures {
 		try {
 			this.unit_stats = new Unit_Loader(type.getType());
 			
-		} catch (Exception e) {
-			System.out.println("Error: Unit not found doing Inf instead");
+		} catch (FileNotFoundException e) {
+			System.out.println("Error: Unit " + type.getType() + " not found doing Inf instead");
 			this.unit_stats = new Unit_Loader("I");
 		}
 	}

@@ -42,7 +42,7 @@ public class MapCreationMenu extends GridPane {
 			for(int j = 0; j<3; j++) {
 				try {
 					if(i == 0 && j == 0) {
-						unitPath = "units/StormtrooperSquad.png";
+						unitPath = "units/deleteUnitImage2.png";
 						tile = new Tile(i, j, "RUT", new Image(getClass().getClassLoader().getResource(unitPath).toExternalForm(), 45, 45, false, false));
 					}else {
 						unitPath = "units/"+unittags[j+offset]+".png";
