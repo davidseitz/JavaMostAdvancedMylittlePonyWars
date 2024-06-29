@@ -64,7 +64,30 @@ public class Model {
             	return 'R';
             }
 	}
+	private void checkVictory() {
+		int faction1 = 0;
+		int faction2 = 0;
+		for (Tile[] allTiles : this.getField()) {
+			for (Tile field : allTiles) {
+				if (field.getUnit() != null) {
+					if (field.getUnit().getPlayer() == 0) {
+						faction1++;
+					} else {
+						faction2++;
+					}
+				}
+			}
+		}
+		if(faction1 == 0) {
+            System.out.println("Rebels win");
+		} else if (faction2 == 0) {
+			System.out.println("Empire wins");
+		}
+		
+	}
+	
 	public void endRound() {
+		checkVictory();
         this.round++;
         for (Tile[] allTiles : this.getField()) {
             for (Tile field : allTiles) {

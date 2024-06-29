@@ -146,6 +146,11 @@ public class BattleFieldController implements Initializable {
 				if(model.attackUnit(oldTile, tile)) {
 					oldTile.getUnit().setHasAttacked(true);
 				}
+				//Remove dead units is this necessary or done somewhere else?
+				if (tile.getUnit() != null && tile.getUnit().getLifepoints() <= 0) {
+					tile.removeUnit();
+					
+				}
 			}
 			if (tile.getUnit() != null) {
 				//Highlight unit tile
@@ -156,7 +161,7 @@ public class BattleFieldController implements Initializable {
 				
 				if (moveUnit != null) {
 					setHighlightSelected(moveUnit, false);
-					if (model.move(tile, moveUnit) && !moveUnit.getUnit().isHasAttacked()) {
+					if (model.move(tile, moveUnit)) {
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
@@ -185,6 +190,7 @@ public class BattleFieldController implements Initializable {
 			this.clearHighlights();
 			if (moveUnit.getUnit().getFaction() == model.roundToFaction()) {
 				setHighlightAllies(moveUnit);
+				System.out.println("Unit: " + moveUnit.getUnit().getType().getType() + moveUnit.getUnit().getFaction() + " with movement range: " + moveUnit.getUnit().getUnitStats().getMovement_range() + "hasMoved: " + moveUnit.getUnit().isHasMoved() + " hasAttacked: " + moveUnit.getUnit().isHasAttacked()+ "");
 			}
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
@@ -217,7 +223,7 @@ public class BattleFieldController implements Initializable {
 				}
 			}
 		}
-		
+
 	}
 
 }
