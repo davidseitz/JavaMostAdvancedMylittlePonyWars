@@ -64,7 +64,15 @@ public class Model {
             	return 'R';
             }
 	}
-	private void checkVictory() {
+
+	/**
+	 * Checks if a player has won
+	 * 
+	 * @return 1 if Rebels have won
+	 * @return 2 if Empire has won
+	 * @return 0 if no player has won yet
+	 */
+	private int checkVictory() {
 		int faction1 = 0;
 		int faction2 = 0;
 		for (Tile[] allTiles : this.getField()) {
@@ -80,10 +88,12 @@ public class Model {
 		}
 		if(faction1 == 0) {
             System.out.println("Rebels win");
+            return 1;
 		} else if (faction2 == 0) {
 			System.out.println("Empire wins");
+			return 2;
 		}
-		
+		return 0;
 	}
 	
 	public void endRound() {
