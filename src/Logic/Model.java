@@ -213,8 +213,8 @@ public class Model {
 			return false;
 		}
 		if (unit.getUnit() != null && target.getUnit() != null) {
-			Unit_Loader unitStats = unit.getUnit().getUnitStats();
-			Unit_Loader targetStats = target.getUnit().getUnitStats();
+			UnitLoader unitStats = unit.getUnit().getUnitStats();
+			UnitLoader targetStats = target.getUnit().getUnitStats();
 			// Check if unit has a weapon to attack target
 			if (unitStats.getWeapon1() != null)  {
 				Weapon weapon = unitStats.getWeapon1();
@@ -299,7 +299,7 @@ public class Model {
 	 * @return true if a path exists
 	 * @return false if a path doesn't exist
 	 */
-	public boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
+	public boolean findPath(Tile start, Tile end, int range, UnitLoader unit_stats) {
 		if (range < 0) {
 			return false;
 		}
