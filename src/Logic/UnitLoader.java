@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import view.GeneralTypes;
 
-public class Unit_Loader {
+public class UnitLoader {
 	String unit_tag;
 	String unit_name;
 	int movement_range;
@@ -16,7 +16,7 @@ public class Unit_Loader {
 	Weapon weapon2;
 	ArrayList<MovementCost> movement_costs = new ArrayList<MovementCost>();
 	
-	public Unit_Loader(String UNIT_TAG) throws FileNotFoundException {
+	public UnitLoader(String UNIT_TAG) throws FileNotFoundException {
 		this.unit_tag = UNIT_TAG.trim();
 		loadUnits(this.unit_tag);
 	}

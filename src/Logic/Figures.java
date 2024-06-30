@@ -6,7 +6,7 @@ public class Figures {
 	private int x;
 	private int y;
 	private int lifepoints;
-	private Unit_Loader unit_stats;
+	private UnitLoader unit_stats;
 	private int player;
 	private Figuretype type;
 	private boolean hasMoved = false;
@@ -28,11 +28,11 @@ public class Figures {
 		this.type = type;
 		this.player = player;
 		try {
-			this.unit_stats = new Unit_Loader(type.getType());
+			this.unit_stats = new UnitLoader(type.getType());
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("Error: Unit " + type.getType() + " not found doing Inf instead");
-			this.unit_stats = new Unit_Loader("I");
+			this.unit_stats = new UnitLoader("I");
 		}
 	}
 	public boolean isHasMoved() {
@@ -89,7 +89,7 @@ public class Figures {
 		}
 	}
 
-	public Unit_Loader getUnitStats() {
+	public UnitLoader getUnitStats() {
 		return this.unit_stats;
 	}
 }
