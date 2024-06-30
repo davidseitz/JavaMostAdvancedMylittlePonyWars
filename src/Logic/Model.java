@@ -64,7 +64,40 @@ public class Model {
             	return 'R';
             }
 	}
+
+	/**
+	 * Checks if a player has won
+	 * 
+	 * @return 1 if Rebels have won
+	 * @return 2 if Empire has won
+	 * @return 0 if no player has won yet
+	 */
+	private int checkVictory() {
+		int faction1 = 0;
+		int faction2 = 0;
+		for (Tile[] allTiles : this.getField()) {
+			for (Tile field : allTiles) {
+				if (field.getUnit() != null) {
+					if (field.getUnit().getPlayer() == 0) {
+						faction1++;
+					} else {
+						faction2++;
+					}
+				}
+			}
+		}
+		if(faction1 == 0) {
+            System.out.println("Rebels win");
+            return 1;
+		} else if (faction2 == 0) {
+			System.out.println("Empire wins");
+			return 2;
+		}
+		return 0;
+	}
+	
 	public void endRound() {
+		checkVictory();
         this.round++;
         for (Tile[] allTiles : this.getField()) {
             for (Tile field : allTiles) {
@@ -180,8 +213,8 @@ public class Model {
 			return false;
 		}
 		if (unit.getUnit() != null && target.getUnit() != null) {
-			Unit_Loader unitStats = unit.getUnit().getUnitStats();
-			Unit_Loader targetStats = target.getUnit().getUnitStats();
+			UnitLoader unitStats = unit.getUnit().getUnitStats();
+			UnitLoader targetStats = target.getUnit().getUnitStats();
 			// Check if unit has a weapon to attack target
 			if (unitStats.getWeapon1() != null)  {
 				Weapon weapon = unitStats.getWeapon1();
@@ -266,7 +299,7 @@ public class Model {
 	 * @return true if a path exists
 	 * @return false if a path doesn't exist
 	 */
-	public boolean findPath(Tile start, Tile end, int range, Unit_Loader unit_stats) {
+	public boolean findPath(Tile start, Tile end, int range, UnitLoader unit_stats) {
 		if (range < 0) {
 			return false;
 		}

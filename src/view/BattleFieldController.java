@@ -144,7 +144,9 @@ public class BattleFieldController implements Initializable {
 					&& oldTile != null && oldTile.getUnit() != null) {
 				//Attack enemy
 				if(model.attackUnit(oldTile, tile)) {
-					oldTile.getUnit().setHasAttacked(true);
+					oldTile.getUnit().setHasAttacked(true); // Unit cannt move after attacking
+					oldTile.getUnit().setHasMoved(true);
+					clearHighlights();
 				}
 			}
 			if (tile.getUnit() != null) {
@@ -154,9 +156,9 @@ public class BattleFieldController implements Initializable {
 			}else {
 				//Move Unit
 				
-				if (moveUnit != null) {
+				if (moveUnit != null && (!moveUnit.getUnit().isHasMoved() || !moveUnit.getUnit().isHasAttacked())) {
 					setHighlightSelected(moveUnit, false);
-					if (model.move(tile, moveUnit) && !moveUnit.getUnit().isHasAttacked()) {
+					if (model.move(tile, moveUnit)) {
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         this.clearHighlights();
@@ -185,6 +187,7 @@ public class BattleFieldController implements Initializable {
 			this.clearHighlights();
 			if (moveUnit.getUnit().getFaction() == model.roundToFaction()) {
 				setHighlightAllies(moveUnit);
+				System.out.println("Unit: " + moveUnit.getUnit().getType().getType() + moveUnit.getUnit().getFaction() + " with movement range: " + moveUnit.getUnit().getUnitStats().getMovement_range() + "hasMoved: " + moveUnit.getUnit().isHasMoved() + " hasAttacked: " + moveUnit.getUnit().isHasAttacked()+ "");
 			}
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
@@ -217,7 +220,7 @@ public class BattleFieldController implements Initializable {
 				}
 			}
 		}
-		
+
 	}
 
 }

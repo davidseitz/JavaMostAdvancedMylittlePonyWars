@@ -1,14 +1,12 @@
-Note to pull a Tile all over the Field yout need to:
-	1. Place a Unit
-	2. Press on the Unit Image !!Important!!
-	3. Pull throw the scene to place many Tiles
----------------
+#Note to pull a Tile all over the Field yout need to:
+#	1. Place a Unit
+#	2. Press on the Unit Image !!Important!!
+#	3. Pull throw the scene to place many Tiles
+----------------------
 
 Tiles:
+
 Tag:		Tile:
-
-Allowed Tiles:
-
 PL			PlainTile
 WO			WoodsTile
 LD			StreetLeftDown
@@ -51,8 +49,8 @@ PL			All Plaintiles
 WO			All Woodtiles
 
 Units:
-Tag:		Unit:
 
+Tag:		Unit:
 NU			No Unit
 
 Empire:
@@ -70,7 +68,7 @@ IR			-
 MR			-
 TR			-
 KR			-
-AR			AnitAir Rebells
+AR			AntiAir Rebells
 FR			-
 BR			-
 CR			-
@@ -101,6 +99,3 @@ Example:
 2:2;
 PL,NU;MO,NU;
 WO,TE;WT,FE;
-
-
-Use test.map to test maploading

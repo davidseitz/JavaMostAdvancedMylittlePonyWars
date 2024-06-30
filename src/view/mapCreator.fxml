@@ -19,6 +19,8 @@
          <children>
          	<VBox alignment="TOP_CENTER" prefHeight="10.0" prefWidth="244.0" spacing="0.0">
                <children>
+               		<Label fx:id="fileNameErrorLabel" text="" />
+               		<TextField fx:id="fileNameText" prefHeight="26.0" prefWidth="64.0" />
          			<Button alignment="TOP_CENTER" onAction="#saveMap" mnemonicParsing="false" text="Save" />
             		<ScrollPane prefHeight="2000.0" prefWidth="100.0">
                			<content>
