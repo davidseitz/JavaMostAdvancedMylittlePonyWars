@@ -144,12 +144,9 @@ public class BattleFieldController implements Initializable {
 					&& oldTile != null && oldTile.getUnit() != null) {
 				//Attack enemy
 				if(model.attackUnit(oldTile, tile)) {
-					oldTile.getUnit().setHasAttacked(true);
-				}
-				//Remove dead units is this necessary or done somewhere else?
-				if (tile.getUnit() != null && tile.getUnit().getLifepoints() <= 0) {
-					tile.removeUnit();
-					
+					oldTile.getUnit().setHasAttacked(true); // Unit cannt move after attacking
+					oldTile.getUnit().setHasMoved(true);
+					clearHighlights();
 				}
 			}
 			if (tile.getUnit() != null) {
@@ -159,7 +156,7 @@ public class BattleFieldController implements Initializable {
 			}else {
 				//Move Unit
 				
-				if (moveUnit != null) {
+				if (moveUnit != null && (!moveUnit.getUnit().isHasMoved() || !moveUnit.getUnit().isHasAttacked())) {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
                         tile.setUnit(moveUnit.getUnit());
