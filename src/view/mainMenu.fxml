@@ -2,30 +2,32 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1200.0" prefWidth="1920.0" spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenuController">
-   <children>
-      <HBox alignment="CENTER" prefHeight="513.0" prefWidth="1920.0" spacing="200.0">
+<BorderPane fx:id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenuController">
+   <left>
+      <VBox fx:id="vboxButton" alignment="CENTER" prefHeight="400.0" prefWidth="187.0" spacing="40.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="levelOne" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="levelTwo" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
-            <ImageView fx:id="levelThree" fitHeight="300.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" />
+            <ComboBox fx:id="levelSelection" prefWidth="150.0" style="-fx-background-color: transparent;">
+     		</ComboBox>
+            <Button fx:id="startButton" mnemonicParsing="false" onAction="#startGame" style="-fx-background-color: transparent;" />
+            <Button fx:id="mapCreation" mnemonicParsing="false" onAction="#mapCreation" style="-fx-background-color: transparent;" />
+            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitGame" style="-fx-background-color: transparent;" />
          </children>
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-      </HBox>
-      <Button fx:id="startButton" mnemonicParsing="false" onAction="#startGame" prefHeight="50.0" prefWidth="300.0" text="Start">
-         <VBox.margin>
-            <Insets top="100.0" />
-         </VBox.margin></Button>
-      <Button fx:id="mapCreation" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" onAction="#mapCreation" text="Map Creation" />
-      <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitGame" prefHeight="50.0" prefWidth="300.0" text="Quit" />
-   </children>
-   <padding>
-      <Insets bottom="100.0" />
-   </padding>
-</VBox>
+         <padding>
+            <Insets bottom="40.0" left="15.0" right="15.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <ImageView fx:id="levelPreView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+         <image>
+            <Image url="@../../resources/groundTiles/PL.png" />
+         </image>
+      </ImageView>
+   </center>
+</BorderPane>

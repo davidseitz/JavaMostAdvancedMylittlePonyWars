@@ -37,7 +37,11 @@ public class MapCreatorController implements Initializable {
 	@FXML
 	private Label sizeLabel;
 	@FXML
+	private Label fileNameErrorLabel;
+	@FXML
 	private TextField sizeTextfield;
+	@FXML
+	private TextField fileNameText;
 	
 	private Model model;
 	private String tagToChange;
@@ -107,7 +111,12 @@ public class MapCreatorController implements Initializable {
 	
 	public void saveMap() {
 		MapSaver saver = new MapSaver();
-		saver.saveMap(model.getField());
+		if(fileNameText.getText().length() != 0) {
+			saver.saveMap(model.getField(),fileNameText.getText());
+			fileNameErrorLabel.setText("File successfully created/overwritten");
+		}else {
+			fileNameErrorLabel.setText("File Name is required:");
+		}
 	}
 	
 	public void onSliderChanged() {
