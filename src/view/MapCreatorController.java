@@ -111,11 +111,13 @@ public class MapCreatorController implements Initializable {
 	
 	public void saveMap() {
 		MapSaver saver = new MapSaver();
-		if(fileNameText.getText().length() != 0) {
+		if(fileNameText.getText().length() == 0) {
+			fileNameErrorLabel.setText("File Name is required:");
+		}else if (fileNameText.getText().contains(" ")){
+			fileNameErrorLabel.setText("Replace SPACEs with _");
+		}else {
 			saver.saveMap(model.getField(),fileNameText.getText());
 			fileNameErrorLabel.setText("File successfully created/overwritten");
-		}else {
-			fileNameErrorLabel.setText("File Name is required:");
 		}
 	}
 	

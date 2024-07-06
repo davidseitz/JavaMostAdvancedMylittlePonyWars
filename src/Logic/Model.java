@@ -31,6 +31,10 @@ public class Model {
 	public int getRound() {
 		return round;
 	}
+	
+	public void resetRound() {
+		this.round = -1;
+	}
 
 	public int getLevel() {
 		return level;
@@ -72,7 +76,7 @@ public class Model {
 	 * @return 2 if Empire has won
 	 * @return 0 if no player has won yet
 	 */
-	private int checkVictory() {
+	public int checkVictory() {
 		int faction1 = 0;
 		int faction2 = 0;
 		for (Tile[] allTiles : this.getField()) {
@@ -96,8 +100,11 @@ public class Model {
 		return 0;
 	}
 	
-	public void endRound() {
-		checkVictory();
+	public int endRound() {
+		int isFinished = checkVictory();
+		if (isFinished != 0) {
+			return isFinished;
+		}
         this.round++;
         for (Tile[] allTiles : this.getField()) {
             for (Tile field : allTiles) {
@@ -112,6 +119,7 @@ public class Model {
                 }
         	}
         }
+        return 0;
     }
 
 
