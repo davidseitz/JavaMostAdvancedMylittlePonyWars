@@ -103,10 +103,6 @@ public class MainMenuController implements Initializable {
 				levelStage.setScene(newScene);
 				levelStage.setFullScreen(true);
 				levelStage.show();
-				
-				Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-				System.out.println(screenBounds.getHeight());
-				System.out.println(screenBounds.getWidth());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -115,7 +111,7 @@ public class MainMenuController implements Initializable {
 	}
 	
 	private String getSelectedLevel() {
-		return levelSelection.getValue();
+		return levelSelection.getValue().replace(" ", "_");
 	}
 	
 	public void setMapsFromDir() {
@@ -125,7 +121,7 @@ public class MainMenuController implements Initializable {
 		
 		for(File level : levels) {
 			if(level.getName().endsWith(".map")) {
-				items.add(level.getName().substring(0,level.getName().length()-4));
+				items.add(level.getName().substring(0,level.getName().length()-4).replace("_", " "));
 			}
 		}
 		levelSelection.setItems(items);
@@ -166,44 +162,5 @@ public class MainMenuController implements Initializable {
 		Platform.exit();
         System.exit(0);
 	}
-	
-	private class LevelSelectedEventHandler implements EventHandler<MouseEvent> {
-
-		@Override
-		public void handle(MouseEvent event) {
-			model.setScale(40);
-			
-			BattleFieldLoader mapLoader = new BattleFieldLoader();
-			try {
-				mapLoader.loadField(getFile());
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			Parent root;
-			try {
-				root = FXMLLoader.load(getClass().getResource("battleField.fxml"));
-				Scene newScene = new Scene(root);
-				Scene currentScene = startButton.getScene();
-				Stage levelStage = (Stage) currentScene.getWindow();
-				levelStage.setScene(newScene);
-				levelStage.setFullScreen(true);
-				levelStage.show();
-				
-				Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-				System.out.println(screenBounds.getHeight());
-				System.out.println(screenBounds.getWidth());
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
-		}
-		
-		private String getFile() {
-			return levelSelection.getAccessibleText();
-		}
-		
-	}
-
 	
 }

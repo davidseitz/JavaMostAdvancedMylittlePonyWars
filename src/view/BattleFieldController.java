@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -19,6 +20,7 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 /**
@@ -61,6 +63,7 @@ public class BattleFieldController implements Initializable {
 		
 		battlefield.setPadding(new Insets(0.0,0.0,0.0,0.0));
 		
+		model.resetRound();
 		finishRoundButton.setText("Start Game");
 		slider.setValue(model.getScale());
 		sliderValue.setText("" + (int)slider.getValue());
@@ -99,12 +102,28 @@ public class BattleFieldController implements Initializable {
 			reloadButton.setVisible(false);
 			
 		}
-		model.endRound();
+		int isFinished = model.endRound();
+		if (isFinished != 0) {
+			Parent root;
+			try {
+				root = FXMLLoader.load(getClass().getResource("victoryScreen.fxml"));
+				Scene newScene = new Scene(root);
+				Scene currentScene = finishRoundButton.getScene();
+				Stage levelStage = (Stage) currentScene.getWindow();
+				levelStage.setScene(newScene);
+				levelStage.setFullScreen(true);
+				levelStage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		if(model.getRound()%2 == 0){
 			sliderValue.setText("Turn Empire");
 		}else {
 			sliderValue.setText("Turn Rebels");
 		}
+		moveUnit = null;
+		oldTile = null;
 		
 	}
 	
