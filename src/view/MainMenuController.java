@@ -59,7 +59,7 @@ public class MainMenuController implements Initializable {
 		levelSelection.setVisible(false);
 		levelPreView.setVisible(false);
 		
-		Image backgroundImage = new Image(getClass().getClassLoader().getResource("uiFiles/starwarsPixelart.jpeg").toExternalForm());
+		Image backgroundImage = new Image(getClass().getClassLoader().getResource("uiFiles/empirePixelart.jpeg").toExternalForm());
 		BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
 		background.setBackground(new Background(new BackgroundImage(backgroundImage,
 	            BackgroundRepeat.NO_REPEAT,
