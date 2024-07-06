@@ -25,9 +25,7 @@ public class UnitLoader {
 		File file = new File(filename);
 		Scanner scanner = new Scanner(file);
 		System.out.println("Loading unit: " + filename);
-		int counter = 0;
 		while (scanner.hasNextLine()) {
-			counter += 1;
 			String line = scanner.nextLine();
 			//System.out.println("Line " + counter + ": " + line);
 			if (line.isEmpty()) {
