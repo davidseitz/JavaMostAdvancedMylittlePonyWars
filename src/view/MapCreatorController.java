@@ -123,7 +123,7 @@ public class MapCreatorController implements Initializable {
 		sliderValue.setText(""+((int)slider.getValue()));
 	}
 	
-	public void NewField() {
+	public void newField() {
 		try {
 			String[] sizes = sizeTextfield.getText().split(":");
 			model.setHeight(Integer.parseInt(sizes[1]));
@@ -138,7 +138,7 @@ public class MapCreatorController implements Initializable {
 			model.setScale(40);
 			reloadStage();
 		}catch (Exception e) {
-			System.out.println("Wrong Format");
+			fileNameErrorLabel.setText("Wrong Size Format");
 		}
 	}
 	
@@ -181,31 +181,6 @@ public class MapCreatorController implements Initializable {
 			else {
 				tagToChange = tile.getType();
 			}
-		}
-	}
-	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {
-
-		@Override
-		public void handle(MouseEvent event) {
-			Tile tile = (Tile) event.getSource();
-			if(tagToChange != null) {
-				if(tagToChange.equals("RUT")) {
-					if(tile.getUnit() != null) {
-						tile.removeUnit();
-					}
-				}else {
-					tile.setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tagToChange+".png").toExternalForm(), model.getScale(), model.getScale(), false, false), tagToChange);
-				}
-				unitToChange = null;
-			}
-			if(unitToChange != null) {
-				if(tile.getUnit() != null) {
-					tile.removeUnit();
-				}
-				tile.setUnit(unitToChange);
-				tagToChange = null;
-			}
-			
 		}
 	}
 	

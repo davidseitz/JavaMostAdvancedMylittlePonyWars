@@ -42,7 +42,7 @@
          <children>
          	<Label fx:id="sizeLabel" text="Size = 15 : 15" />
             <TextField fx:id="sizeTextfield" prefHeight="26.0" prefWidth="64.0" />
-            <Button mnemonicParsing="false" text="New Field" onAction="#NewField" />
+            <Button mnemonicParsing="false" text="New Field" onAction="#newField" />
             <VBox alignment="CENTER" prefHeight="10.0" prefWidth="244.0">
                <children>
                   <Label fx:id="sliderValue" text="Label" />
