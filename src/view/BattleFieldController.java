@@ -51,11 +51,7 @@ public class BattleFieldController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		this.model = Model.getInstance();
 		
-		double padding = 100.0;
-		if(model.getLevel() == 3) {
-			padding = 350.0;
-		}
-		this.background.setPadding(new Insets(10.0,100.0,100.0,padding));
+		this.background.setPadding(new Insets(10.0,100.0,100.0,100.0));
 		this.background.setPrefSize(1200.0, 1920.0);
 		
 		BorderPane.setMargin(battlefield, new Insets(10));

@@ -9,7 +9,6 @@ import view.Tile;
  */
 public class Model {
 	
-	private int level;
 	private int width;
 	private int height;
 	private int scale;
@@ -34,14 +33,6 @@ public class Model {
 	
 	public void resetRound() {
 		this.round = -1;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
 	}
 
 	public int getWidth() {
