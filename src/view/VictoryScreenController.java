@@ -8,7 +8,6 @@ import Logic.Model;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,7 +20,6 @@ import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class VictoryScreenController implements Initializable{
@@ -37,24 +35,27 @@ public class VictoryScreenController implements Initializable{
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Image backgroundImage = new Image(getClass().getClassLoader().getResource("uiFiles/starwarsPixelart.jpeg").toExternalForm());
+		model = Model.getInstance();
+		
+		int winner = model.checkVictory();
+		String winnerBackground = "uiFiles/empirePixelart.jpeg";
+		if(winner == 1) {
+			victoryLabel.setText("Rebels Wins");
+			winnerBackground = "uiFiles/rebelPixelart.png";
+		}else if (winner == 2) {
+			victoryLabel.setText("Empire Wins");
+			winnerBackground = "uiFiles/empirePixelart.jpeg";
+		}
+
+		mainMenu.setGraphic(new ImageView(new Image(getClass().getClassLoader().getResource("uiFiles/backToMenuButton.png").toExternalForm())));
+		
+		Image backgroundImage = new Image(getClass().getClassLoader().getResource(winnerBackground).toExternalForm());
 		BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
 		background.setBackground(new Background(new BackgroundImage(backgroundImage,
 	            BackgroundRepeat.NO_REPEAT,
 	            BackgroundRepeat.NO_REPEAT,
 	            BackgroundPosition.CENTER,
 	            bSize)));
-		
-		model = Model.getInstance();
-		
-		int winner = model.checkVictory();
-		if(winner == 1) {
-			victoryLabel.setText("Rebels Wins");
-		}else if (winner == 2) {
-			victoryLabel.setText("Empire Wins");
-		}
-
-		mainMenu.setGraphic(new ImageView(new Image(getClass().getClassLoader().getResource("uiFiles/backToMenuButton.png").toExternalForm())));
 	}
 	
 	public void backToMenu() {

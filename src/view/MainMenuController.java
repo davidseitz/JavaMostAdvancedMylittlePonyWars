@@ -10,7 +10,6 @@ import Logic.Model;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -61,7 +59,7 @@ public class MainMenuController implements Initializable {
 		levelSelection.setVisible(false);
 		levelPreView.setVisible(false);
 		
-		Image backgroundImage = new Image(getClass().getClassLoader().getResource("uiFiles/starwarsPixelart.jpeg").toExternalForm());
+		Image backgroundImage = new Image(getClass().getClassLoader().getResource("uiFiles/empirePixelart.jpeg").toExternalForm());
 		BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
 		background.setBackground(new Background(new BackgroundImage(backgroundImage,
 	            BackgroundRepeat.NO_REPEAT,
