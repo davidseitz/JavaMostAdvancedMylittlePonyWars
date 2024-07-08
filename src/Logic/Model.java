@@ -82,10 +82,8 @@ public class Model {
 			}
 		}
 		if(faction1 == 0) {
-            System.out.println("Rebels win");
             return 1;
 		} else if (faction2 == 0) {
-			System.out.println("Empire wins");
 			return 2;
 		}
 		return 0;
@@ -218,18 +216,15 @@ public class Model {
 			if (unitStats.getWeapon1() != null)  {
 				Weapon weapon = unitStats.getWeapon1();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-					if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-						if (this.attackPossible(unit, target, weapon.getRange())) {
-							target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
-							if(target.getUnit().getLifepoints() <= 0) {
-								target.setUnit(target.getUnit());
-								target.removeUnit();
-							}else {
-								target.setUnit(target.getUnit());
-							}
-							return true;
+					if (this.attackPossible(unit, target, weapon.getRange())) {
+						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
+						if(target.getUnit().getLifepoints() <= 0) {
+							target.setUnit(target.getUnit());
+							target.removeUnit();
+						}else {
+							target.setUnit(target.getUnit());
 						}
-						
+						return true;
 					}
 				}
 			}
@@ -237,7 +232,6 @@ public class Model {
 				Weapon weapon = unitStats.getWeapon2();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 					if (this.attackPossible(unit, target, weapon.getRange())) {
-						System.out.println("Unit: " + unit + " attacked target: " + target);
 						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
 						if(target.getUnit().getLifepoints() <= 0) {
 							target.setUnit(target.getUnit());
@@ -253,7 +247,22 @@ public class Model {
 		return false;
 	}
 	public boolean attackPossible(Tile unit, Tile target, int range) {
-		if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked()) {
+		boolean canAttack = false;
+		try{
+		UnitLoader unitStats = unit.getUnit().getUnitStats();
+		UnitLoader targetStats = target.getUnit().getUnitStats();
+		Weapon weapon1 = unitStats.getWeapon1();
+		Weapon weapon2 = unitStats.getWeapon2();
+		if ((weapon1.getCan_attack().contains(targetStats.getUnit_tag()) 
+				|| weapon2.getCan_attack().contains(targetStats.getUnit_tag()))) {
+			canAttack = true;
+		}
+		}catch(NullPointerException e) {
+			return false;
+		}
+		
+		
+		if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked() && canAttack) {
 			return true;
 		}
 		return false;
