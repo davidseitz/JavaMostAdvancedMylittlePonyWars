@@ -149,8 +149,6 @@ public class MainMenuController implements Initializable {
 			levelStage.show();
 			
 			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-			System.out.println(screenBounds.getHeight());
-			System.out.println(screenBounds.getWidth());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

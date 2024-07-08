@@ -41,7 +41,6 @@ public class BattleFieldLoader {
 		model = Model.getInstance();
 		ArrayList<String[]> tmpMap = new ArrayList<>();
 		String[] tmpTile;
-		System.out.println(tiles[0].length + " und " + tiles.length);
 		for(int j = 0; j < tiles[0].length;j++) {
 			for (int i = 0; i < tiles.length;i++) {
 				String unit = "NU";

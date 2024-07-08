@@ -84,7 +84,6 @@ public class MapCreatorController implements Initializable {
 	}
 	
 	public void changeTile(Tile source) {
-		//System.out.println(source);
 		Tile tile = source;
 		
 		if(tagToChange != null) {

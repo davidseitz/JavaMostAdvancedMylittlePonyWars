@@ -151,8 +151,6 @@ public class BattleFieldController implements Initializable {
 				//Highlight the selected tile
 				setHighlightSelected(oldTile, false);
 			}
-			System.out.println("Unit: " + moveUnit);
-			System.out.println("Target: " + tile);
 			if (tile != null && tile.getUnit() != null 
 					&& oldTile != null && oldTile.getUnit() != null) {
 				//Attack enemy
@@ -188,19 +186,12 @@ public class BattleFieldController implements Initializable {
 			}
 			
 			oldTile = tile;
-			model.printPossibleMoves(tile.getX(), tile.getY(),tile);
-			System.out.println("X = " +tile.getX()+ " Y = " + tile.getY());
-			if (tile.getUnit() != null) {
-                System.out.println("With Unit: " + tile.getUnit().getType().getType() + "" + tile.getUnit().getFaction());
-            }
-			
 			} // End of Round If
 		}
 		private void setHighlightMoveableTiles() {
 			this.clearHighlights();
 			if (moveUnit.getUnit().getFaction() == model.roundToFaction()) {
 				setHighlightAllies(moveUnit);
-				System.out.println("Unit: " + moveUnit.getUnit().getType().getType() + moveUnit.getUnit().getFaction() + " with movement range: " + moveUnit.getUnit().getUnitStats().getMovement_range() + "hasMoved: " + moveUnit.getUnit().isHasMoved() + " hasAttacked: " + moveUnit.getUnit().isHasAttacked()+ "");
 			}
 			for (Tile[] allTiles : model.getField()) {
 				for (Tile field : allTiles) {
