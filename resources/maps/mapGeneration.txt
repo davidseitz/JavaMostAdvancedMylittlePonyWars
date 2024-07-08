@@ -54,24 +54,24 @@ Tag:		Unit:
 NU			No Unit
 
 Empire:
-IE			-
-ME			-
+IE			Stormtrooper
+ME			Scouttrooper
 TE			ATST
 KE			Imperial Artillery
 AE			-
 FE			TieFighter
-BE			-
-CE			-
+BE			TieBomber
+CE			Imperial Dropship
 
 Rebels:
-IR			-
-MR			-
-TR			-
-KR			-
-AR			AntiAir Rebells
-FR			-
-BR			-
-CR			-
+IR			Rebel Soldier
+MR			Rebel Grenadier
+TR			Rebel Tank
+KR			Rebel Artillery
+AR			AntiAir Rebels
+FR			X-Wing
+BR			Y-Wing
+CR			Rebel Dropship
 
 Prefix:		Meaning:
 
