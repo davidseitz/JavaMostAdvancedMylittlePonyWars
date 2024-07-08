@@ -90,6 +90,7 @@ public class BattleFieldController implements Initializable {
 	}
 	
 	public void endRound() {
+		clearHighlights();
 		if(model.getRound() == -1) {
 			finishRoundButton.setText("Next Round");
 			slider.setVisible(false);
@@ -139,6 +140,14 @@ public class BattleFieldController implements Initializable {
 	    tile.getBackgroundLayer().setEffect(new ColorAdjust(0.5, 0, 0.5, 0));
 	}
 	
+	public void clearHighlights() {
+		for (Tile[] allTiles : model.getField()) {
+			for (Tile field : allTiles) {
+				setHighlightSelected(field, false);
+			}
+		}
+	}
+	
 	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {
 
 		@Override
@@ -172,7 +181,7 @@ public class BattleFieldController implements Initializable {
 					if (model.move(tile, moveUnit)) {
                         tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
-                        this.clearHighlights();
+                        clearHighlights();
                         oldTile.removeUnit();
  					}else {
  						clearHighlights();
@@ -189,7 +198,7 @@ public class BattleFieldController implements Initializable {
 			} // End of Round If
 		}
 		private void setHighlightMoveableTiles() {
-			this.clearHighlights();
+			clearHighlights();
 			if (moveUnit.getUnit().getFaction() == model.roundToFaction()) {
 				setHighlightAllies(moveUnit);
 			}
@@ -216,15 +225,6 @@ public class BattleFieldController implements Initializable {
 				}
 			}
 		}
-		
-		private void clearHighlights() {
-			for (Tile[] allTiles : model.getField()) {
-				for (Tile field : allTiles) {
-					setHighlightSelected(field, false);
-				}
-			}
-		}
-
 	}
 
 }
