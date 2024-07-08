@@ -28,7 +28,7 @@ To add the new Unit to the Map Creator:
 To add a new Tile:
 
 	1. CHOOSE a TAG for the Tile
-	2. ADD the TAG into the [evalClassType] methode to the corresponding ClassType (see /modification/default_values.txt)
+	2. ADD the TAG into the [evalClassType] methode to the corresponding ClassType (see /modification/default_values.txt) in the Tile.java file
 	3. ADD a .png file to /groundTiles named {TAG}.png
 
 To add the new Tile to the Map Creator:
