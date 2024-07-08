@@ -1,5 +1,10 @@
 Java's most advanced Star Wars
 =========================
+
+FOLLOWING Files are taken from the Internet:
+- /resources/uiFiles/empirePixelart.jpeg [Link](https://wallpaper.mob.org/pc/image/sci_fi-star_wars-pixel_art-461022.html)
+- /resources/uiFiles/rebelPixelart.png [Link](https://64.media.tumblr.com/81d7ecde8e5a31ae09dfa38adace5117/2d8352260a227498-96/s540x810/aebee7b8a67893f5b1d16f1f691ed2c7d3bb4af7.png)
+
 ####HOW TO PLAY:
 
 ####HOW TO MODIFY THE GAME:
