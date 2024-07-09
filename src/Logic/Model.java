@@ -1,6 +1,9 @@
 package Logic;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import view.Tile;
 
@@ -14,10 +17,54 @@ public class Model {
 	private int scale;
 	private ArrayList<String[]> map;
 	private Tile[][] field;
+	private String[] classTypes;
 	private static Model instance;
 	private int round = -1; // Startbutton must be pressed before the game starts
 	private Model() {
-
+		
+	}
+	
+	public void initClassTypes() {
+		this.classTypes = new String[5];
+		try {
+			String filename = "resources/modification/Class_Types.txt";
+			File file = new File(filename);
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if (line.isEmpty()) {
+					continue;
+				}
+				if(line.startsWith("MOUNTAIN")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[0]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("PLAIN")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[1]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("STREETS")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[2]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("RIVERS")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[3]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("WOODS")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[4]=line.substring(start_name+1, end_name);
+				}
+			}
+			scanner.close();
+		}catch(FileNotFoundException e) {
+			
+		}
+	}
+	
+	public String[] getClassTypes() {
+		return this.classTypes;
 	}
 	
 	public static Model getInstance() {
