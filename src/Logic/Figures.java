@@ -3,11 +3,11 @@ package Logic;
 import java.io.FileNotFoundException;
 
 public class Figures {
+	private final int player;
 	private int x;
 	private int y;
 	private int lifepoints;
 	private UnitLoader unit_stats;
-	private int player;
 	private Figuretype type;
 	private boolean hasMoved = false;
 	private boolean hasAttacked = false;

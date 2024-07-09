@@ -1,8 +1,10 @@
 package Logic;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.Arrays;
-
 import view.Tile;
 
 /**
@@ -10,16 +12,59 @@ import view.Tile;
  */
 public class Model {
 	
-	private int level;
 	private int width;
 	private int height;
 	private int scale;
 	private ArrayList<String[]> map;
 	private Tile[][] field;
+	private String[] classTypes;
 	private static Model instance;
 	private int round = -1; // Startbutton must be pressed before the game starts
 	private Model() {
-
+		
+	}
+	
+	public void initClassTypes() {
+		this.classTypes = new String[5];
+		try {
+			String filename = "resources/modification/Class_Types.txt";
+			File file = new File(filename);
+			Scanner scanner = new Scanner(file);
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				if (line.isEmpty()) {
+					continue;
+				}
+				if(line.startsWith("MOUNTAIN")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[0]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("PLAIN")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[1]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("STREETS")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[2]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("RIVERS")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[3]=line.substring(start_name+1, end_name);
+				}else if(line.startsWith("WOODS")) {
+					int start_name = line.indexOf("\"");
+					int end_name = line.indexOf("\"", start_name+1);
+					classTypes[4]=line.substring(start_name+1, end_name);
+				}
+			}
+			scanner.close();
+		}catch(FileNotFoundException e) {
+			
+		}
+	}
+	
+	public String[] getClassTypes() {
+		return this.classTypes;
 	}
 	
 	public static Model getInstance() {
@@ -32,13 +77,9 @@ public class Model {
 	public int getRound() {
 		return round;
 	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
+	
+	public void resetRound() {
+		this.round = -1;
 	}
 
 	public int getWidth() {
@@ -73,7 +114,7 @@ public class Model {
 	 * @return 2 if Empire has won
 	 * @return 0 if no player has won yet
 	 */
-	private int checkVictory() {
+	public int checkVictory() {
 		int faction1 = 0;
 		int faction2 = 0;
 		for (Tile[] allTiles : this.getField()) {
@@ -88,17 +129,18 @@ public class Model {
 			}
 		}
 		if(faction1 == 0) {
-            System.out.println("Rebels win");
             return 1;
 		} else if (faction2 == 0) {
-			System.out.println("Empire wins");
 			return 2;
 		}
 		return 0;
 	}
 	
-	public void endRound() {
-		checkVictory();
+	public int endRound() {
+		int isFinished = checkVictory();
+		if (isFinished != 0) {
+			return isFinished;
+		}
         this.round++;
         for (Tile[] allTiles : this.getField()) {
             for (Tile field : allTiles) {
@@ -113,6 +155,7 @@ public class Model {
                 }
         	}
         }
+        return 0;
     }
 
 
@@ -220,18 +263,15 @@ public class Model {
 			if (unitStats.getWeapon1() != null)  {
 				Weapon weapon = unitStats.getWeapon1();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-					if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-						if (this.attackPossible(unit, target, weapon.getRange())) {
-							target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
-							if(target.getUnit().getLifepoints() <= 0) {
-								target.setUnit(target.getUnit());
-								target.removeUnit();
-							}else {
-								target.setUnit(target.getUnit());
-							}
-							return true;
+					if (this.attackPossible(unit, target, weapon.getRange())) {
+						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
+						if(target.getUnit().getLifepoints() <= 0) {
+							target.setUnit(target.getUnit());
+							target.removeUnit();
+						}else {
+							target.setUnit(target.getUnit());
 						}
-						
+						return true;
 					}
 				}
 			}
@@ -239,7 +279,6 @@ public class Model {
 				Weapon weapon = unitStats.getWeapon2();
 				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 					if (this.attackPossible(unit, target, weapon.getRange())) {
-						System.out.println("Unit: " + unit + " attacked target: " + target);
 						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
 						if(target.getUnit().getLifepoints() <= 0) {
 							target.setUnit(target.getUnit());
@@ -255,7 +294,22 @@ public class Model {
 		return false;
 	}
 	public boolean attackPossible(Tile unit, Tile target, int range) {
-		if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked()) {
+		boolean canAttack = false;
+		try{
+		UnitLoader unitStats = unit.getUnit().getUnitStats();
+		UnitLoader targetStats = target.getUnit().getUnitStats();
+		Weapon weapon1 = unitStats.getWeapon1();
+		Weapon weapon2 = unitStats.getWeapon2();
+		if ((weapon1.getCan_attack().contains(targetStats.getUnit_tag()) 
+				|| weapon2.getCan_attack().contains(targetStats.getUnit_tag()))) {
+			canAttack = true;
+		}
+		}catch(NullPointerException e) {
+			return false;
+		}
+		
+		
+		if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked() && canAttack) {
 			return true;
 		}
 		return false;

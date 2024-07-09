@@ -17,7 +17,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -37,7 +36,11 @@ public class MapCreatorController implements Initializable {
 	@FXML
 	private Label sizeLabel;
 	@FXML
+	private Label fileNameErrorLabel;
+	@FXML
 	private TextField sizeTextfield;
+	@FXML
+	private TextField fileNameText;
 	
 	private Model model;
 	private String tagToChange;
@@ -81,7 +84,6 @@ public class MapCreatorController implements Initializable {
 	}
 	
 	public void changeTile(Tile source) {
-		//System.out.println(source);
 		Tile tile = source;
 		
 		if(tagToChange != null) {
@@ -107,14 +109,21 @@ public class MapCreatorController implements Initializable {
 	
 	public void saveMap() {
 		MapSaver saver = new MapSaver();
-		saver.saveMap(model.getField());
+		if(fileNameText.getText().length() == 0) {
+			fileNameErrorLabel.setText("File Name is required:");
+		}else if (fileNameText.getText().contains(" ")){
+			fileNameErrorLabel.setText("Replace SPACEs with _");
+		}else {
+			saver.saveMap(model.getField(),fileNameText.getText());
+			fileNameErrorLabel.setText("File successfully created/overwritten");
+		}
 	}
 	
 	public void onSliderChanged() {
 		sliderValue.setText(""+((int)slider.getValue()));
 	}
 	
-	public void NewField() {
+	public void newField() {
 		try {
 			String[] sizes = sizeTextfield.getText().split(":");
 			model.setHeight(Integer.parseInt(sizes[1]));
@@ -129,7 +138,7 @@ public class MapCreatorController implements Initializable {
 			model.setScale(40);
 			reloadStage();
 		}catch (Exception e) {
-			System.out.println("Wrong Format");
+			fileNameErrorLabel.setText("Wrong Size Format");
 		}
 	}
 	
@@ -172,31 +181,6 @@ public class MapCreatorController implements Initializable {
 			else {
 				tagToChange = tile.getType();
 			}
-		}
-	}
-	private class FieldClickedEventHandler implements EventHandler<MouseEvent> {
-
-		@Override
-		public void handle(MouseEvent event) {
-			Tile tile = (Tile) event.getSource();
-			if(tagToChange != null) {
-				if(tagToChange.equals("RUT")) {
-					if(tile.getUnit() != null) {
-						tile.removeUnit();
-					}
-				}else {
-					tile.setNewTile(new Image(getClass().getClassLoader().getResource("groundTiles/"+tagToChange+".png").toExternalForm(), model.getScale(), model.getScale(), false, false), tagToChange);
-				}
-				unitToChange = null;
-			}
-			if(unitToChange != null) {
-				if(tile.getUnit() != null) {
-					tile.removeUnit();
-				}
-				tile.setUnit(unitToChange);
-				tagToChange = null;
-			}
-			
 		}
 	}
 	

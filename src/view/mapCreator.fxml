@@ -19,6 +19,8 @@
          <children>
          	<VBox alignment="TOP_CENTER" prefHeight="10.0" prefWidth="244.0" spacing="0.0">
                <children>
+               		<Label fx:id="fileNameErrorLabel" text="" />
+               		<TextField fx:id="fileNameText" prefHeight="26.0" prefWidth="64.0" />
          			<Button alignment="TOP_CENTER" onAction="#saveMap" mnemonicParsing="false" text="Save" />
             		<ScrollPane prefHeight="2000.0" prefWidth="100.0">
                			<content>
@@ -40,7 +42,7 @@
          <children>
          	<Label fx:id="sizeLabel" text="Size = 15 : 15" />
             <TextField fx:id="sizeTextfield" prefHeight="26.0" prefWidth="64.0" />
-            <Button mnemonicParsing="false" text="New Field" onAction="#NewField" />
+            <Button mnemonicParsing="false" text="New Field" onAction="#newField" />
             <VBox alignment="CENTER" prefHeight="10.0" prefWidth="244.0">
                <children>
                   <Label fx:id="sliderValue" text="Label" />
