@@ -18,6 +18,7 @@ To add a new Unit:
 	1. CHOOSE a TAG Name for the .unit file
 	2. ADD .unit file in /unit_stats following the orders in the /modification/unit_file_template.txt file
 	3. ADD .png file in /units in format: {TAG}{FACTION (E/R)}.png for both Factions
+	4. ADD every change to /modification/default_values.txt for Documentation
 	
 To add the new Unit to the Map Creator:
 
@@ -28,8 +29,9 @@ To add the new Unit to the Map Creator:
 To add a new Tile:
 
 	1. CHOOSE a TAG for the Tile
-	2. ADD the TAG into the [evalClassType] methode to the corresponding ClassType (see /modification/default_values.txt) in the Tile.java file
+	2. ADD the TAG to the corresponding ClassType (see /modification/default_values.txt) in /modification/Class_Types.txt
 	3. ADD a .png file to /groundTiles named {TAG}.png
+	4. ADD every change to /modification/default_values.txt for Documentation
 
 To add the new Tile to the Map Creator:
 

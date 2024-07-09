@@ -55,6 +55,7 @@ public class MainMenuController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		this.isLevelSelection = false;
 		this.model = Model.getInstance();
+		model.initClassTypes();
 		
 		levelSelection.setVisible(false);
 		levelPreView.setVisible(false);
