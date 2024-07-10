@@ -394,6 +394,9 @@ public class Model {
 		if (start.equals(end)) {
 			return true;
 		}
+		if (start.getUnit() != null && start.getUnit().getPlayer() != this.round % 2) {
+			return false;
+		}
 		try {
 			if (findPath(this.getNeighbourNorth(start), end, range-unit_stats.getMovementCost(this.getNeighbourNorth(start).getClassType()),unit_stats)) {
 				return true;
