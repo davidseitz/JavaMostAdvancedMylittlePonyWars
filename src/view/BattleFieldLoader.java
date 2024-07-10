@@ -10,20 +10,11 @@ import Logic.Model;
 public class BattleFieldLoader {
 	
 	private Model model;
-	private File file;
 	
-	public void loadField(int level) throws FileNotFoundException {
+	public void loadField(String level) throws FileNotFoundException {
 		model = Model.getInstance();
 		
-		if(level == 1) {
-			file = new File("resources/maps/dLittleIsland.map");
-		}else if(level == 2) {
-			file = new File("resources/maps/dEonSprings.map");
-		}else if(level == 3) {
-			file = new File("resources/maps/dPistonDam.map");
-		}else {
-			file = new File("resources/maps/creator.map");
-		}
+		File file = new File(level);
 		Scanner s = new Scanner(file);
 		ArrayList<String[]> map = new ArrayList<>();
 		
@@ -50,7 +41,6 @@ public class BattleFieldLoader {
 		model = Model.getInstance();
 		ArrayList<String[]> tmpMap = new ArrayList<>();
 		String[] tmpTile;
-		System.out.println(tiles[0].length + " und " + tiles.length);
 		for(int j = 0; j < tiles[0].length;j++) {
 			for (int i = 0; i < tiles.length;i++) {
 				String unit = "NU";

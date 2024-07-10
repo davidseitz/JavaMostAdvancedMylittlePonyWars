@@ -9,12 +9,12 @@ import java.util.Scanner;
 import view.GeneralTypes;
 
 public class UnitLoader {
-	String unit_tag;
-	String unit_name;
-	int movement_range;
-	Weapon weapon1;
-	Weapon weapon2;
-	ArrayList<MovementCost> movement_costs = new ArrayList<MovementCost>();
+	private String unit_tag;
+	private String unit_name;
+	private int movement_range;
+	private Weapon weapon1;
+	private Weapon weapon2;
+	private ArrayList<MovementCost> movement_costs = new ArrayList<MovementCost>();
 	
 	public UnitLoader(String UNIT_TAG) throws FileNotFoundException {
 		this.unit_tag = UNIT_TAG.trim();
@@ -24,12 +24,8 @@ public class UnitLoader {
 		String filename = "resources/unit_stats/"+UNIT_TAG+".unit";
 		File file = new File(filename);
 		Scanner scanner = new Scanner(file);
-		System.out.println("Loading unit: " + filename);
-		int counter = 0;
 		while (scanner.hasNextLine()) {
-			counter += 1;
 			String line = scanner.nextLine();
-			//System.out.println("Line " + counter + ": " + line);
 			if (line.isEmpty()) {
 				continue;
 			}
@@ -41,14 +37,10 @@ public class UnitLoader {
                 this.movement_range = Integer.parseInt(line.substring(line.indexOf(":")+1));                
 			}else if (line.startsWith("MOVEMENT_COST")) {
 				this.setMovement_costs(scanner);
-				//System.out.println("Movement costs length: " + this.movement_costs.size());
-				//System.out.println("Movement costs: " + this.movement_costs.get(0) + this.movement_costs.get(1) + this.movement_costs.get(2) +	this.movement_costs.get(3) + this.movement_costs.get(4) + this.movement_costs.get(5));
 			}else if (line.startsWith("WEAPON1")) {
 				this.weapon1 = setWeapon(scanner);
-				System.out.println("Weapon1: " + this.weapon1);
 			}else if (line.startsWith("WEAPON2")) {
 				this.weapon2 = setWeapon(scanner);
-				System.out.println("Weapon2: " + this.weapon2);
 			} else if (line.isEmpty()) {
 				
 			}else if (line.startsWith("UNIT_TAG:")) {
