@@ -148,8 +148,6 @@ public class MainMenuController implements Initializable {
 			levelStage.setScene(newScene);
 			levelStage.setFullScreen(true);
 			levelStage.show();
-			
-			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
