@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Arrays;
 import view.Tile;
 
 /**
@@ -351,30 +350,31 @@ public class Model {
 	 * @param end
 	 * @param range
 	 * @param weight
+	 *
+	 *private void dijkstraSetValues(Tile start, Tile end, int weight) {
+	 *	boolean visited[] = new boolean[this.height*this.width];
+	 *	Arrays.fill(visited, false);
+	 *	int distanceMatrix[] = new int[this.height*this.width];
+	 *	int predecessor[] = new int[this.height*this.width];
+	 *	Arrays.fill(distanceMatrix, Integer.MAX_VALUE);
+	 *	Arrays.fill(predecessor, Integer.MAX_VALUE);
+	 *	distanceMatrix[(int) (this.height*start.getHeight() + this.width)] = 0;
+	 *	predecessor[(int) (this.height*start.getHeight() + this.width)] =
+	 *			-1;
+	 *	visited[(int) (this.height*start.getHeight() + this.width)] = true;
+	 *	int currentyVisiting =(int) (this.height*start.getHeight() + this.width);
+	 *	while(!visited[(int) (this.height*end.getHeight() + this.width)]){
+	 *		if (currentyVisiting + this.getHeight() > this.height*this.width) {
+	 *			distanceMatrix[currentyVisiting + this.getHeight()] =
+	 *					distanceMatrix[currentyVisiting] + weight;
+	 *		}
+	 *		if (currentyVisiting + this.getHeight() > this.height*this.width) {
+	 *			distanceMatrix[currentyVisiting + this.getHeight()] =
+	 *					distanceMatrix[currentyVisiting] + 1;
+	 *		}
+	 *	}	
+	 *}
 	 */
-	private void dijkstraSetValues(Tile start, Tile end, int weight) {
-		boolean visited[] = new boolean[this.height*this.width];
-		Arrays.fill(visited, false);
-		int distanceMatrix[] = new int[this.height*this.width];
-		int predecessor[] = new int[this.height*this.width];
-		Arrays.fill(distanceMatrix, Integer.MAX_VALUE);
-		Arrays.fill(predecessor, Integer.MAX_VALUE);
-		distanceMatrix[(int) (this.height*start.getHeight() + this.width)] = 0;
-		predecessor[(int) (this.height*start.getHeight() + this.width)] =
-				-1;
-		visited[(int) (this.height*start.getHeight() + this.width)] = true;
-		int currentyVisiting =(int) (this.height*start.getHeight() + this.width);
-		while(!visited[(int) (this.height*end.getHeight() + this.width)]){
-			if (currentyVisiting + this.getHeight() > this.height*this.width) {
-				distanceMatrix[currentyVisiting + this.getHeight()] =
-						distanceMatrix[currentyVisiting] + weight;
-			}
-			if (currentyVisiting + this.getHeight() > this.height*this.width) {
-				distanceMatrix[currentyVisiting + this.getHeight()] =
-						distanceMatrix[currentyVisiting] + 1;
-			}
-		}	
-	}
 	/**
 	 * To be used when a unit needs to traverse terrain
 	 * @param start
