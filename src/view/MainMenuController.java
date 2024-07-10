@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,7 +27,6 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class MainMenuController implements Initializable {
@@ -39,8 +37,6 @@ public class MainMenuController implements Initializable {
 	private Button quitButton;
 	@FXML
 	private Button mapCreation;
-	@FXML
-	private ImageView levelPreView;
 	@FXML
 	private ComboBox<String> levelSelection;
 	@FXML
@@ -58,7 +54,6 @@ public class MainMenuController implements Initializable {
 		model.initClassTypes();
 		
 		levelSelection.setVisible(false);
-		levelPreView.setVisible(false);
 		
 		Image backgroundImage = new Image(getClass().getClassLoader().getResource("uiFiles/empirePixelart.jpeg").toExternalForm());
 		BackgroundSize bSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
@@ -80,7 +75,6 @@ public class MainMenuController implements Initializable {
 			quitButton.setVisible(false);
 			mapCreation.setVisible(false);
 			startButton.setGraphic(new ImageView(new Image(getClass().getClassLoader().getResource("uiFiles/selectLevelButton.png").toExternalForm())));
-			levelPreView.setVisible(true);
 			levelSelection.setVisible(true);
 			setMapsFromDir();
 		}else {
