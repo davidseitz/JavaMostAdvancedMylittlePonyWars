@@ -26,7 +26,7 @@
                   <Insets bottom="40.0" />
                </padding>
             </VBox>
-            <Button fx:id="reloadButton" mnemonicParsing="false" prefHeight="26.0" onAction="#loadMap" prefWidth="184.0" text="Reload" />
+            <Button fx:id="reloadButton" mnemonicParsing="false" prefHeight="26.0" onAction="#loadMap" prefWidth="184.0" text="Resize Map" />
          	<Button fx:id="finishRoundButton" mnemonicParsing="false" prefHeight="26.0" onAction="#endRound" prefWidth="184.0" text="Finish Round" />
          </children>
          <padding>
