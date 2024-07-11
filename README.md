@@ -15,7 +15,7 @@ General Game Values (TAGS and MAP BUILDING) found in /modification/default_value
 
 To add a new Unit:
 
-	1. CHOOSE a TAG Name for the .unit file
+	1. CHOOSE a TAG Name for the .unit file {TAG}.unit
 	2. ADD .unit file in /unit_stats following the orders in the /modification/unit_file_template.txt file
 	3. ADD .png file in /units in format: {TAG}{FACTION (E/R)}.png for both Factions
 	4. ADD every change to /modification/default_values.txt for Documentation
