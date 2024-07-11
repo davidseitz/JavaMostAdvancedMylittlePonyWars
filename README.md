@@ -22,7 +22,7 @@ To add a new Unit:
 	
 To add the new Unit to the Map Creator:
 
-	1. ADD both (for every Faction) .png TAGs to [TILE_TAGS:] in the /modification/Map_Creator.txt file 
+	1. ADD both (for every Faction) TAGs to [TILE_TAGS:] in the /modification/Map_Creator.txt file 
 	
 **How to add a new Tile:**
 
