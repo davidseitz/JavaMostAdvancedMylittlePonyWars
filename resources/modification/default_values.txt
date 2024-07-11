@@ -58,7 +58,7 @@ IE			Stormtrooper
 ME			Scouttrooper
 TE			ATST
 KE			Imperial Artillery
-AE			-
+AE			AntiAir Empire
 FE			TieFighter
 BE			TieBomber
 CE			Imperial Dropship
