@@ -41,4 +41,4 @@ To add the new Tile to the Map Creator:
 
 -------------------------
 The only place in java where you can fight Advanced Wars in a galaxy far far away!! \
-![Beautiful picture](resources/units/FE.png "Title)![Beautiful picture](resources/units/FR.png "Title")
+![Beautiful picture](resources/units/FE.png "Title") ![Beautiful picture](resources/units/FR.png "Title")
