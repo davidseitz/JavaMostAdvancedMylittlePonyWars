@@ -35,7 +35,7 @@ To add a new Unit:
 	
 To add the new Unit to the Map Creator:
 
-	1. ADD both (for every Faction) .png TAGs to [TILE_TAGS:] in the /modification/Map_Creator.txt file 
+	1. ADD both (for every Faction) TAGs to [UNIT_TAGS:] in the /modification/Map_Creator.txt file 
 	
 **How to add a new Tile:**
 
@@ -48,10 +48,10 @@ To add a new Tile:
 
 To add the new Tile to the Map Creator:
 
-	1. ADD the TAG to [UNIT_TAGS:] in the /modification/Map_Creator.txt file
+	1. ADD the TAG to [TILE_TAGS:] in the /modification/Map_Creator.txt file
 	
 
 
 -------------------------
 The only place in java where you can fight Advanced Wars in a galaxy far far away!! \
-![Beautiful picture](resources/units/TieFighter.png "Title")
+![Beautiful picture](resources/units/FE.png "Tie Fighter") ![Beautiful picture](resources/units/FR.png "X-Wing")
