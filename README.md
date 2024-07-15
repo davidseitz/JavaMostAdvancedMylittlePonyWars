@@ -5,9 +5,22 @@ FOLLOWING Files are taken from the Internet:
 - /resources/uiFiles/empirePixelart.jpeg [Link](https://wallpaper.mob.org/pc/image/sci_fi-star_wars-pixel_art-461022.html)
 - /resources/uiFiles/rebelPixelart.png [Link](https://64.media.tumblr.com/81d7ecde8e5a31ae09dfa38adace5117/2d8352260a227498-96/s540x810/aebee7b8a67893f5b1d16f1f691ed2c7d3bb4af7.png)
 
-###HOW TO PLAY:
+HOW TO PLAY:
+------------------------
 
-###HOW TO MODIFY THE GAME:
+	1. Select a Map in the dropdown Menu
+	2. Resize the Map with the slider and click on resize if ok click on Start Game
+	3. The Empire begins
+	4. Select a Unit
+	5. You can move the Unit to the white highlighted Tiles
+	6. If an enemy Unit is in attack range it is highlighted red
+	7. Every Unit can move once and attack once (both is possible) per turn
+	8. Finish your Round pressing the Next Round Button
+	9. Next turn for the Rebelion
+	10. If no enemy Unit is remaining on the field Press the Next Round Button to Win the Game
+
+HOW TO MODIFY THE GAME:
+------------------------
 
 General Game Values (TAGS and MAP BUILDING) found in /modification/default_values.txt
 
