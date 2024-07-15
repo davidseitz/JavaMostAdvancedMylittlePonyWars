@@ -8,16 +8,28 @@ FOLLOWING Files are taken from the Internet:
 HOW TO PLAY:
 ------------------------
 
-	1. Select a Map in the dropdown Menu
-	2. Resize the Map with the slider and click on resize if ok click on Start Game
-	3. The Empire begins
-	4. Select a Unit
-	5. You can move the Unit to the white highlighted Tiles
-	6. If an enemy Unit is in attack range it is highlighted red
-	7. Every Unit can move once and attack once (both is possible) per turn
-	8. Finish your Round pressing the Next Round Button
-	9. Next turn for the Rebelion
-	10. If no enemy Unit is remaining on the field Press the Next Round Button to Win the Game
+	- Select a Map in the dropdown Menu
+
+<img src="resources/tutorial/tut_mapselection.png" width="250" height="150">
+
+	- Resize the Map with the slider and click on Resize Map. If size is ok click on Start Game
+
+<img src="resources/tutorial/resize.png" width="900" height="50">
+
+	- The Empire begins
+	- Select a Unit
+	- You can move the Unit to the white highlighted Tiles
+
+<img src="resources/tutorial/move_unit.png" width="600" height="300">
+
+	- If an enemy Unit is in attack range it is highlighted red
+	- Every Unit can move once and attack once (both is possible) per turn
+	
+<img src="resources/tutorial/attack.gif" width="300" height="300">
+
+	- Finish your Round pressing the Next Round Button
+	- Next turn for the Rebellion
+	- If no enemy Unit is remaining on the field Press the Next Round Button to Win the Game
 
 HOW TO MODIFY THE GAME:
 ------------------------
