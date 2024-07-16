@@ -164,7 +164,7 @@ public class BattleFieldController implements Initializable {
 					&& oldTile != null && oldTile.getUnit() != null) {
 				//Attack enemy
 				if(model.attackUnit(oldTile, tile)) {
-					oldTile.getUnit().setHasAttacked(true); // Unit cannt move after attacking
+					// Unit can't move after attacking
 					oldTile.getUnit().setHasMoved(true);
 					clearHighlights();
 				}

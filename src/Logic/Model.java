@@ -276,10 +276,14 @@ public class Model {
 	}
 
 	private boolean doDamage(Weapon weapon, Tile target, Tile unit, int damage) {
+		if (target.getUnit() == null) {
+			return false;
+		}
 		UnitLoader targetStats = target.getUnit().getUnitStats();
 		if (weapon.getCan_attack()!= null && weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 			if (this.attackPossible(unit, target, weapon.getRange())) {
 				target.getUnit().setLifepoints(target.getUnit().getLifepoints()-damage);
+				unit.getUnit().setHasAttacked(true);
 				if(target.getUnit().getLifepoints() <= 0) {
 					target.setUnit(target.getUnit());
 					target.removeUnit();
@@ -292,23 +296,25 @@ public class Model {
 		return false;
 	}
 	public boolean attackPossible(Tile unit, Tile target, int range) {
-		boolean canAttack = false;
-		UnitLoader unitStats = unit.getUnit().getUnitStats();
-		if (target.getUnit() == null) {
-            return false;
-        }
-		UnitLoader targetStats = target.getUnit().getUnitStats();
-		Weapon weapon1 = unitStats.getWeapon1();
-		Weapon weapon2 = unitStats.getWeapon2();
-		if ((weapon1.getCan_attack()!= null && (weapon1.getCan_attack().contains(targetStats.getUnit_tag()) ) 
-				|| (weapon2.getCan_attack()!= null && weapon2.getCan_attack().contains(targetStats.getUnit_tag())))) {
-			canAttack = true;
-		}
+			boolean canAttack = false;
+			UnitLoader unitStats = unit.getUnit().getUnitStats();
+			if (target.getUnit() == null) {
+	            return false;
+	        }
+			
+			UnitLoader targetStats = target.getUnit().getUnitStats();
+			Weapon weapon1 = unitStats.getWeapon1();
+			Weapon weapon2 = unitStats.getWeapon2();
+			if ((weapon1.getCan_attack()!= null && (weapon1.getCan_attack().contains(targetStats.getUnit_tag()) ) 
+					|| (weapon2.getCan_attack()!= null && weapon2.getCan_attack().contains(targetStats.getUnit_tag())))) {
+				canAttack = true;
+			}
+			
+			
+			if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked() && canAttack) {
+				return true;
+			}
 		
-		
-		if (this.findPath(unit, target, range) && !unit.equals(target) && !unit.getUnit().isHasAttacked() && canAttack) {
-			return true;
-		}
 		return false;
 	}
 	/**
