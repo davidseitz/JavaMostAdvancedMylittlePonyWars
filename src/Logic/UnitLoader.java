@@ -39,8 +39,10 @@ public class UnitLoader {
 				this.setMovement_costs(scanner);
 			}else if (line.startsWith("WEAPON1")) {
 				this.weapon1 = setWeapon(scanner);
+				//System.out.println("Weapon1: " + weapon1);
 			}else if (line.startsWith("WEAPON2")) {
 				this.weapon2 = setWeapon(scanner);
+				//System.out.println("Weapon2: " + weapon2);
 			} else if (line.isEmpty()) {
 				
 			}else if (line.startsWith("UNIT_TAG:")) {
@@ -64,7 +66,8 @@ public class UnitLoader {
 			line = line.trim();
 			if (line.startsWith("EXISTS: ")) {
 				if(line.contains("N")) {
-					return null;
+					Weapon weapon = new Weapon(0, null);
+					return weapon;
 				}else if(line.contains("Y")) {
 					
 				}else {

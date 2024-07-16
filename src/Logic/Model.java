@@ -277,7 +277,7 @@ public class Model {
 
 	private boolean doDamage(Weapon weapon, Tile target, Tile unit, int damage) {
 		UnitLoader targetStats = target.getUnit().getUnitStats();
-		if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
+		if (weapon.getCan_attack()!= null && weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
 			if (this.attackPossible(unit, target, weapon.getRange())) {
 				target.getUnit().setLifepoints(target.getUnit().getLifepoints()-damage);
 				if(target.getUnit().getLifepoints() <= 0) {
@@ -293,17 +293,16 @@ public class Model {
 	}
 	public boolean attackPossible(Tile unit, Tile target, int range) {
 		boolean canAttack = false;
-		try{
 		UnitLoader unitStats = unit.getUnit().getUnitStats();
+		if (target.getUnit() == null) {
+            return false;
+        }
 		UnitLoader targetStats = target.getUnit().getUnitStats();
 		Weapon weapon1 = unitStats.getWeapon1();
 		Weapon weapon2 = unitStats.getWeapon2();
-		if ((weapon1.getCan_attack().contains(targetStats.getUnit_tag()) 
-				|| weapon2.getCan_attack().contains(targetStats.getUnit_tag()))) {
+		if ((weapon1.getCan_attack()!= null && (weapon1.getCan_attack().contains(targetStats.getUnit_tag()) ) 
+				|| (weapon2.getCan_attack()!= null && weapon2.getCan_attack().contains(targetStats.getUnit_tag())))) {
 			canAttack = true;
-		}
-		}catch(NullPointerException e) {
-			return false;
 		}
 		
 		
