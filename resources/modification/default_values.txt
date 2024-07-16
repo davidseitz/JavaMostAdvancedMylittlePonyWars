@@ -58,7 +58,7 @@ IE			Stormtrooper
 ME			Scouttrooper
 TE			ATST
 KE			Imperial Artillery
-AE			-
+AE			AntiAir Empire
 FE			TieFighter
 BE			TieBomber
 CE			Imperial Dropship
@@ -93,6 +93,8 @@ Map Format:
 
 HEIGHT:WIDTH;
 TILE_TAG,UNIT_TAG;TILE_TAG,UNIT_TAG;
+
+Biggest Possible Map: 26:20
 
 Example:
 
