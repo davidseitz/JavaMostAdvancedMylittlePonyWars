@@ -213,7 +213,14 @@ public class BattleFieldController implements Initializable {
 					int range = 0;
 					if (moveUnit.getUnit().getUnitStats().getWeapon1() != null) {
 						range = moveUnit.getUnit().getUnitStats().getWeapon1().getRange();
-					} else if (moveUnit.getUnit().getUnitStats().getWeapon2() != null) {
+					}
+					if (model.attackPossible(moveUnit, field, range)
+							&& !moveUnit.getUnit().isHasAttacked()
+							&& field.getUnit() != null
+							&& field.getUnit().getPlayer() != moveUnit.getUnit().getPlayer()) {
+						setHighlightAttack(field);
+					}
+					if (moveUnit.getUnit().getUnitStats().getWeapon2() != null) {
 						range = moveUnit.getUnit().getUnitStats().getWeapon2().getRange();
 					}
 					if (model.attackPossible(moveUnit, field, range)
