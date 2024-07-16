@@ -259,36 +259,35 @@ public class Model {
 		if (unit.getUnit() != null && target.getUnit() != null) {
 			UnitLoader unitStats = unit.getUnit().getUnitStats();
 			UnitLoader targetStats = target.getUnit().getUnitStats();
+			boolean returnValue = false;
 			// Check if unit has a weapon to attack target
 			if (unitStats.getWeapon1() != null)  {
 				Weapon weapon = unitStats.getWeapon1();
-				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-					if (this.attackPossible(unit, target, weapon.getRange())) {
-						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-20);
-						if(target.getUnit().getLifepoints() <= 0) {
-							target.setUnit(target.getUnit());
-							target.removeUnit();
-						}else {
-							target.setUnit(target.getUnit());
-						}
-						return true;
-					}
-				}
+				returnValue = doDamage(weapon, target, unit, 20);
 			}
 			if (unitStats.getWeapon2() != null) {
 				Weapon weapon = unitStats.getWeapon2();
-				if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
-					if (this.attackPossible(unit, target, weapon.getRange())) {
-						target.getUnit().setLifepoints(target.getUnit().getLifepoints()-10);
-						if(target.getUnit().getLifepoints() <= 0) {
-							target.setUnit(target.getUnit());
-							target.removeUnit();
-						}else {
-							target.setUnit(target.getUnit());
-						}
-						return true;
-					}
+				returnValue = doDamage(weapon, target, unit, 10);	
+			}
+			if (returnValue) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private boolean doDamage(Weapon weapon, Tile target, Tile unit, int damage) {
+		UnitLoader targetStats = target.getUnit().getUnitStats();
+		if (weapon.getCan_attack().contains(targetStats.getUnit_tag())) {
+			if (this.attackPossible(unit, target, weapon.getRange())) {
+				target.getUnit().setLifepoints(target.getUnit().getLifepoints()-damage);
+				if(target.getUnit().getLifepoints() <= 0) {
+					target.setUnit(target.getUnit());
+					target.removeUnit();
+				}else {
+					target.setUnit(target.getUnit());
 				}
+				return true;
 			}
 		}
 		return false;
