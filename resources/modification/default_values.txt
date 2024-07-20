@@ -1,4 +1,4 @@
-#Note to pull a Tile all over the Field you need to:
+# Map Creator: Note to pull a Tile all over the Field you need to:
 #	1. Place a Unit
 #	2. Press on the Unit Image !!Important!!
 #	3. Pull throw the scene to place many Tiles
