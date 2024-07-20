@@ -29,7 +29,7 @@ HOW TO PLAY:
 
 	- Finish your Round pressing the Next Round Button
 	- Next turn for the Rebellion
-	- If no enemy Unit is remaining on the field Press the Next Round Button to Win the Game
+	- If no Enemy Unit is remaining on the field press the Next Round Button to win the game
 
 HOW TO MODIFY THE GAME:
 ------------------------
