@@ -167,6 +167,7 @@ public class BattleFieldController implements Initializable {
 					// Unit can't move after attacking
 					oldTile.getUnit().setHasMoved(true);
 					clearHighlights();
+					//System.out.println("Attacked");
 				}
 			}
 			if (tile.getUnit() != null) {
@@ -175,11 +176,10 @@ public class BattleFieldController implements Initializable {
 				moveUnit = tile;
 			}else {
 				//Move Unit
-				
 				if (moveUnit != null && (!moveUnit.getUnit().isHasMoved() || !moveUnit.getUnit().isHasAttacked())) {
 					setHighlightSelected(moveUnit, false);
 					if (model.move(tile, moveUnit)) {
-                        tile.setUnit(moveUnit.getUnit());
+						tile.setUnit(moveUnit.getUnit());
                         setHighlightSelected(tile, false);
                         clearHighlights();
                         oldTile.removeUnit();
