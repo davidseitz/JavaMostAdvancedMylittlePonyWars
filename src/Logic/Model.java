@@ -267,10 +267,7 @@ public class Model {
 			if (unitStats.getWeapon2() != null && returnValue == false) {
 				Weapon weapon = unitStats.getWeapon2();
 				returnValue = doDamage(weapon, target, unit, 10);
-				System.out.println("Weapon 2: "+ returnValue);
 			}
-			System.out.println(returnValue);
-			//System.out.println(returnValue);
 			if (returnValue) {
 				return true;
 			}
